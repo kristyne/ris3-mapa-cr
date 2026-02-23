@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ris3-blue: #1a2e44;
+  --color-ris3-blue-light: #2c4a6e;
+  --color-ris3-blue-50: #f0f4f8;
+  --color-ris3-accent: #d64045;
+  --color-ris3-green: #2a9d8f;
+  --color-ris3-orange: #e9c46a;
+  --color-ris3-gray-50: #f7f8f9;
+  --color-ris3-gray-100: #eceef0;
+  --color-ris3-gray-200: #dde0e4;
+  --color-ris3-gray-300: #c5c9cf;
+  --color-ris3-gray-500: #6b7280;
+  --color-ris3-gray-700: #3b4252;
+  --color-ris3-gray-900: #1e2028;
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ris3-gray-900);
+  background-color: #fff;
+  line-height: 1.65;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+/* Scrollytelling sticky viz layout */
+.scrolly-container {
+  position: relative;
+}
+
+.scrolly-viz-sticky {
+  position: sticky;
+  top: 56px; /* header height */
+  height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrolly-step {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Panel card style */
+.panel {
+  background: #fff;
+  border: 1px solid var(--color-ris3-gray-200);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+}
+
+/* Smooth transitions for all interactive elements */
+button, a, .panel {
+  transition: all 0.2s ease;
+}
+
+/* Better select styling */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3e%3cpath fill='%236b7280' d='M3 5l3 3 3-3'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 24px;
+}
+
+/* Pill buttons */
+.pill {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-ris3-gray-200);
+  background: #fff;
+  color: var(--color-ris3-gray-700);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pill:hover {
+  border-color: var(--color-ris3-blue-light);
+}
+.pill.active {
+  background: var(--color-ris3-blue);
+  color: #fff;
+  border-color: var(--color-ris3-blue);
+}
