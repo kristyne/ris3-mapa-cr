@@ -63,6 +63,7 @@ export default function SlideSemanticMerged() {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
   const [nodes, setNodes] = useState([])
   const [links, setLinks] = useState([])
+  const [infoExpanded, setInfoExpanded] = useState(false)
   const simRef = useRef(null)
   const dragRef = useRef(null)
   const svgRef = useRef(null)
@@ -108,12 +109,12 @@ export default function SlideSemanticMerged() {
   // ── MAP: projection ──
   const projection = useMemo(() => {
     if (!krajeGeo || dimensions.width === 0) return null
-    const mapWidth = isDesktop ? dimensions.width * (isCompact ? 0.52 : 0.58) : dimensions.width * 0.92
-    const mapHeight = isDesktop ? dimensions.height * (isCompact ? 0.48 : 0.55) : mapSvgH * 0.82
+    const mapWidth = isDesktop ? dimensions.width * (isCompact ? 0.55 : 0.58) : dimensions.width * 0.92
+    const mapHeight = isDesktop ? dimensions.height * (isCompact ? 0.50 : 0.55) : mapSvgH * 0.82
     const proj = d3.geoMercator().fitSize([mapWidth, mapHeight], krajeGeo)
     const [tx, ty] = proj.translate()
-    // Title on this slide is tall (~90px: title + subtitle + indicators), push map well below
-    proj.translate([tx + dimensions.width * 0.04, ty + (isDesktop ? Math.max(90, dimensions.height * 0.12) : mapSvgH * 0.06)])
+    // Title on this slide is tall (~90px: title + subtitle + indicators), push map below
+    proj.translate([tx + dimensions.width * 0.04, ty + (isDesktop ? Math.max(80, dimensions.height * 0.11) : mapSvgH * 0.06)])
     return proj
   }, [krajeGeo, dimensions, isDesktop, isCompact, mapSvgH])
 
@@ -535,9 +536,8 @@ export default function SlideSemanticMerged() {
   )
 
   // ── Infographic content ──
-  const infographicContent = (
+  const infographicBody = (
     <>
-      <div className="text-[13px] font-bold text-[#0A416E] mb-0.5">Formální vs. obsahová podobnost</div>
       <div className="text-[10px] text-[#777] mb-2">Pouze {zoneCounts.total} párů krajů s CZ-NACE kódy</div>
 
       <div className="flex items-center gap-2 mb-2">
@@ -589,6 +589,13 @@ export default function SlideSemanticMerged() {
             textAnchor="middle" fontSize={9} fill="#555">Sém. podob. textů</text>
         </g>
       </svg>
+    </>
+  )
+
+  const infographicContent = (
+    <>
+      <div className="text-[13px] font-bold text-[#0A416E] mb-0.5">Formální vs. obsahová podobnost</div>
+      {infographicBody}
     </>
   )
 
@@ -742,31 +749,40 @@ export default function SlideSemanticMerged() {
             top: height * (isCompact ? 0.52 : 0.56),
             borderLeft: '4px solid #55287D',
           }}>
-          {mapLegendContent(isCompact)}
+          {mapLegendContent(false)}
         </div>
 
         {/* Network legend + Methodology */}
         <div className="absolute z-10 flex flex-col gap-1.5"
-          style={{ right: 12, top: Math.max(90, height * 0.12), maxWidth: isCompact ? 180 : 200 }}>
+          style={{ right: 12, top: Math.max(80, height * 0.11), maxWidth: isCompact ? 195 : 210 }}>
           <div className="bg-white/92 rounded-lg px-3 py-2 shadow-sm" style={{ borderLeft: '4px solid #0087CD' }}>
-            {networkLegendContent(isCompact)}
+            {networkLegendContent(false)}
           </div>
-          {!isCompact && (
-            <div className="bg-white/95 rounded-lg px-3 py-2 shadow-sm border border-[#E3F2FD]">
-              {methodologyContent}
-            </div>
-          )}
+          <div className="bg-white/95 rounded-lg px-3 py-2 shadow-sm border border-[#E3F2FD]">
+            {methodologyContent}
+          </div>
         </div>
 
-        {/* Infographic panel — bottom left */}
+        {/* Infographic panel — bottom left, collapsible on compact */}
         <div className="absolute z-10 bg-white/95 rounded-lg px-3 py-2 shadow-sm"
           style={{
             left: width * 0.03,
             bottom: isCompact ? 28 : 36,
-            maxWidth: Math.min(isCompact ? 180 : 200, width * 0.18),
+            maxWidth: Math.min(isCompact ? 200 : 220, width * 0.18),
             borderLeft: '4px solid #E6AF14',
           }}>
-          {infographicContent}
+          {isCompact ? (
+            <>
+              <div className="flex items-center gap-2 cursor-pointer select-none"
+                onClick={() => setInfoExpanded(!infoExpanded)}>
+                <span className="text-[12px] font-bold text-[#0A416E]">Formální vs. obsahová podobnost</span>
+                <span className="text-[#0087CD] text-[11px]">{infoExpanded ? '▾' : '▸'}</span>
+              </div>
+              {infoExpanded && <div className="mt-2">{infographicBody}</div>}
+            </>
+          ) : (
+            infographicContent
+          )}
         </div>
 
         {tooltipEl}
