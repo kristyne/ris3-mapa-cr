@@ -19,18 +19,21 @@ export default function InfoPanel({ text }) {
         >
           <div className="absolute inset-0 bg-black/30" />
           <div
-            className="relative bg-white rounded-xl shadow-xl p-6 max-w-lg mx-4"
+            className="relative bg-white rounded-xl shadow-xl max-w-lg mx-4 flex flex-col"
+            style={{ maxHeight: '85vh' }}
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setOpen(false)}
-              className="absolute top-3 right-3 w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-100 text-[#9B9BA0] text-sm"
+              className="sticky top-0 self-end shrink-0 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-[#9B9BA0] text-lg mr-2 mt-2 z-10"
             >
               ×
             </button>
-            <p className="text-sm text-[#0A416E] leading-relaxed whitespace-pre-line">
-              {text}
-            </p>
+            <div className="overflow-y-auto px-6 pb-6 -mt-2">
+              <p className="text-sm text-[#0A416E] leading-relaxed whitespace-pre-line">
+                {text}
+              </p>
+            </div>
           </div>
         </div>
       )}
