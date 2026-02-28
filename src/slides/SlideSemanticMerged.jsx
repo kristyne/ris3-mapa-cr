@@ -114,7 +114,7 @@ export default function SlideSemanticMerged() {
     const proj = d3.geoMercator().fitSize([mapWidth, mapHeight], krajeGeo)
     const [tx, ty] = proj.translate()
     // Title on this slide is tall (~90px: title + subtitle + indicators), push map below
-    proj.translate([tx + dimensions.width * 0.04, ty + (isDesktop ? Math.max(80, dimensions.height * 0.11) : mapSvgH * 0.06)])
+    proj.translate([tx + dimensions.width * 0.04, ty + (isDesktop ? Math.max(105, dimensions.height * 0.14) : mapSvgH * 0.06)])
     return proj
   }, [krajeGeo, dimensions, isDesktop, isCompact, mapSvgH])
 
@@ -746,7 +746,7 @@ export default function SlideSemanticMerged() {
         <div className="absolute z-10 bg-white/92 rounded-lg px-2 py-1.5 shadow-sm"
           style={{
             left: width * 0.03,
-            top: height * (isCompact ? 0.52 : 0.56),
+            top: height * (isCompact ? 0.63 : 0.56),
             borderLeft: '4px solid #55287D',
           }}>
           {mapLegendContent(false)}
