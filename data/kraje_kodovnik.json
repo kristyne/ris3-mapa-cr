@@ -1,0 +1,19 @@
+{
+  "popis": "Kanonické názvy 14 krajů ČR. Všechna data v této složce používají tyto názvy konzistentně.",
+  "kraje": [
+    {"nazev": "Hl. m. Praha", "kod_nuts": "CZ010", "zkratka": "PHA"},
+    {"nazev": "Středočeský kraj", "kod_nuts": "CZ020", "zkratka": "STC"},
+    {"nazev": "Jihočeský kraj", "kod_nuts": "CZ031", "zkratka": "JHC"},
+    {"nazev": "Plzeňský kraj", "kod_nuts": "CZ032", "zkratka": "PLK"},
+    {"nazev": "Karlovarský kraj", "kod_nuts": "CZ041", "zkratka": "KVK"},
+    {"nazev": "Ústecký kraj", "kod_nuts": "CZ042", "zkratka": "ULK"},
+    {"nazev": "Liberecký kraj", "kod_nuts": "CZ051", "zkratka": "LBK"},
+    {"nazev": "Královéhradecký kraj", "kod_nuts": "CZ052", "zkratka": "HKK"},
+    {"nazev": "Pardubický kraj", "kod_nuts": "CZ053", "zkratka": "PAK"},
+    {"nazev": "Vysočina", "kod_nuts": "CZ063", "zkratka": "VYS"},
+    {"nazev": "Jihomoravský kraj", "kod_nuts": "CZ064", "zkratka": "JHM"},
+    {"nazev": "Olomoucký kraj", "kod_nuts": "CZ071", "zkratka": "OLK"},
+    {"nazev": "Zlínský kraj", "kod_nuts": "CZ072", "zkratka": "ZLK"},
+    {"nazev": "Moravskoslezský kraj", "kod_nuts": "CZ080", "zkratka": "MSK"}
+  ]
+}

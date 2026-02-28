@@ -1,0 +1,2878 @@
+{
+  "meta": {
+    "popis": "Předpočítané regionální agregáty pro vizualizaci",
+    "datum": "2026-02-23",
+    "metodika_projekty": "Kraj podle sídla hlavního příjemce",
+    "metodika_spoluprace": "Počet projektů kde oba kraje mají účastníka"
+  },
+  "projekty_po_krajich": {
+    "Hl. m. Praha": {
+      "pocet_projektu": 4060,
+      "naklady_tis_kc": 82357610,
+      "podpora_sr_tis_kc": 54706485,
+      "po_poskytovatelich": {
+        "MO": {
+          "pocet": 36,
+          "naklady": 501281
+        },
+        "TA ČR": {
+          "pocet": 748,
+          "naklady": 13721006
+        },
+        "MŠMT": {
+          "pocet": 605,
+          "naklady": 36884675
+        },
+        "MZe": {
+          "pocet": 103,
+          "naklady": 1524155
+        },
+        "GA ČR": {
+          "pocet": 1771,
+          "naklady": 14917958
+        },
+        "MZ": {
+          "pocet": 317,
+          "naklady": 3561814
+        },
+        "MPO": {
+          "pocet": 358,
+          "naklady": 8878256
+        },
+        "MV": {
+          "pocet": 83,
+          "naklady": 1509819
+        },
+        "MK": {
+          "pocet": 39,
+          "naklady": 858646
+        }
+      },
+      "po_ford_skupina": {
+        "Vzdělávání": {
+          "pocet": 55,
+          "naklady": 689907
+        },
+        "Elektro/elektronika": {
+          "pocet": 262,
+          "naklady": 5915621
+        },
+        "Chemické inženýrství": {
+          "pocet": 25,
+          "naklady": 458792
+        },
+        "Chemie": {
+          "pocet": 280,
+          "naklady": 4012844
+        },
+        "Farmakologie": {
+          "pocet": 22,
+          "naklady": 297400
+        },
+        "Biotechnologie": {
+          "pocet": 11,
+          "naklady": 112098
+        },
+        "Environmentální inž.": {
+          "pocet": 139,
+          "naklady": 2179801
+        },
+        "Stavebnictví": {
+          "pocet": 141,
+          "naklady": 1700808
+        },
+        "Strojírenství": {
+          "pocet": 140,
+          "naklady": 3497298
+        },
+        "Sociální geografie": {
+          "pocet": 27,
+          "naklady": 459256
+        },
+        "Klinická medicína": {
+          "pocet": 223,
+          "naklady": 3857961
+        },
+        "Sociologie": {
+          "pocet": 71,
+          "naklady": 1129447
+        },
+        "Materiály": {
+          "pocet": 150,
+          "naklady": 3305170
+        },
+        "211": {
+          "pocet": 17,
+          "naklady": 159885
+        },
+        "Politologie": {
+          "pocet": 78,
+          "naklady": 1224600
+        },
+        "Matematika": {
+          "pocet": 101,
+          "naklady": 844139
+        },
+        "508": {
+          "pocet": 15,
+          "naklady": 1570763
+        },
+        "Vědy o Zemi": {
+          "pocet": 181,
+          "naklady": 2670661
+        },
+        "Fyzika": {
+          "pocet": 306,
+          "naklady": 6352754
+        },
+        "404": {
+          "pocet": 16,
+          "naklady": 810129
+        },
+        "Filozofie": {
+          "pocet": 64,
+          "naklady": 450073
+        },
+        "Historie/archeologie": {
+          "pocet": 136,
+          "naklady": 1985531
+        },
+        "Biologie": {
+          "pocet": 570,
+          "naklady": 11935124
+        },
+        "Zemědělství": {
+          "pocet": 104,
+          "naklady": 2037144
+        },
+        "Základní medicína": {
+          "pocet": 175,
+          "naklady": 2713936
+        },
+        "Informatika": {
+          "pocet": 263,
+          "naklady": 10440981
+        },
+        "210": {
+          "pocet": 37,
+          "naklady": 394599
+        },
+        "Zdravotnictví": {
+          "pocet": 53,
+          "naklady": 807387
+        },
+        "Právo": {
+          "pocet": 34,
+          "naklady": 225778
+        },
+        "Ekonomie": {
+          "pocet": 74,
+          "naklady": 2041720
+        },
+        "Psychologie": {
+          "pocet": 36,
+          "naklady": 391328
+        },
+        "Jazyky/literatura": {
+          "pocet": 76,
+          "naklady": 639777
+        },
+        "Umění": {
+          "pocet": 50,
+          "naklady": 502670
+        },
+        "Jiné tech.": {
+          "pocet": 13,
+          "naklady": 156002
+        },
+        "305": {
+          "pocet": 14,
+          "naklady": 185755
+        },
+        "Lékařské inž.": {
+          "pocet": 26,
+          "naklady": 415566
+        },
+        "Jiné přírodní": {
+          "pocet": 16,
+          "naklady": 1532146
+        },
+        "509": {
+          "pocet": 28,
+          "naklady": 3738630
+        },
+        "605": {
+          "pocet": 5,
+          "naklady": 139433
+        },
+        "Veterina": {
+          "pocet": 5,
+          "naklady": 87499
+        },
+        "Živočišné vědy": {
+          "pocet": 19,
+          "naklady": 270959
+        },
+        "Jiné zemědělské": {
+          "pocet": 2,
+          "naklady": 16238
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 771,
+          "naklady": 12626434
+        },
+        "2024": {
+          "pocet": 805,
+          "naklady": 19854494
+        },
+        "2023": {
+          "pocet": 970,
+          "naklady": 24661393
+        },
+        "2022": {
+          "pocet": 689,
+          "naklady": 9727485
+        },
+        "2021": {
+          "pocet": 825,
+          "naklady": 15487804
+        }
+      }
+    },
+    "Zlínský kraj": {
+      "pocet_projektu": 170,
+      "naklady_tis_kc": 3539138,
+      "podpora_sr_tis_kc": 1333885,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 56,
+          "naklady": 1461858
+        },
+        "MZe": {
+          "pocet": 3,
+          "naklady": 56927
+        },
+        "MŠMT": {
+          "pocet": 13,
+          "naklady": 313653
+        },
+        "GA ČR": {
+          "pocet": 13,
+          "naklady": 93431
+        },
+        "MPO": {
+          "pocet": 79,
+          "naklady": 1538058
+        },
+        "MZ": {
+          "pocet": 2,
+          "naklady": 31327
+        },
+        "MK": {
+          "pocet": 1,
+          "naklady": 12193
+        },
+        "MV": {
+          "pocet": 3,
+          "naklady": 31691
+        }
+      },
+      "po_ford_skupina": {
+        "Chemie": {
+          "pocet": 19,
+          "naklady": 582638
+        },
+        "Jiné tech.": {
+          "pocet": 5,
+          "naklady": 46865
+        },
+        "Biotechnologie": {
+          "pocet": 2,
+          "naklady": 29792
+        },
+        "Sociální geografie": {
+          "pocet": 1,
+          "naklady": 19884
+        },
+        "Zemědělství": {
+          "pocet": 4,
+          "naklady": 62340
+        },
+        "Fyzika": {
+          "pocet": 1,
+          "naklady": 6276
+        },
+        "Strojírenství": {
+          "pocet": 30,
+          "naklady": 836282
+        },
+        "Elektro/elektronika": {
+          "pocet": 33,
+          "naklady": 617489
+        },
+        "Materiály": {
+          "pocet": 26,
+          "naklady": 484501
+        },
+        "Matematika": {
+          "pocet": 1,
+          "naklady": 5421
+        },
+        "Lékařské inž.": {
+          "pocet": 2,
+          "naklady": 63427
+        },
+        "Environmentální inž.": {
+          "pocet": 10,
+          "naklady": 160942
+        },
+        "Vzdělávání": {
+          "pocet": 2,
+          "naklady": 16209
+        },
+        "Informatika": {
+          "pocet": 9,
+          "naklady": 237958
+        },
+        "Stavebnictví": {
+          "pocet": 9,
+          "naklady": 139001
+        },
+        "211": {
+          "pocet": 2,
+          "naklady": 11205
+        },
+        "Základní medicína": {
+          "pocet": 2,
+          "naklady": 31693
+        },
+        "Vědy o Zemi": {
+          "pocet": 2,
+          "naklady": 30483
+        },
+        "210": {
+          "pocet": 1,
+          "naklady": 8511
+        },
+        "509": {
+          "pocet": 1,
+          "naklady": 2341
+        },
+        "Umění": {
+          "pocet": 1,
+          "naklady": 12193
+        },
+        "Ekonomie": {
+          "pocet": 1,
+          "naklady": 61896
+        },
+        "Politologie": {
+          "pocet": 2,
+          "naklady": 12383
+        },
+        "605": {
+          "pocet": 1,
+          "naklady": 8832
+        },
+        "Chemické inženýrství": {
+          "pocet": 2,
+          "naklady": 35601
+        },
+        "305": {
+          "pocet": 1,
+          "naklady": 14975
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 26,
+          "naklady": 470881
+        },
+        "2024": {
+          "pocet": 38,
+          "naklady": 488865
+        },
+        "2023": {
+          "pocet": 42,
+          "naklady": 1331128
+        },
+        "2022": {
+          "pocet": 13,
+          "naklady": 231306
+        },
+        "2021": {
+          "pocet": 51,
+          "naklady": 1016958
+        }
+      }
+    },
+    "Jihomoravský kraj": {
+      "pocet_projektu": 1217,
+      "naklady_tis_kc": 23227074,
+      "podpora_sr_tis_kc": 13676756,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 400,
+          "naklady": 8725780
+        },
+        "MO": {
+          "pocet": 9,
+          "naklady": 560779
+        },
+        "MZe": {
+          "pocet": 36,
+          "naklady": 538958
+        },
+        "MŠMT": {
+          "pocet": 181,
+          "naklady": 5315716
+        },
+        "GA ČR": {
+          "pocet": 233,
+          "naklady": 2079698
+        },
+        "MZ": {
+          "pocet": 66,
+          "naklady": 701234
+        },
+        "MPO": {
+          "pocet": 240,
+          "naklady": 4386100
+        },
+        "MV": {
+          "pocet": 42,
+          "naklady": 714122
+        },
+        "MK": {
+          "pocet": 10,
+          "naklady": 204687
+        }
+      },
+      "po_ford_skupina": {
+        "Strojírenství": {
+          "pocet": 112,
+          "naklady": 3624870
+        },
+        "Elektro/elektronika": {
+          "pocet": 217,
+          "naklady": 3910542
+        },
+        "Materiály": {
+          "pocet": 66,
+          "naklady": 911407
+        },
+        "Environmentální inž.": {
+          "pocet": 70,
+          "naklady": 1001936
+        },
+        "Zemědělství": {
+          "pocet": 38,
+          "naklady": 507532
+        },
+        "Stavebnictví": {
+          "pocet": 89,
+          "naklady": 1537157
+        },
+        "Chemické inženýrství": {
+          "pocet": 18,
+          "naklady": 239326
+        },
+        "Sociální geografie": {
+          "pocet": 7,
+          "naklady": 50390
+        },
+        "Sociologie": {
+          "pocet": 3,
+          "naklady": 12730
+        },
+        "Zdravotnictví": {
+          "pocet": 10,
+          "naklady": 101317
+        },
+        "Informatika": {
+          "pocet": 91,
+          "naklady": 1550408
+        },
+        "Vědy o Zemi": {
+          "pocet": 36,
+          "naklady": 406664
+        },
+        "Fyzika": {
+          "pocet": 79,
+          "naklady": 2220033
+        },
+        "Biologie": {
+          "pocet": 80,
+          "naklady": 910317
+        },
+        "Psychologie": {
+          "pocet": 16,
+          "naklady": 252253
+        },
+        "Chemie": {
+          "pocet": 56,
+          "naklady": 1150304
+        },
+        "Ekonomie": {
+          "pocet": 11,
+          "naklady": 163086
+        },
+        "Matematika": {
+          "pocet": 4,
+          "naklady": 38109
+        },
+        "Farmakologie": {
+          "pocet": 8,
+          "naklady": 134690
+        },
+        "210": {
+          "pocet": 12,
+          "naklady": 176378
+        },
+        "Biotechnologie": {
+          "pocet": 3,
+          "naklady": 50721
+        },
+        "Klinická medicína": {
+          "pocet": 54,
+          "naklady": 1273955
+        },
+        "Základní medicína": {
+          "pocet": 30,
+          "naklady": 954440
+        },
+        "Lékařské inž.": {
+          "pocet": 18,
+          "naklady": 244129
+        },
+        "404": {
+          "pocet": 6,
+          "naklady": 142579
+        },
+        "Jiné přírodní": {
+          "pocet": 15,
+          "naklady": 130948
+        },
+        "Vzdělávání": {
+          "pocet": 3,
+          "naklady": 44324
+        },
+        "Veterina": {
+          "pocet": 13,
+          "naklady": 551099
+        },
+        "211": {
+          "pocet": 4,
+          "naklady": 43451
+        },
+        "Živočišné vědy": {
+          "pocet": 7,
+          "naklady": 68223
+        },
+        "Historie/archeologie": {
+          "pocet": 9,
+          "naklady": 128845
+        },
+        "Politologie": {
+          "pocet": 7,
+          "naklady": 79333
+        },
+        "305": {
+          "pocet": 3,
+          "naklady": 195945
+        },
+        "Jiné tech.": {
+          "pocet": 3,
+          "naklady": 18789
+        },
+        "508": {
+          "pocet": 3,
+          "naklady": 72912
+        },
+        "Právo": {
+          "pocet": 2,
+          "naklady": 33630
+        },
+        "Umění": {
+          "pocet": 4,
+          "naklady": 76838
+        },
+        "Filozofie": {
+          "pocet": 1,
+          "naklady": 25865
+        },
+        "605": {
+          "pocet": 4,
+          "naklady": 81088
+        },
+        "Jiné zemědělské": {
+          "pocet": 2,
+          "naklady": 80602
+        },
+        "509": {
+          "pocet": 2,
+          "naklady": 20456
+        },
+        "Jazyky/literatura": {
+          "pocet": 1,
+          "naklady": 9453
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 210,
+          "naklady": 3355909
+        },
+        "2024": {
+          "pocet": 243,
+          "naklady": 4241082
+        },
+        "2023": {
+          "pocet": 320,
+          "naklady": 9151819
+        },
+        "2022": {
+          "pocet": 172,
+          "naklady": 2737296
+        },
+        "2021": {
+          "pocet": 272,
+          "naklady": 3740968
+        }
+      }
+    },
+    "Moravskoslezský kraj": {
+      "pocet_projektu": 430,
+      "naklady_tis_kc": 8929158,
+      "podpora_sr_tis_kc": 4271848,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 160,
+          "naklady": 3456625
+        },
+        "MŠMT": {
+          "pocet": 49,
+          "naklady": 2338285
+        },
+        "MZe": {
+          "pocet": 9,
+          "naklady": 89813
+        },
+        "GA ČR": {
+          "pocet": 77,
+          "naklady": 485028
+        },
+        "MZ": {
+          "pocet": 14,
+          "naklady": 143488
+        },
+        "MPO": {
+          "pocet": 105,
+          "naklady": 2050094
+        },
+        "MV": {
+          "pocet": 14,
+          "naklady": 324225
+        },
+        "MK": {
+          "pocet": 2,
+          "naklady": 41600
+        }
+      },
+      "po_ford_skupina": {
+        "Elektro/elektronika": {
+          "pocet": 77,
+          "naklady": 1550108
+        },
+        "Biotechnologie": {
+          "pocet": 2,
+          "naklady": 21901
+        },
+        "Stavebnictví": {
+          "pocet": 20,
+          "naklady": 315381
+        },
+        "Materiály": {
+          "pocet": 28,
+          "naklady": 933995
+        },
+        "Environmentální inž.": {
+          "pocet": 42,
+          "naklady": 1739920
+        },
+        "404": {
+          "pocet": 3,
+          "naklady": 35485
+        },
+        "Biologie": {
+          "pocet": 21,
+          "naklady": 232784
+        },
+        "Ekonomie": {
+          "pocet": 17,
+          "naklady": 158963
+        },
+        "Sociální geografie": {
+          "pocet": 9,
+          "naklady": 79698
+        },
+        "Matematika": {
+          "pocet": 4,
+          "naklady": 15314
+        },
+        "Jazyky/literatura": {
+          "pocet": 8,
+          "naklady": 168589
+        },
+        "Fyzika": {
+          "pocet": 13,
+          "naklady": 165400
+        },
+        "Lékařské inž.": {
+          "pocet": 10,
+          "naklady": 167958
+        },
+        "Vědy o Zemi": {
+          "pocet": 12,
+          "naklady": 138724
+        },
+        "509": {
+          "pocet": 3,
+          "naklady": 130904
+        },
+        "Historie/archeologie": {
+          "pocet": 6,
+          "naklady": 47212
+        },
+        "Klinická medicína": {
+          "pocet": 12,
+          "naklady": 110470
+        },
+        "Zdravotnictví": {
+          "pocet": 11,
+          "naklady": 134597
+        },
+        "Strojírenství": {
+          "pocet": 35,
+          "naklady": 990983
+        },
+        "Chemie": {
+          "pocet": 9,
+          "naklady": 79176
+        },
+        "Vzdělávání": {
+          "pocet": 8,
+          "naklady": 38573
+        },
+        "Chemické inženýrství": {
+          "pocet": 12,
+          "naklady": 267874
+        },
+        "Politologie": {
+          "pocet": 5,
+          "naklady": 39651
+        },
+        "211": {
+          "pocet": 6,
+          "naklady": 55134
+        },
+        "Veterina": {
+          "pocet": 3,
+          "naklady": 22359
+        },
+        "Sociologie": {
+          "pocet": 4,
+          "naklady": 10594
+        },
+        "Psychologie": {
+          "pocet": 2,
+          "naklady": 484003
+        },
+        "Informatika": {
+          "pocet": 35,
+          "naklady": 603598
+        },
+        "Jiné přírodní": {
+          "pocet": 2,
+          "naklady": 50463
+        },
+        "Umění": {
+          "pocet": 1,
+          "naklady": 1825
+        },
+        "Filozofie": {
+          "pocet": 2,
+          "naklady": 4648
+        },
+        "Právo": {
+          "pocet": 1,
+          "naklady": 11686
+        },
+        "Základní medicína": {
+          "pocet": 2,
+          "naklady": 80107
+        },
+        "Zemědělství": {
+          "pocet": 3,
+          "naklady": 36222
+        },
+        "210": {
+          "pocet": 1,
+          "naklady": 2289
+        },
+        "Farmakologie": {
+          "pocet": 1,
+          "naklady": 2570
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 76,
+          "naklady": 1577402
+        },
+        "2024": {
+          "pocet": 78,
+          "naklady": 1793118
+        },
+        "2023": {
+          "pocet": 100,
+          "naklady": 3219589
+        },
+        "2022": {
+          "pocet": 60,
+          "naklady": 734691
+        },
+        "2021": {
+          "pocet": 116,
+          "naklady": 1604358
+        }
+      }
+    },
+    "Plzeňský kraj": {
+      "pocet_projektu": 190,
+      "naklady_tis_kc": 4768504,
+      "podpora_sr_tis_kc": 2533263,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 71,
+          "naklady": 2357066
+        },
+        "MŠMT": {
+          "pocet": 30,
+          "naklady": 1404868
+        },
+        "GA ČR": {
+          "pocet": 32,
+          "naklady": 175498
+        },
+        "MZ": {
+          "pocet": 10,
+          "naklady": 101177
+        },
+        "MPO": {
+          "pocet": 41,
+          "naklady": 605495
+        },
+        "MV": {
+          "pocet": 4,
+          "naklady": 75655
+        },
+        "MK": {
+          "pocet": 2,
+          "naklady": 48745
+        }
+      },
+      "po_ford_skupina": {
+        "Elektro/elektronika": {
+          "pocet": 34,
+          "naklady": 1125129
+        },
+        "Environmentální inž.": {
+          "pocet": 20,
+          "naklady": 358906
+        },
+        "Stavebnictví": {
+          "pocet": 9,
+          "naklady": 108857
+        },
+        "Materiály": {
+          "pocet": 19,
+          "naklady": 403805
+        },
+        "Základní medicína": {
+          "pocet": 4,
+          "naklady": 76516
+        },
+        "Strojírenství": {
+          "pocet": 30,
+          "naklady": 1315001
+        },
+        "Biologie": {
+          "pocet": 6,
+          "naklady": 34240
+        },
+        "Klinická medicína": {
+          "pocet": 7,
+          "naklady": 72486
+        },
+        "Lékařské inž.": {
+          "pocet": 2,
+          "naklady": 23847
+        },
+        "Historie/archeologie": {
+          "pocet": 5,
+          "naklady": 62764
+        },
+        "Fyzika": {
+          "pocet": 6,
+          "naklady": 607049
+        },
+        "Informatika": {
+          "pocet": 12,
+          "naklady": 115505
+        },
+        "Vzdělávání": {
+          "pocet": 5,
+          "naklady": 47892
+        },
+        "Farmakologie": {
+          "pocet": 1,
+          "naklady": 91071
+        },
+        "Matematika": {
+          "pocet": 3,
+          "naklady": 19567
+        },
+        "Ekonomie": {
+          "pocet": 2,
+          "naklady": 4387
+        },
+        "Politologie": {
+          "pocet": 3,
+          "naklady": 40032
+        },
+        "Chemie": {
+          "pocet": 2,
+          "naklady": 10387
+        },
+        "Jiné přírodní": {
+          "pocet": 1,
+          "naklady": 21408
+        },
+        "Vědy o Zemi": {
+          "pocet": 2,
+          "naklady": 15929
+        },
+        "Filozofie": {
+          "pocet": 2,
+          "naklady": 5759
+        },
+        "Zemědělství": {
+          "pocet": 1,
+          "naklady": 23552
+        },
+        "Sociální geografie": {
+          "pocet": 2,
+          "naklady": 17058
+        },
+        "Psychologie": {
+          "pocet": 2,
+          "naklady": 17684
+        },
+        "509": {
+          "pocet": 1,
+          "naklady": 61072
+        },
+        "305": {
+          "pocet": 1,
+          "naklady": 16059
+        },
+        "Zdravotnictví": {
+          "pocet": 1,
+          "naklady": 11324
+        },
+        "210": {
+          "pocet": 1,
+          "naklady": 6168
+        },
+        "Právo": {
+          "pocet": 1,
+          "naklady": 2953
+        },
+        "Sociologie": {
+          "pocet": 1,
+          "naklady": 4373
+        },
+        "Umění": {
+          "pocet": 1,
+          "naklady": 3679
+        },
+        "Chemické inženýrství": {
+          "pocet": 1,
+          "naklady": 7514
+        },
+        "Jiné tech.": {
+          "pocet": 1,
+          "naklady": 8272
+        },
+        "Biotechnologie": {
+          "pocet": 1,
+          "naklady": 28259
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 36,
+          "naklady": 703945
+        },
+        "2024": {
+          "pocet": 30,
+          "naklady": 655795
+        },
+        "2023": {
+          "pocet": 49,
+          "naklady": 2441602
+        },
+        "2022": {
+          "pocet": 30,
+          "naklady": 337457
+        },
+        "2021": {
+          "pocet": 45,
+          "naklady": 629705
+        }
+      }
+    },
+    "Královéhradecký kraj": {
+      "pocet_projektu": 177,
+      "naklady_tis_kc": 2897239,
+      "podpora_sr_tis_kc": 1634015,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 47,
+          "naklady": 844898
+        },
+        "MO": {
+          "pocet": 1,
+          "naklady": 49024
+        },
+        "GA ČR": {
+          "pocet": 36,
+          "naklady": 264828
+        },
+        "MZ": {
+          "pocet": 24,
+          "naklady": 217690
+        },
+        "MŠMT": {
+          "pocet": 16,
+          "naklady": 428830
+        },
+        "MPO": {
+          "pocet": 38,
+          "naklady": 818674
+        },
+        "MZe": {
+          "pocet": 11,
+          "naklady": 190258
+        },
+        "MK": {
+          "pocet": 2,
+          "naklady": 44717
+        },
+        "MV": {
+          "pocet": 2,
+          "naklady": 38320
+        }
+      },
+      "po_ford_skupina": {
+        "Strojírenství": {
+          "pocet": 12,
+          "naklady": 253323
+        },
+        "Lékařské inž.": {
+          "pocet": 7,
+          "naklady": 156817
+        },
+        "Chemie": {
+          "pocet": 15,
+          "naklady": 186390
+        },
+        "Filozofie": {
+          "pocet": 5,
+          "naklady": 17141
+        },
+        "Základní medicína": {
+          "pocet": 21,
+          "naklady": 217609
+        },
+        "Elektro/elektronika": {
+          "pocet": 24,
+          "naklady": 518552
+        },
+        "Klinická medicína": {
+          "pocet": 14,
+          "naklady": 280339
+        },
+        "Vědy o Zemi": {
+          "pocet": 2,
+          "naklady": 37324
+        },
+        "Biologie": {
+          "pocet": 11,
+          "naklady": 129820
+        },
+        "Environmentální inž.": {
+          "pocet": 10,
+          "naklady": 242578
+        },
+        "Vzdělávání": {
+          "pocet": 3,
+          "naklady": 22874
+        },
+        "Sociologie": {
+          "pocet": 3,
+          "naklady": 15840
+        },
+        "Umění": {
+          "pocet": 2,
+          "naklady": 38634
+        },
+        "509": {
+          "pocet": 1,
+          "naklady": 17336
+        },
+        "Zdravotnictví": {
+          "pocet": 3,
+          "naklady": 21179
+        },
+        "Farmakologie": {
+          "pocet": 1,
+          "naklady": 20682
+        },
+        "Informatika": {
+          "pocet": 6,
+          "naklady": 126998
+        },
+        "Matematika": {
+          "pocet": 2,
+          "naklady": 17720
+        },
+        "Zemědělství": {
+          "pocet": 13,
+          "naklady": 173135
+        },
+        "Jiné tech.": {
+          "pocet": 3,
+          "naklady": 63963
+        },
+        "Materiály": {
+          "pocet": 4,
+          "naklady": 36191
+        },
+        "Ekonomie": {
+          "pocet": 2,
+          "naklady": 57128
+        },
+        "Politologie": {
+          "pocet": 1,
+          "naklady": 8803
+        },
+        "211": {
+          "pocet": 1,
+          "naklady": 72979
+        },
+        "Historie/archeologie": {
+          "pocet": 2,
+          "naklady": 23969
+        },
+        "Stavebnictví": {
+          "pocet": 4,
+          "naklady": 61727
+        },
+        "508": {
+          "pocet": 1,
+          "naklady": 29741
+        },
+        "210": {
+          "pocet": 1,
+          "naklady": 8579
+        },
+        "305": {
+          "pocet": 1,
+          "naklady": 5612
+        },
+        "Fyzika": {
+          "pocet": 1,
+          "naklady": 29680
+        },
+        "Veterina": {
+          "pocet": 1,
+          "naklady": 4576
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 29,
+          "naklady": 523465
+        },
+        "2024": {
+          "pocet": 44,
+          "naklady": 833109
+        },
+        "2023": {
+          "pocet": 35,
+          "naklady": 623916
+        },
+        "2022": {
+          "pocet": 29,
+          "naklady": 316743
+        },
+        "2021": {
+          "pocet": 40,
+          "naklady": 600006
+        }
+      }
+    },
+    "Vysočina": {
+      "pocet_projektu": 73,
+      "naklady_tis_kc": 1321651,
+      "podpora_sr_tis_kc": 689900,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 32,
+          "naklady": 693244
+        },
+        "MZe": {
+          "pocet": 4,
+          "naklady": 45334
+        },
+        "MŠMT": {
+          "pocet": 3,
+          "naklady": 170626
+        },
+        "MPO": {
+          "pocet": 31,
+          "naklady": 368069
+        },
+        "MK": {
+          "pocet": 1,
+          "naklady": 17581
+        },
+        "MV": {
+          "pocet": 2,
+          "naklady": 26797
+        }
+      },
+      "po_ford_skupina": {
+        "Strojírenství": {
+          "pocet": 20,
+          "naklady": 413775
+        },
+        "Vědy o Zemi": {
+          "pocet": 4,
+          "naklady": 141130
+        },
+        "Farmakologie": {
+          "pocet": 1,
+          "naklady": 36615
+        },
+        "Elektro/elektronika": {
+          "pocet": 16,
+          "naklady": 193974
+        },
+        "Materiály": {
+          "pocet": 7,
+          "naklady": 150155
+        },
+        "Environmentální inž.": {
+          "pocet": 6,
+          "naklady": 111778
+        },
+        "509": {
+          "pocet": 1,
+          "naklady": 34449
+        },
+        "Chemie": {
+          "pocet": 1,
+          "naklady": 12806
+        },
+        "Zemědělství": {
+          "pocet": 4,
+          "naklady": 45061
+        },
+        "Fyzika": {
+          "pocet": 2,
+          "naklady": 24577
+        },
+        "Informatika": {
+          "pocet": 3,
+          "naklady": 16918
+        },
+        "Stavebnictví": {
+          "pocet": 3,
+          "naklady": 54342
+        },
+        "Historie/archeologie": {
+          "pocet": 1,
+          "naklady": 17581
+        },
+        "Klinická medicína": {
+          "pocet": 1,
+          "naklady": 20341
+        },
+        "Ekonomie": {
+          "pocet": 1,
+          "naklady": 20884
+        },
+        "305": {
+          "pocet": 1,
+          "naklady": 5907
+        },
+        "Chemické inženýrství": {
+          "pocet": 1,
+          "naklady": 21358
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 10,
+          "naklady": 237104
+        },
+        "2024": {
+          "pocet": 9,
+          "naklady": 103583
+        },
+        "2023": {
+          "pocet": 19,
+          "naklady": 361742
+        },
+        "2022": {
+          "pocet": 11,
+          "naklady": 135583
+        },
+        "2021": {
+          "pocet": 24,
+          "naklady": 483639
+        }
+      }
+    },
+    "Pardubický kraj": {
+      "pocet_projektu": 183,
+      "naklady_tis_kc": 3186191,
+      "podpora_sr_tis_kc": 1176121,
+      "po_poskytovatelich": {
+        "MO": {
+          "pocet": 2,
+          "naklady": 26287
+        },
+        "TA ČR": {
+          "pocet": 46,
+          "naklady": 881281
+        },
+        "MŠMT": {
+          "pocet": 15,
+          "naklady": 440263
+        },
+        "GA ČR": {
+          "pocet": 35,
+          "naklady": 232489
+        },
+        "MPO": {
+          "pocet": 78,
+          "naklady": 1515809
+        },
+        "MZe": {
+          "pocet": 1,
+          "naklady": 20124
+        },
+        "MV": {
+          "pocet": 4,
+          "naklady": 33156
+        },
+        "MK": {
+          "pocet": 1,
+          "naklady": 22729
+        },
+        "MZ": {
+          "pocet": 1,
+          "naklady": 14053
+        }
+      },
+      "po_ford_skupina": {
+        "Elektro/elektronika": {
+          "pocet": 23,
+          "naklady": 406124
+        },
+        "Chemie": {
+          "pocet": 35,
+          "naklady": 463025
+        },
+        "Ekonomie": {
+          "pocet": 3,
+          "naklady": 65956
+        },
+        "Filozofie": {
+          "pocet": 7,
+          "naklady": 95891
+        },
+        "Jazyky/literatura": {
+          "pocet": 1,
+          "naklady": 3119
+        },
+        "Fyzika": {
+          "pocet": 2,
+          "naklady": 19790
+        },
+        "Materiály": {
+          "pocet": 35,
+          "naklady": 491645
+        },
+        "Historie/archeologie": {
+          "pocet": 4,
+          "naklady": 30881
+        },
+        "Vědy o Zemi": {
+          "pocet": 3,
+          "naklady": 49075
+        },
+        "Environmentální inž.": {
+          "pocet": 4,
+          "naklady": 115285
+        },
+        "Farmakologie": {
+          "pocet": 4,
+          "naklady": 155597
+        },
+        "210": {
+          "pocet": 6,
+          "naklady": 112614
+        },
+        "Strojírenství": {
+          "pocet": 15,
+          "naklady": 467736
+        },
+        "211": {
+          "pocet": 1,
+          "naklady": 3111
+        },
+        "Biologie": {
+          "pocet": 1,
+          "naklady": 20124
+        },
+        "Stavebnictví": {
+          "pocet": 9,
+          "naklady": 138712
+        },
+        "Informatika": {
+          "pocet": 14,
+          "naklady": 275753
+        },
+        "Chemické inženýrství": {
+          "pocet": 3,
+          "naklady": 37973
+        },
+        "Zemědělství": {
+          "pocet": 2,
+          "naklady": 21198
+        },
+        "Politologie": {
+          "pocet": 2,
+          "naklady": 23404
+        },
+        "Umění": {
+          "pocet": 1,
+          "naklady": 22729
+        },
+        "Vzdělávání": {
+          "pocet": 1,
+          "naklady": 4193
+        },
+        "Zdravotnictví": {
+          "pocet": 1,
+          "naklady": 21934
+        },
+        "Základní medicína": {
+          "pocet": 1,
+          "naklady": 36215
+        },
+        "Živočišné vědy": {
+          "pocet": 1,
+          "naklady": 30776
+        },
+        "Psychologie": {
+          "pocet": 1,
+          "naklady": 25132
+        },
+        "Lékařské inž.": {
+          "pocet": 3,
+          "naklady": 48199
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 26,
+          "naklady": 415136
+        },
+        "2024": {
+          "pocet": 36,
+          "naklady": 641075
+        },
+        "2023": {
+          "pocet": 37,
+          "naklady": 854741
+        },
+        "2022": {
+          "pocet": 27,
+          "naklady": 311665
+        },
+        "2021": {
+          "pocet": 57,
+          "naklady": 963574
+        }
+      }
+    },
+    "Středočeský kraj": {
+      "pocet_projektu": 499,
+      "naklady_tis_kc": 8581554,
+      "podpora_sr_tis_kc": 5408571,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 148,
+          "naklady": 2836565
+        },
+        "MŠMT": {
+          "pocet": 44,
+          "naklady": 1485254
+        },
+        "GA ČR": {
+          "pocet": 137,
+          "naklady": 1364624
+        },
+        "MZ": {
+          "pocet": 30,
+          "naklady": 301421
+        },
+        "MPO": {
+          "pocet": 105,
+          "naklady": 2098988
+        },
+        "MV": {
+          "pocet": 14,
+          "naklady": 211428
+        },
+        "MZe": {
+          "pocet": 17,
+          "naklady": 202847
+        },
+        "MK": {
+          "pocet": 4,
+          "naklady": 80427
+        }
+      },
+      "po_ford_skupina": {
+        "Strojírenství": {
+          "pocet": 55,
+          "naklady": 1785296
+        },
+        "Klinická medicína": {
+          "pocet": 26,
+          "naklady": 435625
+        },
+        "Biologie": {
+          "pocet": 111,
+          "naklady": 1378945
+        },
+        "Základní medicína": {
+          "pocet": 28,
+          "naklady": 348311
+        },
+        "Sociální geografie": {
+          "pocet": 1,
+          "naklady": 8964
+        },
+        "Biotechnologie": {
+          "pocet": 4,
+          "naklady": 69836
+        },
+        "Vědy o Zemi": {
+          "pocet": 23,
+          "naklady": 301013
+        },
+        "Chemie": {
+          "pocet": 22,
+          "naklady": 267628
+        },
+        "Historie/archeologie": {
+          "pocet": 2,
+          "naklady": 29422
+        },
+        "Fyzika": {
+          "pocet": 38,
+          "naklady": 579526
+        },
+        "Psychologie": {
+          "pocet": 14,
+          "naklady": 219034
+        },
+        "Zdravotnictví": {
+          "pocet": 7,
+          "naklady": 83744
+        },
+        "210": {
+          "pocet": 6,
+          "naklady": 107560
+        },
+        "305": {
+          "pocet": 4,
+          "naklady": 48353
+        },
+        "Zemědělství": {
+          "pocet": 22,
+          "naklady": 234651
+        },
+        "Environmentální inž.": {
+          "pocet": 19,
+          "naklady": 363334
+        },
+        "Jiné tech.": {
+          "pocet": 3,
+          "naklady": 78230
+        },
+        "Materiály": {
+          "pocet": 21,
+          "naklady": 372116
+        },
+        "Elektro/elektronika": {
+          "pocet": 35,
+          "naklady": 795529
+        },
+        "Jiné přírodní": {
+          "pocet": 4,
+          "naklady": 60192
+        },
+        "Vzdělávání": {
+          "pocet": 1,
+          "naklady": 11491
+        },
+        "Informatika": {
+          "pocet": 12,
+          "naklady": 251701
+        },
+        "Chemické inženýrství": {
+          "pocet": 3,
+          "naklady": 43767
+        },
+        "Stavebnictví": {
+          "pocet": 11,
+          "naklady": 252255
+        },
+        "Lékařské inž.": {
+          "pocet": 11,
+          "naklady": 257337
+        },
+        "211": {
+          "pocet": 2,
+          "naklady": 19898
+        },
+        "Farmakologie": {
+          "pocet": 5,
+          "naklady": 37869
+        },
+        "Matematika": {
+          "pocet": 2,
+          "naklady": 47459
+        },
+        "Politologie": {
+          "pocet": 2,
+          "naklady": 11376
+        },
+        "Umění": {
+          "pocet": 3,
+          "naklady": 42674
+        },
+        "Veterina": {
+          "pocet": 1,
+          "naklady": 29746
+        },
+        "Jazyky/literatura": {
+          "pocet": 1,
+          "naklady": 8672
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 74,
+          "naklady": 1292635
+        },
+        "2024": {
+          "pocet": 105,
+          "naklady": 1415339
+        },
+        "2023": {
+          "pocet": 111,
+          "naklady": 2514213
+        },
+        "2022": {
+          "pocet": 87,
+          "naklady": 913175
+        },
+        "2021": {
+          "pocet": 122,
+          "naklady": 2446192
+        }
+      }
+    },
+    "Olomoucký kraj": {
+      "pocet_projektu": 292,
+      "naklady_tis_kc": 6320006,
+      "podpora_sr_tis_kc": 3492577,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 54,
+          "naklady": 1742387
+        },
+        "MŠMT": {
+          "pocet": 52,
+          "naklady": 2193359
+        },
+        "GA ČR": {
+          "pocet": 94,
+          "naklady": 682089
+        },
+        "MZ": {
+          "pocet": 25,
+          "naklady": 271423
+        },
+        "MV": {
+          "pocet": 6,
+          "naklady": 112099
+        },
+        "MO": {
+          "pocet": 2,
+          "naklady": 165664
+        },
+        "MPO": {
+          "pocet": 47,
+          "naklady": 889766
+        },
+        "MZe": {
+          "pocet": 2,
+          "naklady": 35955
+        },
+        "MK": {
+          "pocet": 10,
+          "naklady": 227264
+        }
+      },
+      "po_ford_skupina": {
+        "Stavebnictví": {
+          "pocet": 7,
+          "naklady": 112173
+        },
+        "Zemědělství": {
+          "pocet": 9,
+          "naklady": 110174
+        },
+        "Biologie": {
+          "pocet": 24,
+          "naklady": 308625
+        },
+        "Chemie": {
+          "pocet": 22,
+          "naklady": 261259
+        },
+        "Základní medicína": {
+          "pocet": 11,
+          "naklady": 612379
+        },
+        "Sociální geografie": {
+          "pocet": 5,
+          "naklady": 19672
+        },
+        "Umění": {
+          "pocet": 10,
+          "naklady": 126763
+        },
+        "210": {
+          "pocet": 4,
+          "naklady": 540493
+        },
+        "Fyzika": {
+          "pocet": 32,
+          "naklady": 455492
+        },
+        "Historie/archeologie": {
+          "pocet": 6,
+          "naklady": 68813
+        },
+        "Právo": {
+          "pocet": 6,
+          "naklady": 22027
+        },
+        "Jazyky/literatura": {
+          "pocet": 7,
+          "naklady": 74510
+        },
+        "Zdravotnictví": {
+          "pocet": 8,
+          "naklady": 114107
+        },
+        "509": {
+          "pocet": 4,
+          "naklady": 230933
+        },
+        "Vědy o Zemi": {
+          "pocet": 6,
+          "naklady": 58382
+        },
+        "Klinická medicína": {
+          "pocet": 19,
+          "naklady": 232050
+        },
+        "Farmakologie": {
+          "pocet": 4,
+          "naklady": 102175
+        },
+        "Strojírenství": {
+          "pocet": 16,
+          "naklady": 412064
+        },
+        "Živočišné vědy": {
+          "pocet": 3,
+          "naklady": 71032
+        },
+        "Vzdělávání": {
+          "pocet": 4,
+          "naklady": 76686
+        },
+        "Jiné přírodní": {
+          "pocet": 3,
+          "naklady": 345611
+        },
+        "508": {
+          "pocet": 4,
+          "naklady": 155035
+        },
+        "Psychologie": {
+          "pocet": 6,
+          "naklady": 34947
+        },
+        "Elektro/elektronika": {
+          "pocet": 28,
+          "naklady": 668022
+        },
+        "Informatika": {
+          "pocet": 10,
+          "naklady": 165000
+        },
+        "Chemické inženýrství": {
+          "pocet": 4,
+          "naklady": 52378
+        },
+        "404": {
+          "pocet": 2,
+          "naklady": 85629
+        },
+        "Matematika": {
+          "pocet": 2,
+          "naklady": 7389
+        },
+        "Filozofie": {
+          "pocet": 5,
+          "naklady": 18921
+        },
+        "Politologie": {
+          "pocet": 2,
+          "naklady": 30133
+        },
+        "605": {
+          "pocet": 1,
+          "naklady": 19690
+        },
+        "Materiály": {
+          "pocet": 9,
+          "naklady": 140445
+        },
+        "Jiné tech.": {
+          "pocet": 1,
+          "naklady": 520278
+        },
+        "Sociologie": {
+          "pocet": 4,
+          "naklady": 24298
+        },
+        "211": {
+          "pocet": 1,
+          "naklady": 8094
+        },
+        "Lékařské inž.": {
+          "pocet": 3,
+          "naklady": 34327
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 55,
+          "naklady": 1141269
+        },
+        "2024": {
+          "pocet": 54,
+          "naklady": 982448
+        },
+        "2023": {
+          "pocet": 76,
+          "naklady": 3096322
+        },
+        "2022": {
+          "pocet": 41,
+          "naklady": 298100
+        },
+        "2021": {
+          "pocet": 66,
+          "naklady": 801867
+        }
+      }
+    },
+    "Jihočeský kraj": {
+      "pocet_projektu": 329,
+      "naklady_tis_kc": 4480242,
+      "podpora_sr_tis_kc": 2989467,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 71,
+          "naklady": 991612
+        },
+        "MŠMT": {
+          "pocet": 48,
+          "naklady": 1050574
+        },
+        "MZe": {
+          "pocet": 19,
+          "naklady": 271846
+        },
+        "GA ČR": {
+          "pocet": 149,
+          "naklady": 1503568
+        },
+        "MPO": {
+          "pocet": 35,
+          "naklady": 609013
+        },
+        "MZ": {
+          "pocet": 6,
+          "naklady": 44075
+        },
+        "MV": {
+          "pocet": 1,
+          "naklady": 9554
+        }
+      },
+      "po_ford_skupina": {
+        "Elektro/elektronika": {
+          "pocet": 21,
+          "naklady": 321839
+        },
+        "Klinická medicína": {
+          "pocet": 3,
+          "naklady": 41981
+        },
+        "Zemědělství": {
+          "pocet": 28,
+          "naklady": 468124
+        },
+        "Vědy o Zemi": {
+          "pocet": 22,
+          "naklady": 236674
+        },
+        "Biologie": {
+          "pocet": 157,
+          "naklady": 1887905
+        },
+        "Vzdělávání": {
+          "pocet": 4,
+          "naklady": 19067
+        },
+        "Chemie": {
+          "pocet": 6,
+          "naklady": 108987
+        },
+        "Jazyky/literatura": {
+          "pocet": 2,
+          "naklady": 2345
+        },
+        "Filozofie": {
+          "pocet": 3,
+          "naklady": 7564
+        },
+        "Zdravotnictví": {
+          "pocet": 7,
+          "naklady": 63053
+        },
+        "Veterina": {
+          "pocet": 4,
+          "naklady": 39304
+        },
+        "210": {
+          "pocet": 3,
+          "naklady": 54282
+        },
+        "Jiné přírodní": {
+          "pocet": 5,
+          "naklady": 190926
+        },
+        "509": {
+          "pocet": 5,
+          "naklady": 119270
+        },
+        "Sociologie": {
+          "pocet": 1,
+          "naklady": 10736
+        },
+        "508": {
+          "pocet": 1,
+          "naklady": 14717
+        },
+        "Ekonomie": {
+          "pocet": 3,
+          "naklady": 45724
+        },
+        "Materiály": {
+          "pocet": 6,
+          "naklady": 200731
+        },
+        "Lékařské inž.": {
+          "pocet": 1,
+          "naklady": 20411
+        },
+        "Strojírenství": {
+          "pocet": 5,
+          "naklady": 139765
+        },
+        "Historie/archeologie": {
+          "pocet": 4,
+          "naklady": 14148
+        },
+        "Základní medicína": {
+          "pocet": 7,
+          "naklady": 84062
+        },
+        "Biotechnologie": {
+          "pocet": 1,
+          "naklady": 12680
+        },
+        "Sociální geografie": {
+          "pocet": 3,
+          "naklady": 14892
+        },
+        "Politologie": {
+          "pocet": 3,
+          "naklady": 43811
+        },
+        "Informatika": {
+          "pocet": 6,
+          "naklady": 135546
+        },
+        "Environmentální inž.": {
+          "pocet": 3,
+          "naklady": 41412
+        },
+        "Živočišné vědy": {
+          "pocet": 3,
+          "naklady": 38474
+        },
+        "Umění": {
+          "pocet": 1,
+          "naklady": 1370
+        },
+        "Stavebnictví": {
+          "pocet": 2,
+          "naklady": 11288
+        },
+        "404": {
+          "pocet": 1,
+          "naklady": 3827
+        },
+        "Chemické inženýrství": {
+          "pocet": 3,
+          "naklady": 43602
+        },
+        "Fyzika": {
+          "pocet": 2,
+          "naklady": 14467
+        },
+        "Právo": {
+          "pocet": 1,
+          "naklady": 4091
+        },
+        "305": {
+          "pocet": 1,
+          "naklady": 17850
+        },
+        "211": {
+          "pocet": 1,
+          "naklady": 5317
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 66,
+          "naklady": 1060690
+        },
+        "2024": {
+          "pocet": 67,
+          "naklady": 906383
+        },
+        "2023": {
+          "pocet": 77,
+          "naklady": 1144986
+        },
+        "2022": {
+          "pocet": 55,
+          "naklady": 501687
+        },
+        "2021": {
+          "pocet": 64,
+          "naklady": 866496
+        }
+      }
+    },
+    "Ústecký kraj": {
+      "pocet_projektu": 109,
+      "naklady_tis_kc": 2303751,
+      "podpora_sr_tis_kc": 1049059,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 56,
+          "naklady": 1097480
+        },
+        "MŠMT": {
+          "pocet": 12,
+          "naklady": 453708
+        },
+        "GA ČR": {
+          "pocet": 6,
+          "naklady": 28329
+        },
+        "MPO": {
+          "pocet": 31,
+          "naklady": 640761
+        },
+        "MZe": {
+          "pocet": 1,
+          "naklady": 12851
+        },
+        "MK": {
+          "pocet": 2,
+          "naklady": 55113
+        },
+        "MZ": {
+          "pocet": 1,
+          "naklady": 15509
+        }
+      },
+      "po_ford_skupina": {
+        "Elektro/elektronika": {
+          "pocet": 12,
+          "naklady": 235156
+        },
+        "Chemické inženýrství": {
+          "pocet": 6,
+          "naklady": 164502
+        },
+        "210": {
+          "pocet": 3,
+          "naklady": 40598
+        },
+        "Biologie": {
+          "pocet": 5,
+          "naklady": 141123
+        },
+        "Stavebnictví": {
+          "pocet": 8,
+          "naklady": 121834
+        },
+        "Materiály": {
+          "pocet": 9,
+          "naklady": 237804
+        },
+        "Informatika": {
+          "pocet": 8,
+          "naklady": 186157
+        },
+        "Strojírenství": {
+          "pocet": 14,
+          "naklady": 377084
+        },
+        "Vzdělávání": {
+          "pocet": 3,
+          "naklady": 19049
+        },
+        "Jazyky/literatura": {
+          "pocet": 5,
+          "naklady": 7499
+        },
+        "509": {
+          "pocet": 1,
+          "naklady": 46572
+        },
+        "Environmentální inž.": {
+          "pocet": 9,
+          "naklady": 154643
+        },
+        "Chemie": {
+          "pocet": 1,
+          "naklady": 47725
+        },
+        "Jiné tech.": {
+          "pocet": 1,
+          "naklady": 6502
+        },
+        "Sociální geografie": {
+          "pocet": 4,
+          "naklady": 23080
+        },
+        "211": {
+          "pocet": 3,
+          "naklady": 24470
+        },
+        "Vědy o Zemi": {
+          "pocet": 2,
+          "naklady": 11175
+        },
+        "Politologie": {
+          "pocet": 3,
+          "naklady": 165958
+        },
+        "Farmakologie": {
+          "pocet": 1,
+          "naklady": 13680
+        },
+        "Zemědělství": {
+          "pocet": 2,
+          "naklady": 25989
+        },
+        "Historie/archeologie": {
+          "pocet": 3,
+          "naklady": 62129
+        },
+        "Klinická medicína": {
+          "pocet": 1,
+          "naklady": 15509
+        },
+        "Ekonomie": {
+          "pocet": 1,
+          "naklady": 79483
+        },
+        "Sociologie": {
+          "pocet": 1,
+          "naklady": 3997
+        },
+        "Zdravotnictví": {
+          "pocet": 1,
+          "naklady": 58166
+        },
+        "Psychologie": {
+          "pocet": 1,
+          "naklady": 2599
+        },
+        "Lékařské inž.": {
+          "pocet": 1,
+          "naklady": 31268
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 18,
+          "naklady": 353569
+        },
+        "2024": {
+          "pocet": 21,
+          "naklady": 535655
+        },
+        "2023": {
+          "pocet": 27,
+          "naklady": 666878
+        },
+        "2022": {
+          "pocet": 11,
+          "naklady": 144788
+        },
+        "2021": {
+          "pocet": 32,
+          "naklady": 602861
+        }
+      }
+    },
+    "Liberecký kraj": {
+      "pocet_projektu": 121,
+      "naklady_tis_kc": 2975295,
+      "podpora_sr_tis_kc": 1618902,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 56,
+          "naklady": 2058258
+        },
+        "GA ČR": {
+          "pocet": 14,
+          "naklady": 88124
+        },
+        "MZ": {
+          "pocet": 2,
+          "naklady": 20652
+        },
+        "MŠMT": {
+          "pocet": 13,
+          "naklady": 286783
+        },
+        "MPO": {
+          "pocet": 35,
+          "naklady": 515543
+        },
+        "MV": {
+          "pocet": 1,
+          "naklady": 5935
+        }
+      },
+      "po_ford_skupina": {
+        "Zemědělství": {
+          "pocet": 1,
+          "naklady": 13513
+        },
+        "Vzdělávání": {
+          "pocet": 2,
+          "naklady": 41120
+        },
+        "Sociální geografie": {
+          "pocet": 3,
+          "naklady": 16043
+        },
+        "Elektro/elektronika": {
+          "pocet": 24,
+          "naklady": 383525
+        },
+        "Chemie": {
+          "pocet": 1,
+          "naklady": 9893
+        },
+        "Lékařské inž.": {
+          "pocet": 2,
+          "naklady": 11523
+        },
+        "Vědy o Zemi": {
+          "pocet": 9,
+          "naklady": 114409
+        },
+        "Materiály": {
+          "pocet": 23,
+          "naklady": 715794
+        },
+        "Environmentální inž.": {
+          "pocet": 7,
+          "naklady": 97261
+        },
+        "Ekonomie": {
+          "pocet": 4,
+          "naklady": 140146
+        },
+        "Matematika": {
+          "pocet": 4,
+          "naklady": 20395
+        },
+        "Biotechnologie": {
+          "pocet": 3,
+          "naklady": 29853
+        },
+        "Strojírenství": {
+          "pocet": 9,
+          "naklady": 1007441
+        },
+        "Chemické inženýrství": {
+          "pocet": 4,
+          "naklady": 33653
+        },
+        "Základní medicína": {
+          "pocet": 2,
+          "naklady": 18409
+        },
+        "210": {
+          "pocet": 2,
+          "naklady": 21559
+        },
+        "Stavebnictví": {
+          "pocet": 5,
+          "naklady": 44018
+        },
+        "Fyzika": {
+          "pocet": 6,
+          "naklady": 154209
+        },
+        "Informatika": {
+          "pocet": 3,
+          "naklady": 28312
+        },
+        "Politologie": {
+          "pocet": 1,
+          "naklady": 18705
+        },
+        "Jazyky/literatura": {
+          "pocet": 1,
+          "naklady": 1960
+        },
+        "Biologie": {
+          "pocet": 2,
+          "naklady": 22130
+        },
+        "Umění": {
+          "pocet": 2,
+          "naklady": 29071
+        },
+        "Sociologie": {
+          "pocet": 1,
+          "naklady": 2353
+        }
+      },
+      "po_letech": {
+        "2025": {
+          "pocet": 21,
+          "naklady": 402350
+        },
+        "2024": {
+          "pocet": 26,
+          "naklady": 336781
+        },
+        "2023": {
+          "pocet": 35,
+          "naklady": 1585772
+        },
+        "2022": {
+          "pocet": 8,
+          "naklady": 79539
+        },
+        "2021": {
+          "pocet": 31,
+          "naklady": 570853
+        }
+      }
+    },
+    "Karlovarský kraj": {
+      "pocet_projektu": 13,
+      "naklady_tis_kc": 318945,
+      "podpora_sr_tis_kc": 71615,
+      "po_poskytovatelich": {
+        "TA ČR": {
+          "pocet": 2,
+          "naklady": 70084
+        },
+        "MPO": {
+          "pocet": 10,
+          "naklady": 174820
+        },
+        "MŠMT": {
+          "pocet": 1,
+          "naklady": 74041
+        }
+      },
+      "po_ford_skupina": {
+        "Strojírenství": {
+          "pocet": 4,
+          "naklady": 94298
+        },
+        "Materiály": {
+          "pocet": 4,
+          "naklady": 83092
+        },
+        "Elektro/elektronika": {
+          "pocet": 4,
+          "naklady": 67514
+        },
+        "Jiné přírodní": {
+          "pocet": 1,
+          "naklady": 74041
+        }
+      },
+      "po_letech": {
+        "2024": {
+          "pocet": 3,
+          "naklady": 82137
+        },
+        "2023": {
+          "pocet": 2,
+          "naklady": 98758
+        },
+        "2021": {
+          "pocet": 8,
+          "naklady": 138050
+        }
+      }
+    }
+  },
+  "spoluprace_mezi_kraji": [
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Jihomoravský kraj",
+      "spolecne_projekty": 655
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Středočeský kraj",
+      "spolecne_projekty": 481
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Moravskoslezský kraj",
+      "spolecne_projekty": 227
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Olomoucký kraj",
+      "spolecne_projekty": 205
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Plzeňský kraj",
+      "spolecne_projekty": 186
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Středočeský kraj",
+      "spolecne_projekty": 160
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Moravskoslezský kraj",
+      "spolecne_projekty": 155
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Jihočeský kraj",
+      "spolecne_projekty": 150
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Olomoucký kraj",
+      "spolecne_projekty": 146
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Královéhradecký kraj",
+      "spolecne_projekty": 133
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Liberecký kraj",
+      "spolecne_projekty": 112
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Pardubický kraj",
+      "spolecne_projekty": 109
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Ústecký kraj",
+      "spolecne_projekty": 97
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Zlínský kraj",
+      "spolecne_projekty": 76
+    },
+    {
+      "kraj_a": "Plzeňský kraj",
+      "kraj_b": "Středočeský kraj",
+      "spolecne_projekty": 73
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Plzeňský kraj",
+      "spolecne_projekty": 69
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Královéhradecký kraj",
+      "spolecne_projekty": 67
+    },
+    {
+      "kraj_a": "Hl. m. Praha",
+      "kraj_b": "Vysočina",
+      "spolecne_projekty": 63
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Jihočeský kraj",
+      "spolecne_projekty": 62
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Zlínský kraj",
+      "spolecne_projekty": 61
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Pardubický kraj",
+      "spolecne_projekty": 59
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Vysočina",
+      "spolecne_projekty": 58
+    },
+    {
+      "kraj_a": "Moravskoslezský kraj",
+      "kraj_b": "Středočeský kraj",
+      "spolecne_projekty": 57
+    },
+    {
+      "kraj_a": "Olomoucký kraj",
+      "kraj_b": "Středočeský kraj",
+      "spolecne_projekty": 56
+    },
+    {
+      "kraj_a": "Jihočeský kraj",
+      "kraj_b": "Středočeský kraj",
+      "spolecne_projekty": 52
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Ústecký kraj",
+      "spolecne_projekty": 46
+    },
+    {
+      "kraj_a": "Moravskoslezský kraj",
+      "kraj_b": "Olomoucký kraj",
+      "spolecne_projekty": 45
+    },
+    {
+      "kraj_a": "Jihomoravský kraj",
+      "kraj_b": "Liberecký kraj",
+      "spolecne_projekty": 43
+    },
+    {
+      "kraj_a": "Moravskoslezský kraj",
+      "kraj_b": "Plzeňský kraj",
+      "spolecne_projekty": 42
+    },
+    {
+      "kraj_a": "Středočeský kraj",
+      "kraj_b": "Ústecký kraj",
+      "spolecne_projekty": 37
+    },
+    {
+      "kraj_a": "Královéhradecký kraj",
+      "kraj_b": "Středočeský kraj",
+      "spolecne_projekty": 37
+    },
+    {
+      "kraj_a": "Liberecký kraj",
+      "kraj_b": "Středočeský kraj",
+      "spolecne_projekty": 32
+    },
+    {
+      "kraj_a": "Jihočeský kraj",
+      "kraj_b": "Moravskoslezský kraj",
+      "spolecne_projekty": 31
+    },
+    {
+      "kraj_a": "Jihočeský kraj",
+      "kraj_b": "Olomoucký kraj",
+      "spolecne_projekty": 30
+    },
+    {
+      "kraj_a": "Královéhradecký kraj",
+      "kraj_b": "Moravskoslezský kraj",
+      "spolecne_projekty": 29
+    },
+    {
+      "kraj_a": "Pardubický kraj",
+      "kraj_b": "Středočeský kraj",
+      "spolecne_projekty": 29
+    },
+    {
+      "kraj_a": "Královéhradecký kraj",
+      "kraj_b": "Plzeňský kraj",
+      "spolecne_projekty": 28
+    },
+    {
+      "kraj_a": "Královéhradecký kraj",
+      "kraj_b": "Olomoucký kraj",
+      "spolecne_projekty": 26
+    },
+    {
+      "kraj_a": "Středočeský kraj",
+      "kraj_b": "Vysočina",
+      "spolecne_projekty": 25
+    },
+    {
+      "kraj_a": "Moravskoslezský kraj",
+      "kraj_b": "Zlínský kraj",
+      "spolecne_projekty": 24
+    },
+    {
+      "kraj_a": "Jihočeský kraj",
+      "kraj_b": "Plzeňský kraj",
+      "spolecne_projekty": 24
+    },
+    {
+      "kraj_a": "Středočeský kraj",
+      "kraj_b": "Zlínský kraj",
+      "spolecne_projekty": 22
+    },
+    {
+      "kraj_a": "Liberecký kraj",
+      "kraj_b": "Moravskoslezský kraj",
+      "spolecne_projekty": 21
+    },
+    {
+      "kraj_a": "Liberecký kraj",
+      "kraj_b": "Plzeňský kraj",
+      "spolecne_projekty": 21
+    },
+    {
+      "kraj_a": "Královéhradecký kraj",
+      "kraj_b": "Pardubický kraj",
+      "spolecne_projekty": 21
+    },
+    {
+      "kraj_a": "Liberecký kraj",
+      "kraj_b": "Ústecký kraj",
+      "spolecne_projekty": 21
+    },
+    {
+      "kraj_a": "Plzeňský kraj",
+      "kraj_b": "Ústecký kraj",
+      "spolecne_projekty": 21
+    },
+    {
+      "kraj_a": "Olomoucký kraj",
+      "kraj_b": "Plzeňský kraj",
+      "spolecne_projekty": 19
+    },
+    {
+      "kraj_a": "Olomoucký kraj",
+      "kraj_b": "Pardubický kraj",
+      "spolecne_projekty": 18
+    },
+    {
+      "kraj_a": "Olomoucký kraj",
+      "kraj_b": "Zlínský kraj",
+      "spolecne_projekty": 18
+    }
+  ],
+  "subjekty_po_krajich": {
+    "Hl. m. Praha": {
+      "celkem": 2926,
+      "firmy_sro": 1116,
+      "firmy_as": 435,
+      "vs": 139,
+      "vvi": 118,
+      "ostatni": 1118
+    },
+    "Jihomoravský kraj": {
+      "celkem": 1333,
+      "firmy_sro": 682,
+      "firmy_as": 229,
+      "vs": 100,
+      "vvi": 14,
+      "ostatni": 308
+    },
+    "Olomoucký kraj": {
+      "celkem": 341,
+      "firmy_sro": 174,
+      "firmy_as": 58,
+      "vs": 19,
+      "vvi": 0,
+      "ostatni": 90
+    },
+    "Plzeňský kraj": {
+      "celkem": 283,
+      "firmy_sro": 143,
+      "firmy_as": 42,
+      "vs": 23,
+      "vvi": 0,
+      "ostatni": 75
+    },
+    "Moravskoslezský kraj": {
+      "celkem": 737,
+      "firmy_sro": 355,
+      "firmy_as": 149,
+      "vs": 58,
+      "vvi": 1,
+      "ostatni": 174
+    },
+    "Jihočeský kraj": {
+      "celkem": 319,
+      "firmy_sro": 127,
+      "firmy_as": 63,
+      "vs": 28,
+      "vvi": 2,
+      "ostatni": 99
+    },
+    "Středočeský kraj": {
+      "celkem": 695,
+      "firmy_sro": 344,
+      "firmy_as": 116,
+      "vs": 5,
+      "vvi": 27,
+      "ostatni": 203
+    },
+    "Liberecký kraj": {
+      "celkem": 264,
+      "firmy_sro": 150,
+      "firmy_as": 38,
+      "vs": 13,
+      "vvi": 0,
+      "ostatni": 63
+    },
+    "Pardubický kraj": {
+      "celkem": 334,
+      "firmy_sro": 165,
+      "firmy_as": 58,
+      "vs": 32,
+      "vvi": 0,
+      "ostatni": 79
+    },
+    "Zlínský kraj": {
+      "celkem": 425,
+      "firmy_sro": 246,
+      "firmy_as": 89,
+      "vs": 12,
+      "vvi": 0,
+      "ostatni": 78
+    },
+    "Ústecký kraj": {
+      "celkem": 272,
+      "firmy_sro": 124,
+      "firmy_as": 56,
+      "vs": 22,
+      "vvi": 2,
+      "ostatni": 68
+    },
+    "Královéhradecký kraj": {
+      "celkem": 276,
+      "firmy_sro": 117,
+      "firmy_as": 58,
+      "vs": 10,
+      "vvi": 1,
+      "ostatni": 90
+    },
+    "Vysočina": {
+      "celkem": 235,
+      "firmy_sro": 109,
+      "firmy_as": 51,
+      "vs": 2,
+      "vvi": 0,
+      "ostatni": 73
+    },
+    "Karlovarský kraj": {
+      "celkem": 94,
+      "firmy_sro": 43,
+      "firmy_as": 18,
+      "vs": 0,
+      "vvi": 1,
+      "ostatni": 32
+    }
+  }
+}
