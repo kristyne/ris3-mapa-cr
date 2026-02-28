@@ -267,7 +267,7 @@ export default function SlideVavEkosystem() {
         {/* Right panel */}
         <div className="absolute z-10" style={{
           left: width * (isCompact ? 0.56 : 0.60),
-          bottom: height * (isCompact ? 0.04 : 0.06),
+          bottom: height * (isCompact ? 0.06 : 0.06),
           width: width * (isCompact ? 0.42 : 0.37),
         }}>
           <div className={`bg-white/95 rounded-lg ${isCompact ? 'px-2.5 py-1.5' : 'px-3 py-2'} shadow-sm border border-[#E3F2FD]`}>

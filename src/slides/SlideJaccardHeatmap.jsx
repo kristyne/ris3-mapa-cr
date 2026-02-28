@@ -195,7 +195,7 @@ export default function SlideJaccardHeatmap() {
     const [tx, ty] = proj.translate()
     if (isDesktop) {
       // Push map down to clear title
-      proj.translate([tx + dimensions.width * 0.01, ty + (isCompact ? Math.max(65, dimensions.height * 0.085) : dimensions.height * 0.05)])
+      proj.translate([tx + dimensions.width * 0.01, ty + (isCompact ? Math.max(90, dimensions.height * 0.12) : dimensions.height * 0.05)])
     } else {
       proj.translate([tx + dimensions.width * 0.04, ty + mapSvgH * 0.08])
     }

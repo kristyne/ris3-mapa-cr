@@ -746,7 +746,7 @@ export default function SlideSemanticMerged() {
         <div className="absolute z-10 bg-white/92 rounded-lg px-2 py-1.5 shadow-sm"
           style={{
             left: width * 0.03,
-            top: height * (isCompact ? 0.63 : 0.56),
+            top: height * (isCompact ? 0.68 : 0.56),
             borderLeft: '4px solid #55287D',
           }}>
           {mapLegendContent(false)}
