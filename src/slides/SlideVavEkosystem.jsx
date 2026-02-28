@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import * as d3 from 'd3'
 import InfoPanel from '../InfoPanel'
+import CollapsiblePanel from '../CollapsiblePanel'
 
 const INFO_TEXT = `Tento slide propojuje projekty z IS VaVaI (CEP, 2021–2025) s doménami specializace z krajských karet (Příloha 2 NRIS3) pomocí dvou nezávislých metod. FORD matching porovnává oborovou klasifikaci projektu s tematickým zaměřením domén. Sémantický matching využívá jazykový model k porovnání textu projektu (název + klíčová slova) s popisy domén. Kombinace metod odhaluje čtyři situace: silná shoda (obor i obsah sedí), skrytý potenciál (obsah blízký, ale jiný obor), formální shoda (obor sedí, ale obsah se liší) a bez shody.`
 
@@ -51,23 +52,12 @@ export default function SlideVavEkosystem() {
   }
 
   const { width, height } = dimensions
-  const isMobile = width < 768
+  const isDesktop = width > 1024
+  const isTablet = width > 768 && width <= 1024
+  const isMobile = width <= 768
 
   // Responsive SVG font helper
   const fs = (base) => Math.max(base * 0.6, Math.min(base, Math.min(width, height) / 1080 * base))
-
-  // Chart layout — left portion for bars, right for explanations
-  const chartLeft = Math.max(60, Math.min(160, width * 0.12))
-  const chartRight = isMobile ? width * 0.92 : width * 0.58
-  const chartTop = height * (isMobile ? 0.18 : 0.22)
-  const chartBottom = height * (isMobile ? 0.55 : 0.82)
-  const chartW = chartRight - chartLeft
-  const barCount = sortedKraje.length
-  const barGroupH = (chartBottom - chartTop) / barCount
-  const barH = Math.min(barGroupH * 0.65, 26)
-
-  const maxTotal = Math.max(...sortedKraje.map(([, s]) => s.celkem_projektu))
-  const xScale = d3.scaleLinear().domain([0, maxTotal]).range([0, chartW])
 
   // Totals for commentary
   const totals = sortedKraje.reduce((acc, [, s]) => ({
@@ -85,15 +75,233 @@ export default function SlideVavEkosystem() {
     ? (totals.v_obou / totals.total * 100).toFixed(0)
     : 0
 
-  // Nice x-axis ticks
+  // ── Chart dimensions ──
+  const chartLeft = Math.max(60, Math.min(160, width * 0.12))
+  const chartRight = isDesktop ? width * 0.58 : width * 0.90
+  const chartSvgH = isDesktop ? height : isTablet ? height * 0.55 : height * 0.45
+  const chartTop = chartSvgH * (isDesktop ? 0.22 : 0.24)
+  const chartBottom = chartSvgH * (isDesktop ? 0.82 : 0.88)
+  const chartW = chartRight - chartLeft
+  const barCount = sortedKraje.length
+  const barGroupH = (chartBottom - chartTop) / barCount
+  const barH = Math.min(barGroupH * 0.65, 26)
+
+  const maxTotal = Math.max(...sortedKraje.map(([, s]) => s.celkem_projektu))
+  const xScale = d3.scaleLinear().domain([0, maxTotal]).range([0, chartW])
   const ticks = d3.scaleLinear().domain([0, maxTotal]).ticks(5)
 
+  // ── Chart SVG (shared) ──
+  const chartSvg = (svgW, svgH) => (
+    <svg width={svgW} height={svgH} style={{ display: 'block' }}>
+      {/* X axis gridlines */}
+      {ticks.map(tick => (
+        <g key={`xt-${tick}`}>
+          <line
+            x1={chartLeft + xScale(tick)} y1={chartTop - 5}
+            x2={chartLeft + xScale(tick)} y2={chartBottom + 5}
+            stroke="#eee" strokeWidth={tick === 0 ? 1 : 0.5}
+          />
+          <text
+            x={chartLeft + xScale(tick)} y={chartBottom + 18}
+            textAnchor="middle" fontSize={fs(11)} fill="#777">
+            {tick.toLocaleString('cs-CZ')}
+          </text>
+        </g>
+      ))}
+      <text x={chartLeft + chartW / 2} y={chartBottom + 34} textAnchor="middle" fontSize={fs(12)} fill="#0A416E" fontWeight={500}>
+        Počet výzkumných projektů
+      </text>
+
+      {/* Bars */}
+      {sortedKraje.map(([krajName, stats], i) => {
+        const y = chartTop + i * barGroupH + (barGroupH - barH) / 2
+        const total = stats.celkem_projektu
+        const pctBoth = total > 0 ? ((stats.v_obou + stats.jen_semantic) / total * 100).toFixed(0) : '—'
+
+        let x = chartLeft
+        return (
+          <g key={krajName}>
+            {/* Label */}
+            <text
+              x={chartLeft - 6} y={y + barH / 2}
+              textAnchor="end" dominantBaseline="central"
+              fontSize={fs(isMobile ? 10 : 12)} fill="#0A416E" fontWeight={500}>
+              {SHORT[krajName] || krajName}
+            </text>
+
+            {/* Stacked segments */}
+            {SEGMENTS.map(seg => {
+              const val = stats[seg.key]
+              if (val <= 0) return null
+              const w = xScale(val)
+              const rx = x
+              x += w
+              return (
+                <rect key={seg.key} x={rx} y={y} width={w} height={barH} rx={2}
+                  fill={seg.color} opacity={seg.key === 'mimo_vse' ? 0.5 : 0.85}
+                  onMouseMove={(e) => setTooltip({ x: e.clientX, y: e.clientY, kraj: krajName, stats, segment: seg.key })}
+                  onMouseLeave={() => setTooltip(null)}
+                  style={{ cursor: 'pointer' }}
+                />
+              )
+            })}
+
+            {/* Count + percentage label */}
+            <text
+              x={chartLeft + xScale(total) + 6} y={y + barH / 2}
+              dominantBaseline="central" fontSize={fs(isMobile ? 9 : 11)} fill="#555">
+              {total.toLocaleString('cs-CZ')}{!isMobile && ` (${pctBoth} % obsah. blízkých)`}
+            </text>
+          </g>
+        )
+      })}
+    </svg>
+  )
+
+  // ── Tooltip (shared) ──
+  const tooltipEl = tooltip && (
+    <div className="map-tooltip" style={{
+      left: Math.min(tooltip.x + 12, width - 340),
+      top: Math.max(tooltip.y - 10, 10),
+    }}>
+      <div className="tooltip-title">{tooltip.kraj}</div>
+      <div className="tooltip-value">Celkem projektů: <strong>{tooltip.stats.celkem_projektu.toLocaleString('cs-CZ')}</strong></div>
+      <div style={{ marginTop: 4, fontSize: 11 }}>
+        {SEGMENTS.map(seg => (
+          <div key={seg.key} style={{ marginTop: 2, fontWeight: seg.key === tooltip.segment ? 700 : 400 }}>
+            <span style={{ color: seg.color }}>■</span>{' '}
+            {seg.label}: {tooltip.stats[seg.key]}
+            {tooltip.stats.celkem_projektu > 0 && (
+              <span style={{ color: '#999' }}> ({(tooltip.stats[seg.key] / tooltip.stats.celkem_projektu * 100).toFixed(1)} %)</span>
+            )}
+          </div>
+        ))}
+      </div>
+      {tooltip.stats.top_domeny?.length > 0 && (
+        <div style={{ marginTop: 6, borderTop: '1px solid #eee', paddingTop: 4, fontSize: 10 }}>
+          <div style={{ fontWeight: 600, color: '#0A416E' }}>Nejčastěji matchující domény:</div>
+          {tooltip.stats.top_domeny.slice(0, 3).map((d, i) => (
+            <div key={i} style={{ color: '#555', marginTop: 1 }}>
+              {d.nazev.length > 45 ? d.nazev.slice(0, 45) + '…' : d.nazev}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+
+  // ── Right panel content (methodology + legend + summary) ──
+  const methodologyContent = (
+    <div className="text-[11px] text-[#0A416E] leading-relaxed space-y-1.5">
+      <div className="flex gap-2">
+        <span className="font-bold text-[#0087CD] shrink-0">1.</span>
+        <span>Vzali jsme <strong>{data.meta.pocet_projektu.toLocaleString('cs-CZ')} výzkumných projektů</strong> z databáze IS VaVaI (název, klíčová slova, oborové zařazení FORD).</span>
+      </div>
+      <div className="flex gap-2">
+        <span className="font-bold text-[#0087CD] shrink-0">2.</span>
+        <span>Vzali jsme <strong>popisy domén specializace</strong> z krajských karet NRIS3 (co kraj deklaruje jako své priority).</span>
+      </div>
+      <div className="flex gap-2">
+        <span className="font-bold text-[#0087CD] shrink-0">3.</span>
+        <span><strong>Test A — obor (FORD):</strong> Porovnali jsme oborové zařazení projektu s tematickým zaměřením domén. Sedí obor projektu k doméně?</span>
+      </div>
+      <div className="flex gap-2">
+        <span className="font-bold text-[#0087CD] shrink-0">4.</span>
+        <span><strong>Test B — obsah (AI):</strong> Jazykový model přečetl text projektu a text domény a změřil, jak moc si jsou obsahově blízké (cosine similarity &gt; 0,35).</span>
+      </div>
+      <div className="flex gap-2">
+        <span className="font-bold text-[#0087CD] shrink-0">5.</span>
+        <span>Každý projekt tak spadne do jedné ze <strong>4 kategorií</strong> — viz legenda níže.</span>
+      </div>
+    </div>
+  )
+
+  const legendContent = (
+    <>
+      <div className="text-xs font-bold text-[#0A416E] mb-2">4 kategorie shody</div>
+      {SEGMENTS.map(seg => (
+        <div key={seg.key} className="flex items-baseline gap-2 mt-1.5">
+          <div className="shrink-0 relative" style={{ width: 12, height: 12, top: '1px' }}>
+            <div style={{ width: 12, height: 12, background: seg.color, borderRadius: 2, opacity: seg.key === 'mimo_vse' ? 0.5 : 0.85 }} />
+          </div>
+          <div>
+            <span className="text-[11px] font-semibold text-[#0A416E]">{seg.label}</span>
+            {!isMobile && <span className="text-[11px] text-[#555] ml-1">— {seg.desc}</span>}
+          </div>
+        </div>
+      ))}
+    </>
+  )
+
+  const summaryContent = (
+    <div className="text-[11px] text-[#0A416E] leading-relaxed">
+      Z {totals.total.toLocaleString('cs-CZ')} projektů:
+      <strong className="ml-1" style={{ color: '#0A416E' }}>{pctBothTotal} %</strong> odpovídá oborem i obsahem,
+      <strong className="ml-1" style={{ color: '#0087CD' }}>{pctAligned} %</strong> je obsahově blízkých (sémanticky).
+      {' '}Zbývajících {(100 - parseInt(pctAligned))} % projektů se s doménami kraje tematicky nepřekrývá.
+    </div>
+  )
+
+  const sourceText = `Zdroj: IS VaVaI / Starfos (2021–2025) · Krajské karty, Příloha 2 NRIS3 v08 (MPO, 2026) · Model: ${data.meta.model} · Sémantický práh: cosine sim > ${data.meta.threshold_semantic}`
+
+  // ════════════════════════════════════════
+  // DESKTOP LAYOUT (>1024px)
+  // ════════════════════════════════════════
+  if (isDesktop) {
+    return (
+      <div className="w-full h-full bg-[#f8f9fa] relative overflow-hidden">
+        <InfoPanel text={INFO_TEXT} />
+
+        {/* Title */}
+        <div className="absolute top-3 sm:top-4 left-4 sm:left-6 z-10" style={{ maxWidth: width * 0.55 }}>
+          <h2 className="font-bold text-[#0A416E]" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)' }}>
+            Jak se výzkumné projekty shodují s doménami specializace?
+          </h2>
+          <p className="text-[#777] mt-1" style={{ fontSize: 'clamp(0.6rem, 1.3vw, 0.875rem)' }}>
+            {data.meta.pocet_projektu.toLocaleString('cs-CZ')} projektů CEP (2021–2025) porovnáno s popisy domén z krajských karet (Příloha 2 NRIS3)
+          </p>
+        </div>
+
+        {/* Right panel */}
+        <div className="absolute z-10" style={{ left: width * 0.60, bottom: height * 0.06, width: width * 0.37 }}>
+          <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm border border-[#E3F2FD]">
+            <div className="text-xs font-bold text-[#0A416E] mb-2">Co se tady děje? — Postup krok za krokem</div>
+            {methodologyContent}
+          </div>
+
+          <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm mt-3">
+            {legendContent}
+          </div>
+
+          <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm mt-3">
+            <div className="text-xs font-bold text-[#0A416E] mb-1">Celkem za ČR</div>
+            {summaryContent}
+          </div>
+        </div>
+
+        <div className="absolute inset-0">
+          {chartSvg(width, height)}
+        </div>
+
+        {tooltipEl}
+
+        {/* Source */}
+        <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 text-center text-[#777] z-10 px-4" style={{ fontSize: 'clamp(7px, 1vw, 10px)' }}>
+          {sourceText}
+        </div>
+      </div>
+    )
+  }
+
+  // ════════════════════════════════════════
+  // TABLET + MOBILE — flow column
+  // ════════════════════════════════════════
   return (
-    <div className="w-full h-full bg-[#f8f9fa] relative overflow-hidden">
+    <div className="w-full h-full bg-[#f8f9fa] overflow-y-auto flex flex-col">
       <InfoPanel text={INFO_TEXT} />
 
       {/* Title */}
-      <div className="absolute top-3 sm:top-4 left-4 sm:left-6 z-10" style={{ maxWidth: isMobile ? '90vw' : width * 0.55 }}>
+      <div className="px-4 pt-3 pb-1">
         <h2 className="font-bold text-[#0A416E]" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)' }}>
           Jak se výzkumné projekty shodují s doménami specializace?
         </h2>
@@ -102,168 +310,45 @@ export default function SlideVavEkosystem() {
         </p>
       </div>
 
-      {/* Right panel: Step-by-step methodology */}
-      <div className="absolute z-10" style={isMobile ? {
-        left: 8, right: 8, top: height * 0.58, width: 'auto',
-      } : {
-        left: width * 0.60, bottom: height * 0.06, width: width * 0.37,
-      }}>
-        <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm border border-[#E3F2FD]">
-          <div className="text-xs font-bold text-[#0A416E] mb-2">Co se tady děje? — Postup krok za krokem</div>
-
-          <div className="text-[11px] text-[#0A416E] leading-relaxed space-y-1.5">
-            <div className="flex gap-2">
-              <span className="font-bold text-[#0087CD] shrink-0">1.</span>
-              <span>Vzali jsme <strong>{data.meta.pocet_projektu.toLocaleString('cs-CZ')} výzkumných projektů</strong> z databáze IS VaVaI (název, klíčová slova, oborové zařazení FORD).</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="font-bold text-[#0087CD] shrink-0">2.</span>
-              <span>Vzali jsme <strong>popisy domén specializace</strong> z krajských karet NRIS3 (co kraj deklaruje jako své priority).</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="font-bold text-[#0087CD] shrink-0">3.</span>
-              <span><strong>Test A — obor (FORD):</strong> Porovnali jsme oborové zařazení projektu s tematickým zaměřením domén. Sedí obor projektu k doméně?</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="font-bold text-[#0087CD] shrink-0">4.</span>
-              <span><strong>Test B — obsah (AI):</strong> Jazykový model přečetl text projektu a text domény a změřil, jak moc si jsou obsahově blízké (cosine similarity &gt; 0,35).</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="font-bold text-[#0087CD] shrink-0">5.</span>
-              <span>Každý projekt tak spadne do jedné ze <strong>4 kategorií</strong> — viz legenda níže.</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Legend with detailed descriptions */}
-        <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm mt-3">
-          <div className="text-xs font-bold text-[#0A416E] mb-2">4 kategorie shody</div>
-          {SEGMENTS.map(seg => (
-            <div key={seg.key} className="flex items-baseline gap-2 mt-1.5">
-              <div className="shrink-0 relative" style={{ width: 12, height: 12, top: '1px' }}>
-                <div style={{ width: 12, height: 12, background: seg.color, borderRadius: 2, opacity: seg.key === 'mimo_vse' ? 0.5 : 0.85 }} />
-              </div>
-              <div>
-                <span className="text-[11px] font-semibold text-[#0A416E]">{seg.label}</span>
-                <span className="text-[11px] text-[#555] ml-1">— {seg.desc}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Summary numbers */}
-        <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm mt-3">
-          <div className="text-xs font-bold text-[#0A416E] mb-1">Celkem za ČR</div>
-          <div className="text-[11px] text-[#0A416E] leading-relaxed">
-            Z {totals.total.toLocaleString('cs-CZ')} projektů:
-            <strong className="ml-1" style={{ color: '#0A416E' }}>{pctBothTotal} %</strong> odpovídá oborem i obsahem,
-            <strong className="ml-1" style={{ color: '#0087CD' }}>{pctAligned} %</strong> je obsahově blízkých (sémanticky).
-            {' '}Zbývajících {(100 - parseInt(pctAligned))} % projektů se s doménami kraje tematicky nepřekrývá.
-          </div>
-        </div>
+      {/* Chart */}
+      <div className="relative" style={{ height: chartSvgH, minHeight: 300, flexShrink: 0 }}>
+        {chartSvg(width, chartSvgH)}
+        {tooltipEl}
       </div>
 
-      <svg width={width} height={height} className="absolute inset-0">
-        {/* X axis gridlines */}
-        {ticks.map(tick => (
-          <g key={`xt-${tick}`}>
-            <line
-              x1={chartLeft + xScale(tick)} y1={chartTop - 5}
-              x2={chartLeft + xScale(tick)} y2={chartBottom + 5}
-              stroke="#eee" strokeWidth={tick === 0 ? 1 : 0.5}
-            />
-            <text
-              x={chartLeft + xScale(tick)} y={chartBottom + 18}
-              textAnchor="middle" fontSize={fs(11)} fill="#777">
-              {tick.toLocaleString('cs-CZ')}
-            </text>
-          </g>
-        ))}
-        <text x={chartLeft + chartW / 2} y={chartBottom + 34} textAnchor="middle" fontSize={fs(12)} fill="#0A416E" fontWeight={500}>
-          Počet výzkumných projektů
-        </text>
-
-        {/* Bars */}
-        {sortedKraje.map(([krajName, stats], i) => {
-          const y = chartTop + i * barGroupH + (barGroupH - barH) / 2
-          const total = stats.celkem_projektu
-          const pctBoth = total > 0 ? ((stats.v_obou + stats.jen_semantic) / total * 100).toFixed(0) : '—'
-
-          let x = chartLeft
-          return (
-            <g key={krajName}>
-              {/* Label */}
-              <text
-                x={chartLeft - 6} y={y + barH / 2}
-                textAnchor="end" dominantBaseline="central"
-                fontSize={fs(12)} fill="#0A416E" fontWeight={500}>
-                {SHORT[krajName] || krajName}
-              </text>
-
-              {/* Stacked segments */}
-              {SEGMENTS.map(seg => {
-                const val = stats[seg.key]
-                if (val <= 0) return null
-                const w = xScale(val)
-                const rx = x
-                x += w
-                return (
-                  <rect key={seg.key} x={rx} y={y} width={w} height={barH} rx={2}
-                    fill={seg.color} opacity={seg.key === 'mimo_vse' ? 0.5 : 0.85}
-                    onMouseMove={(e) => setTooltip({ x: e.clientX, y: e.clientY, kraj: krajName, stats, segment: seg.key })}
-                    onMouseLeave={() => setTooltip(null)}
-                    style={{ cursor: 'pointer' }}
-                  />
-                )
-              })}
-
-              {/* Count + percentage label */}
-              <text
-                x={chartLeft + xScale(total) + 6} y={y + barH / 2}
-                dominantBaseline="central" fontSize={fs(11)} fill="#555">
-                {total.toLocaleString('cs-CZ')}{!isMobile && ` (${pctBoth} % obsah. blízkých)`}
-              </text>
-            </g>
-          )
-        })}
-      </svg>
-
-      {/* Tooltip */}
-      {tooltip && (
-        <div className="map-tooltip" style={{
-          left: Math.min(tooltip.x + 12, width - 340),
-          top: Math.max(tooltip.y - 10, 10),
-        }}>
-          <div className="tooltip-title">{tooltip.kraj}</div>
-          <div className="tooltip-value">Celkem projektů: <strong>{tooltip.stats.celkem_projektu.toLocaleString('cs-CZ')}</strong></div>
-          <div style={{ marginTop: 4, fontSize: 11 }}>
-            {SEGMENTS.map(seg => (
-              <div key={seg.key} style={{ marginTop: 2, fontWeight: seg.key === tooltip.segment ? 700 : 400 }}>
-                <span style={{ color: seg.color }}>■</span>{' '}
-                {seg.label}: {tooltip.stats[seg.key]}
-                {tooltip.stats.celkem_projektu > 0 && (
-                  <span style={{ color: '#999' }}> ({(tooltip.stats[seg.key] / tooltip.stats.celkem_projektu * 100).toFixed(1)} %)</span>
-                )}
-              </div>
-            ))}
-          </div>
-          {tooltip.stats.top_domeny?.length > 0 && (
-            <div style={{ marginTop: 6, borderTop: '1px solid #eee', paddingTop: 4, fontSize: 10 }}>
-              <div style={{ fontWeight: 600, color: '#0A416E' }}>Nejčastěji matchující domény:</div>
-              {tooltip.stats.top_domeny.slice(0, 3).map((d, i) => (
-                <div key={i} style={{ color: '#555', marginTop: 1 }}>
-                  {d.nazev.length > 45 ? d.nazev.slice(0, 45) + '…' : d.nazev}
-                </div>
-              ))}
-            </div>
-          )}
+      {/* Panels below chart */}
+      <div className="px-4 py-2 flex flex-col gap-2 flex-shrink-0">
+        {/* Legend — always visible */}
+        <div className="bg-white/95 rounded-lg px-3 py-2 shadow-sm">
+          {legendContent}
         </div>
-      )}
 
-      {/* Source */}
-      <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 text-center text-[#777] z-10 px-4" style={{ fontSize: 'clamp(7px, 1vw, 10px)' }}>
-        Zdroj: IS VaVaI / Starfos (2021–2025) &middot; Krajské karty, Příloha 2 NRIS3 v08 (MPO, 2026)
-        &middot; Model: {data.meta.model} &middot; Sémantický práh: cosine sim &gt; {data.meta.threshold_semantic}
+        {isMobile ? (
+          <>
+            <CollapsiblePanel title="Metodologie">
+              {methodologyContent}
+            </CollapsiblePanel>
+            <CollapsiblePanel title="Celkem za ČR">
+              {summaryContent}
+            </CollapsiblePanel>
+          </>
+        ) : (
+          <>
+            <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm border border-[#E3F2FD]">
+              <div className="text-xs font-bold text-[#0A416E] mb-2">Co se tady děje? — Postup krok za krokem</div>
+              {methodologyContent}
+            </div>
+            <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm">
+              <div className="text-xs font-bold text-[#0A416E] mb-1">Celkem za ČR</div>
+              {summaryContent}
+            </div>
+          </>
+        )}
+
+        {/* Source */}
+        <div className="text-center text-[#777] py-1 px-2" style={{ fontSize: 'clamp(7px, 1vw, 10px)' }}>
+          {sourceText}
+        </div>
       </div>
     </div>
   )

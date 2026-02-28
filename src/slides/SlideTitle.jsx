@@ -81,7 +81,7 @@ export default function SlideTitle() {
       </div>
 
       {/* Footer citation */}
-      <div className="absolute bottom-6 text-white/30 text-center px-4 sm:px-8 z-10" style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }}>
+      <div className="absolute bottom-4 sm:bottom-6 text-white/30 text-center px-4 sm:px-8 z-10" style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }}>
         Data: ČSÚ, IS VaVaI/CEP, MPO — NRIS3 v08, ArcČR © ČÚZK, ČSÚ, ARCDATA PRAHA 2024 (CC-BY 4.0)
       </div>
     </div>

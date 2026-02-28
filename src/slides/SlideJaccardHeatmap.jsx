@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import * as d3 from 'd3'
 import InfoPanel from '../InfoPanel'
+import CollapsiblePanel from '../CollapsiblePanel'
 
 const INFO_TEXT = `⚠ Známé limitace této analýzy:
 
@@ -74,6 +75,10 @@ export default function SlideJaccardHeatmap() {
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
   }, [])
+
+  const isDesktop = dimensions.width > 1024
+  const isTablet = dimensions.width > 768 && dimensions.width <= 1024
+  const isMobile = dimensions.width <= 768
 
   // NACE sets per kraj + unique/shared analysis
   const krajInfo = useMemo(() => {
@@ -177,18 +182,23 @@ export default function SlideJaccardHeatmap() {
     }
   }, [])
 
-  // Map projection — upper-left (desktop), upper portion (mobile)
+  // Map projection
+  const mapSvgW = isDesktop ? dimensions.width : dimensions.width
+  const mapSvgH = isDesktop ? dimensions.height : isTablet ? dimensions.height * 0.40 : dimensions.height * 0.38
+
   const projection = useMemo(() => {
     if (!geoData || dimensions.width === 0) return null
-    const { width, height } = dimensions
-    const mobile = width < 768
-    const mapWidth = mobile ? width * 0.92 : width * 0.68
-    const mapHeight = mobile ? height * 0.42 : height * 0.76
+    const mapWidth = isDesktop ? dimensions.width * 0.68 : dimensions.width * 0.92
+    const mapHeight = isDesktop ? dimensions.height * 0.76 : mapSvgH * 0.80
     const proj = d3.geoMercator().fitSize([mapWidth, mapHeight], geoData)
     const [tx, ty] = proj.translate()
-    proj.translate([tx + width * (mobile ? 0.04 : 0.01), ty + height * (mobile ? 0.06 : 0.04)])
+    if (isDesktop) {
+      proj.translate([tx + dimensions.width * 0.01, ty + dimensions.height * 0.04])
+    } else {
+      proj.translate([tx + dimensions.width * 0.04, ty + mapSvgH * 0.08])
+    }
     return proj
-  }, [geoData, dimensions])
+  }, [geoData, dimensions, isDesktop, mapSvgH])
 
   const pathGenerator = useMemo(() => {
     if (!projection) return null
@@ -227,7 +237,6 @@ export default function SlideJaccardHeatmap() {
   }
 
   const { width, height } = dimensions
-  const isMobile = width < 768
   const fmt = (n) => n.toLocaleString('cs-CZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
   const quantiles = mapColorScale.quantiles ? mapColorScale.quantiles() : []
   const n = matrix.n
@@ -235,25 +244,476 @@ export default function SlideJaccardHeatmap() {
   // Responsive SVG font helper
   const fs = (base) => Math.max(base * 0.6, Math.min(base, Math.min(width, height) / 1080 * base))
 
-  // Heatmap layout — right side (desktop) or below map (mobile)
-  const hmLeft = isMobile ? width * 0.05 : width * 0.62
-  const hmTop = isMobile ? height * 0.52 : height * 0.36
-  const labelW = Math.min(85, width * (isMobile ? 0.15 : 0.065))
-  const topLabelH = Math.min(65, height * 0.08)
-  const availW = (isMobile ? width * 0.88 : width * 0.35) - labelW
-  const availH = (isMobile ? height * 0.38 : height * 0.48) - topLabelH
-  const cellSize = Math.max(12, Math.min(Math.floor(availW / n), Math.floor(availH / n), 28))
-  const gridW = cellSize * n
-  const gridH = cellSize * n
-  const offsetX = hmLeft + labelW + (availW - gridW) / 2
-  const offsetY = hmTop + topLabelH + (availH - gridH) / 2
+  // ── Map SVG ──
+  const renderMap = (svgW, svgH) => (
+    <svg width={svgW} height={svgH} style={{ display: 'block' }}>
+      <g>
+        {geoData.features.map((feature) => {
+          const nuts = feature.properties.nutslau
+          const info = krajInfo[nuts]
+          const hasData = info?.hasNace
+          return (
+            <path
+              key={nuts}
+              d={pathGenerator(feature)}
+              className="kraj-path"
+              fill={hasData ? mapColorScale(info.avgJaccard) : '#c0c0c0'}
+              stroke="#fff"
+              strokeWidth={1.5}
+              onMouseMove={(e) => {
+                setTooltip({ x: e.clientX, y: e.clientY, type: 'map', name: feature.properties.nazev, info })
+              }}
+              onMouseLeave={() => setTooltip(null)}
+            />
+          )
+        })}
+      </g>
+
+      {/* Map overlay: unique NACE highlight */}
+      {Object.entries(centroids).map(([nuts, [cx, cy]]) => {
+        const info = krajInfo[nuts]
+        if (!info) return null
+
+        if (!info.hasNace) {
+          return (
+            <text key={`label-${nuts}`} x={cx} y={cy}
+              textAnchor="middle" dominantBaseline="central"
+              fontSize={fs(9)} fill="#999" fontStyle="italic"
+              style={{ pointerEvents: 'none' }}>
+              bez NACE
+            </text>
+          )
+        }
+
+        const total = info.codes.size
+        const uniq = info.unique
+        const ringR = Math.max(12, Math.min(18, Math.min(svgW, svgH) * 0.018))
+        const uniqueRatio = total > 0 ? uniq / total : 0
+
+        return (
+          <g key={`label-${nuts}`} style={{ pointerEvents: 'none' }}>
+            <circle cx={cx} cy={cy} r={ringR}
+              fill="rgba(255,255,255,0.92)" stroke="rgba(10,65,110,0.15)" strokeWidth={0.5} />
+            {uniqueRatio > 0 && (
+              <path
+                d={d3.arc()({
+                  innerRadius: ringR - 3,
+                  outerRadius: ringR,
+                  startAngle: 0,
+                  endAngle: uniqueRatio * Math.PI * 2,
+                })}
+                transform={`translate(${cx},${cy})`}
+                fill="#2DA547"
+                opacity={0.8}
+              />
+            )}
+            {uniqueRatio < 1 && (
+              <path
+                d={d3.arc()({
+                  innerRadius: ringR - 3,
+                  outerRadius: ringR,
+                  startAngle: uniqueRatio * Math.PI * 2,
+                  endAngle: Math.PI * 2,
+                })}
+                transform={`translate(${cx},${cy})`}
+                fill="#CDCDD2"
+                opacity={0.6}
+              />
+            )}
+            <text x={cx} y={cy - 3} textAnchor="middle" dominantBaseline="central"
+              fontSize={fs(13)} fontWeight={700}>
+              <tspan fill="#2DA547">{uniq}</tspan>
+              <tspan fill="#AAAAAA" fontSize={fs(10)}> / {total}</tspan>
+            </text>
+            <text x={cx} y={cy + 10} textAnchor="middle"
+              fontSize={fs(7)} fill="#777">
+              unik. NACE
+            </text>
+          </g>
+        )
+      })}
+    </svg>
+  )
+
+  // ── Heatmap SVG ──
+  const renderHeatmap = (containerW, containerH) => {
+    const labelW = Math.min(85, containerW * 0.15)
+    const topLabelH = Math.min(65, containerH * 0.15)
+    const availW = containerW - labelW - 20
+    const availH = containerH - topLabelH - 20
+    const cs = Math.max(12, Math.min(Math.floor(availW / n), Math.floor(availH / n), isMobile ? 22 : 28))
+    const gW = cs * n
+    const gH = cs * n
+    const oX = labelW + (availW - gW) / 2 + 10
+    const oY = topLabelH + (availH - gH) / 2
+
+    return (
+      <div style={isMobile ? { overflowX: 'auto', WebkitOverflowScrolling: 'touch' } : {}}>
+        <svg width={Math.max(containerW, oX + gW + 10)} height={oY + gH + 10} style={{ display: 'block' }}>
+          {/* Row labels */}
+          {heatmapKraje.map((kraj, i) => (
+            <text key={`row-${i}`} x={oX - 8} y={oY + i * cs + cs / 2}
+              textAnchor="end" dominantBaseline="central" fontSize={Math.min(11, cs * 0.38)} fill="#0A416E" fontWeight={500}>
+              {kraj.short}
+            </text>
+          ))}
+
+          {/* Column labels (rotated) */}
+          {heatmapKraje.map((kraj, j) => (
+            <text key={`col-${j}`} x={0} y={0} textAnchor="start" fontSize={Math.min(11, cs * 0.38)} fill="#0A416E" fontWeight={500}
+              transform={`translate(${oX + j * cs + cs / 2}, ${oY - 8}) rotate(-55)`}>
+              {kraj.short}
+            </text>
+          ))}
+
+          {/* Cells */}
+          {matrix.cells.map(({ row, col, val, shared }) => {
+            const isDiag = row === col
+            return (
+              <rect key={`${row}-${col}`}
+                x={oX + col * cs} y={oY + row * cs}
+                width={cs - 1} height={cs - 1}
+                fill={isDiag ? '#355410' : heatColorScale(val)}
+                rx={2} style={{ cursor: isDiag ? 'default' : 'pointer' }}
+                onMouseMove={(e) => {
+                  if (isDiag) return
+                  setTooltip({
+                    x: e.clientX, y: e.clientY, type: 'heat',
+                    krajA: heatmapKraje[row].short, krajB: heatmapKraje[col].short,
+                    jaccard: val, shared,
+                  })
+                }}
+                onMouseLeave={() => setTooltip(null)}
+              />
+            )
+          })}
+
+          {/* Cell values */}
+          {matrix.cells.filter(c => c.row !== c.col).map(({ row, col, val }) => {
+            const needsWhite = val > 0.30
+            return (
+              <text key={`t-${row}-${col}`}
+                x={oX + col * cs + (cs - 1) / 2}
+                y={oY + row * cs + (cs - 1) / 2}
+                textAnchor="middle" dominantBaseline="central"
+                fontSize={cs > 36 ? 9 : 7} fill={val === 0 ? '#999' : needsWhite ? '#fff' : '#2a3d1a'}
+                fontWeight={500} style={{ pointerEvents: 'none' }}>
+                {val === 0 ? '' : val.toFixed(2).replace('0.', '.')}
+              </text>
+            )
+          })}
+        </svg>
+      </div>
+    )
+  }
+
+  // ── Tooltip ──
+  const tooltipEl = tooltip && (
+    <div className="map-tooltip" style={{
+      left: Math.min(tooltip.x + 12, width - 300),
+      top: Math.max(tooltip.y - 10, 10),
+    }}>
+      {tooltip.type === 'map' && tooltip.info ? (
+        <>
+          <div className="tooltip-title">{tooltip.name}</div>
+          {tooltip.info.hasNace ? (
+            <>
+              <div className="tooltip-value">Průměrný Jaccard: <strong>{fmt(tooltip.info.avgJaccard)}</strong></div>
+              <div className="tooltip-value" style={{ marginTop: 4 }}>
+                Domén: <strong>{tooltip.info.domenyCount}</strong> &middot;
+                NACE kódů: <strong>{tooltip.info.codes.size}</strong>
+              </div>
+              <div className="tooltip-value" style={{ fontSize: 12, marginTop: 3 }}>
+                <span style={{ color: '#2DA547', fontWeight: 700 }}>{tooltip.info.unique} unikátních</span>
+                {tooltip.info.uniqueList.length > 0 && (
+                  <span style={{ color: '#2DA547', fontSize: 10 }}> ({tooltip.info.uniqueList.join(', ')})</span>
+                )}
+              </div>
+              <div className="tooltip-value" style={{ fontSize: 12 }}>
+                <span style={{ color: '#777', fontWeight: 600 }}>{tooltip.info.shared} sdílených</span>
+                <span style={{ color: '#999', fontSize: 10 }}> s jinými kraji</span>
+              </div>
+              {tooltip.info.bestPair && (
+                <div style={{ fontSize: 11, color: '#888', marginTop: 3, borderTop: '1px solid #eee', paddingTop: 3 }}>
+                  Nejpodobnější: {tooltip.info.bestPair.name} (J={fmt(tooltip.info.bestPair.jaccard)})
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="tooltip-value" style={{ fontSize: 12, color: '#999' }}>
+              Domény definovány popisně, bez CZ-NACE kódů
+            </div>
+          )}
+        </>
+      ) : tooltip.type === 'heat' ? (
+        <>
+          <div className="tooltip-title">{tooltip.krajA} × {tooltip.krajB}</div>
+          <div className="tooltip-value">Jaccard: <strong>{fmt(tooltip.jaccard)}</strong></div>
+          {tooltip.shared.length > 0 ? (
+            <div style={{ fontSize: 11, color: '#666', marginTop: 3 }}>
+              Sdílené kódy ({tooltip.shared.length}): {tooltip.shared.join(', ')}
+            </div>
+          ) : (
+            <div style={{ fontSize: 11, color: '#999', marginTop: 3 }}>Žádné společné NACE kódy</div>
+          )}
+        </>
+      ) : null}
+    </div>
+  )
+
+  // ── Legend content ──
+  const mapLegendContent = (compact = false) => (
+    <>
+      <div style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }} className="font-medium text-[#0A416E] mb-1 sm:mb-2">Kartogram — průměrná Jaccard podobnost</div>
+      <div className="flex items-end gap-0.5">
+        {MAP_COLORS.map((color, i) => (
+          <div key={i} className="flex flex-col items-center">
+            <div style={{ width: 28, height: 14, background: color, borderRadius: 2 }} />
+            <span className="text-[9px] text-[#555] mt-0.5">
+              {i === 0 && quantiles[0] != null ? `<${fmt(quantiles[0])}` : ''}
+              {i > 0 && i < MAP_COLORS.length - 1 && quantiles[i] != null ? fmt(quantiles[i - 1]) : ''}
+              {i === MAP_COLORS.length - 1 && quantiles.length > 0 ? `>${fmt(quantiles[quantiles.length - 1])}` : ''}
+            </span>
+          </div>
+        ))}
+      </div>
+      {!compact && (
+        <>
+          <div className="flex items-center gap-2 mt-2">
+            <div style={{ width: 14, height: 10, background: '#c0c0c0', borderRadius: 2 }} />
+            <span className="text-[10px] text-[#777]">bez CZ-NACE kódů</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1.5">
+            <svg width={20} height={20}>
+              <circle cx={10} cy={10} r={9} fill="white" stroke="#ddd" strokeWidth={0.5} />
+              <path d={d3.arc()({ innerRadius: 6, outerRadius: 9, startAngle: 0, endAngle: Math.PI * 0.8 })}
+                transform="translate(10,10)" fill="#2DA547" opacity={0.8} />
+              <path d={d3.arc()({ innerRadius: 6, outerRadius: 9, startAngle: Math.PI * 0.8, endAngle: Math.PI * 2 })}
+                transform="translate(10,10)" fill="#CDCDD2" opacity={0.6} />
+              <text x={10} y={10} textAnchor="middle" dominantBaseline="central" fontSize={7} fill="#2DA547" fontWeight={700}>4</text>
+            </svg>
+            <span className="text-[10px] text-[#777]">
+              <span style={{ color: '#2DA547', fontWeight: 600 }}>unikátní</span> / celkem NACE
+            </span>
+          </div>
+        </>
+      )}
+    </>
+  )
+
+  const heatLegendContent = (compact = false) => (
+    <>
+      <div style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }} className="font-medium text-[#0A416E] mb-1 sm:mb-2">Heatmapa — párový Jaccard index</div>
+      <svg width={Math.min(156, width * 0.25)} height="28" viewBox="0 0 156 28">
+        {STEPS.map((step, i) => (
+          <g key={i}>
+            <rect x={i * 26} y={0} width={25} height={12} rx={1} fill={step.color} />
+            <text x={i * 26 + 12.5} y={24} textAnchor="middle" fontSize={8} fill="#777">
+              {step.max === Infinity ? '>.42' : `≤${step.max.toFixed(2)}`}
+            </text>
+          </g>
+        ))}
+      </svg>
+      {!compact && (
+        <div className="flex items-center gap-2 mt-2">
+          <div style={{ width: 14, height: 10, background: '#ececec', borderRadius: 2 }} />
+          <span className="text-[10px] text-[#777]">žádný sdílený kód</span>
+        </div>
+      )}
+    </>
+  )
+
+  const commentaryContent = (
+    <p className="text-[#0A416E] leading-relaxed" style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }}>
+      Nejpodobnější dvojice: {matrix.bestPair.names[0]} a {matrix.bestPair.names[1]} (J={fmt(matrix.bestPair.val)}).
+      Průměrná podobnost: {fmt(stats.avg)}. Pozor: podrobnost NACE klasifikace se mezi kraji výrazně liší (viz ℹ️).
+    </p>
+  )
+
+  const sourceText = 'Zdroj: Příloha 2 NRIS3 v08 (MPO, 2026) · Geodata: ArcČR © ČÚZK, ČSÚ, ARCDATA PRAHA 2024, CC-BY 4.0'
+
+  // ════════════════════════════════════════
+  // DESKTOP LAYOUT (>1024px) — original side-by-side with absolute overlays
+  // ════════════════════════════════════════
+  if (isDesktop) {
+    // Heatmap positioning — right side
+    const hmLeft = width * 0.62
+    const hmTop = height * 0.36
+    const labelW = Math.min(85, width * 0.065)
+    const topLabelH = Math.min(65, height * 0.08)
+    const availW = width * 0.35 - labelW
+    const availH = height * 0.48 - topLabelH
+    const cellSize = Math.max(12, Math.min(Math.floor(availW / n), Math.floor(availH / n), 28))
+    const gridW = cellSize * n
+    const gridH = cellSize * n
+    const offsetX = hmLeft + labelW + (availW - gridW) / 2
+    const offsetY = hmTop + topLabelH + (availH - gridH) / 2
+
+    return (
+      <div className="w-full h-full bg-[#f8f9fa] relative overflow-hidden">
+        <InfoPanel text={INFO_TEXT} />
+
+        {/* Title */}
+        <div className="absolute top-3 sm:top-5 left-4 sm:left-8 z-10" style={{ maxWidth: width * 0.55 }}>
+          <h2 className="font-bold text-[#0A416E]" style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.5rem)' }}>
+            Podobnost domén specializace — Jaccard index CZ-NACE kódů
+          </h2>
+          <p className="text-[#777] mt-1" style={{ fontSize: 'clamp(0.6rem, 1.2vw, 0.875rem)' }}>
+            Kartogram = průměrná podobnost vůči ostatním &middot; Heatmapa = párové srovnání {heatmapKraje.length} krajů s NACE kódy
+          </p>
+        </div>
+
+        <svg width={width} height={height} className="absolute inset-0">
+          {/* Map */}
+          <g>
+            {geoData.features.map((feature) => {
+              const nuts = feature.properties.nutslau
+              const info = krajInfo[nuts]
+              const hasData = info?.hasNace
+              return (
+                <path
+                  key={nuts}
+                  d={pathGenerator(feature)}
+                  className="kraj-path"
+                  fill={hasData ? mapColorScale(info.avgJaccard) : '#c0c0c0'}
+                  stroke="#fff"
+                  strokeWidth={1.5}
+                  onMouseMove={(e) => {
+                    setTooltip({ x: e.clientX, y: e.clientY, type: 'map', name: feature.properties.nazev, info })
+                  }}
+                  onMouseLeave={() => setTooltip(null)}
+                />
+              )
+            })}
+          </g>
+
+          {/* Map overlay rings */}
+          {Object.entries(centroids).map(([nuts, [cx, cy]]) => {
+            const info = krajInfo[nuts]
+            if (!info) return null
+            if (!info.hasNace) {
+              return (
+                <text key={`label-${nuts}`} x={cx} y={cy}
+                  textAnchor="middle" dominantBaseline="central"
+                  fontSize={fs(9)} fill="#999" fontStyle="italic"
+                  style={{ pointerEvents: 'none' }}>
+                  bez NACE
+                </text>
+              )
+            }
+            const total = info.codes.size
+            const uniq = info.unique
+            const ringR = Math.max(12, Math.min(18, Math.min(width, height) * 0.018))
+            const uniqueRatio = total > 0 ? uniq / total : 0
+            return (
+              <g key={`label-${nuts}`} style={{ pointerEvents: 'none' }}>
+                <circle cx={cx} cy={cy} r={ringR}
+                  fill="rgba(255,255,255,0.92)" stroke="rgba(10,65,110,0.15)" strokeWidth={0.5} />
+                {uniqueRatio > 0 && (
+                  <path d={d3.arc()({ innerRadius: ringR - 3, outerRadius: ringR, startAngle: 0, endAngle: uniqueRatio * Math.PI * 2 })}
+                    transform={`translate(${cx},${cy})`} fill="#2DA547" opacity={0.8} />
+                )}
+                {uniqueRatio < 1 && (
+                  <path d={d3.arc()({ innerRadius: ringR - 3, outerRadius: ringR, startAngle: uniqueRatio * Math.PI * 2, endAngle: Math.PI * 2 })}
+                    transform={`translate(${cx},${cy})`} fill="#CDCDD2" opacity={0.6} />
+                )}
+                <text x={cx} y={cy - 3} textAnchor="middle" dominantBaseline="central" fontSize={fs(13)} fontWeight={700}>
+                  <tspan fill="#2DA547">{uniq}</tspan>
+                  <tspan fill="#AAAAAA" fontSize={fs(10)}> / {total}</tspan>
+                </text>
+                <text x={cx} y={cy + 10} textAnchor="middle" fontSize={fs(7)} fill="#777">unik. NACE</text>
+              </g>
+            )
+          })}
+
+          {/* Heatmap */}
+          {heatmapKraje.map((kraj, i) => (
+            <text key={`row-${i}`} x={offsetX - 8} y={offsetY + i * cellSize + cellSize / 2}
+              textAnchor="end" dominantBaseline="central" fontSize={Math.min(11, cellSize * 0.38)} fill="#0A416E" fontWeight={500}>
+              {kraj.short}
+            </text>
+          ))}
+          {heatmapKraje.map((kraj, j) => (
+            <text key={`col-${j}`} x={0} y={0} textAnchor="start" fontSize={Math.min(11, cellSize * 0.38)} fill="#0A416E" fontWeight={500}
+              transform={`translate(${offsetX + j * cellSize + cellSize / 2}, ${offsetY - 8}) rotate(-55)`}>
+              {kraj.short}
+            </text>
+          ))}
+          {matrix.cells.map(({ row, col, val, shared }) => {
+            const isDiag = row === col
+            return (
+              <rect key={`${row}-${col}`}
+                x={offsetX + col * cellSize} y={offsetY + row * cellSize}
+                width={cellSize - 1} height={cellSize - 1}
+                fill={isDiag ? '#355410' : heatColorScale(val)}
+                rx={2} style={{ cursor: isDiag ? 'default' : 'pointer' }}
+                onMouseMove={(e) => {
+                  if (isDiag) return
+                  setTooltip({
+                    x: e.clientX, y: e.clientY, type: 'heat',
+                    krajA: heatmapKraje[row].short, krajB: heatmapKraje[col].short,
+                    jaccard: val, shared,
+                  })
+                }}
+                onMouseLeave={() => setTooltip(null)}
+              />
+            )
+          })}
+          {matrix.cells.filter(c => c.row !== c.col).map(({ row, col, val }) => {
+            const needsWhite = val > 0.30
+            return (
+              <text key={`t-${row}-${col}`}
+                x={offsetX + col * cellSize + (cellSize - 1) / 2}
+                y={offsetY + row * cellSize + (cellSize - 1) / 2}
+                textAnchor="middle" dominantBaseline="central"
+                fontSize={cellSize > 36 ? 9 : 7} fill={val === 0 ? '#999' : needsWhite ? '#fff' : '#2a3d1a'}
+                fontWeight={500} style={{ pointerEvents: 'none' }}>
+                {val === 0 ? '' : val.toFixed(2).replace('0.', '.')}
+              </text>
+            )
+          })}
+        </svg>
+
+        {tooltipEl}
+
+        {/* Map legend — bottom left */}
+        <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
+          style={{ bottom: Math.max(60, height * 0.08), left: 8 }}>
+          {mapLegendContent(false)}
+        </div>
+
+        {/* Heatmap legend — bottom right */}
+        <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
+          style={{ bottom: Math.max(60, height * 0.08), right: width * 0.60 > 700 ? width - (offsetX + gridW + 8) : 8 }}>
+          {heatLegendContent(false)}
+        </div>
+
+        {/* Commentary — centered bottom */}
+        <div className="absolute z-10 max-w-md bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
+          style={{ bottom: Math.max(60, height * 0.08), left: '50%', transform: 'translateX(-50%)' }}>
+          {commentaryContent}
+        </div>
+
+        {/* Source */}
+        <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 text-center text-[#777] z-10 px-4" style={{ fontSize: 'clamp(7px, 1vw, 10px)' }}>
+          {sourceText}
+        </div>
+      </div>
+    )
+  }
+
+  // ════════════════════════════════════════
+  // TABLET + MOBILE — flow column
+  // ════════════════════════════════════════
+  const hmContainerW = width - 32
+  const hmContainerH = isTablet ? height * 0.38 : height * 0.36
 
   return (
-    <div className="w-full h-full bg-[#f8f9fa] relative overflow-hidden">
+    <div className="w-full h-full bg-[#f8f9fa] overflow-y-auto flex flex-col">
       <InfoPanel text={INFO_TEXT} />
 
       {/* Title */}
-      <div className="absolute top-3 sm:top-5 left-4 sm:left-8 z-10" style={{ maxWidth: isMobile ? '90vw' : width * 0.55 }}>
+      <div className="px-4 pt-3 pb-1">
         <h2 className="font-bold text-[#0A416E]" style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.5rem)' }}>
           Podobnost domén specializace — Jaccard index CZ-NACE kódů
         </h2>
@@ -262,288 +722,54 @@ export default function SlideJaccardHeatmap() {
         </p>
       </div>
 
-      <svg width={width} height={height} className="absolute inset-0">
-        {/* Map — upper left, dominant */}
-        <g>
-          {geoData.features.map((feature) => {
-            const nuts = feature.properties.nutslau
-            const info = krajInfo[nuts]
-            const hasData = info?.hasNace
-            return (
-              <path
-                key={nuts}
-                d={pathGenerator(feature)}
-                className="kraj-path"
-                fill={hasData ? mapColorScale(info.avgJaccard) : '#c0c0c0'}
-                stroke="#fff"
-                strokeWidth={1.5}
-                onMouseMove={(e) => {
-                  setTooltip({ x: e.clientX, y: e.clientY, type: 'map', name: feature.properties.nazev, info })
-                }}
-                onMouseLeave={() => setTooltip(null)}
-              />
-            )
-          })}
-        </g>
+      {/* Map */}
+      <div className="relative" style={{ height: mapSvgH, minHeight: 220, flexShrink: 0 }}>
+        {renderMap(width, mapSvgH)}
+      </div>
 
-        {/* Map overlay: unique NACE highlight */}
-        {Object.entries(centroids).map(([nuts, [cx, cy]]) => {
-          const info = krajInfo[nuts]
-          if (!info) return null
+      {/* Heatmap */}
+      <div className="px-4 flex-shrink-0" style={{ minHeight: hmContainerH }}>
+        {renderHeatmap(hmContainerW, hmContainerH)}
+      </div>
 
-          if (!info.hasNace) {
-            return (
-              <text key={`label-${nuts}`} x={cx} y={cy}
-                textAnchor="middle" dominantBaseline="central"
-                fontSize={fs(9)} fill="#999" fontStyle="italic"
-                style={{ pointerEvents: 'none' }}>
-                bez NACE
-              </text>
-            )
-          }
+      {tooltipEl}
 
-          const total = info.codes.size
-          const uniq = info.unique
-          // Show green ring proportional to unique ratio
-          const ringR = Math.max(12, Math.min(18, Math.min(dimensions.width, dimensions.height) * 0.018))
-          const uniqueRatio = total > 0 ? uniq / total : 0
-
-          return (
-            <g key={`label-${nuts}`} style={{ pointerEvents: 'none' }}>
-              {/* Background circle */}
-              <circle cx={cx} cy={cy} r={ringR}
-                fill="rgba(255,255,255,0.92)" stroke="rgba(10,65,110,0.15)" strokeWidth={0.5} />
-              {/* Unique ratio arc (green) */}
-              {uniqueRatio > 0 && (
-                <path
-                  d={d3.arc()({
-                    innerRadius: ringR - 3,
-                    outerRadius: ringR,
-                    startAngle: 0,
-                    endAngle: uniqueRatio * Math.PI * 2,
-                  })}
-                  transform={`translate(${cx},${cy})`}
-                  fill="#2DA547"
-                  opacity={0.8}
-                />
-              )}
-              {/* Shared ratio arc (grey) */}
-              {uniqueRatio < 1 && (
-                <path
-                  d={d3.arc()({
-                    innerRadius: ringR - 3,
-                    outerRadius: ringR,
-                    startAngle: uniqueRatio * Math.PI * 2,
-                    endAngle: Math.PI * 2,
-                  })}
-                  transform={`translate(${cx},${cy})`}
-                  fill="#CDCDD2"
-                  opacity={0.6}
-                />
-              )}
-              {/* Number: unique / total */}
-              <text x={cx} y={cy - 3} textAnchor="middle" dominantBaseline="central"
-                fontSize={fs(13)} fontWeight={700}>
-                <tspan fill="#2DA547">{uniq}</tspan>
-                <tspan fill="#AAAAAA" fontSize={fs(10)}> / {total}</tspan>
-              </text>
-              {/* Small label */}
-              <text x={cx} y={cy + 10} textAnchor="middle"
-                fontSize={fs(7)} fill="#777">
-                unik. NACE
-              </text>
-            </g>
-          )
-        })}
-
-        {/* Heatmap — lower right */}
-        {/* Row labels */}
-        {heatmapKraje.map((kraj, i) => (
-          <text key={`row-${i}`} x={offsetX - 8} y={offsetY + i * cellSize + cellSize / 2}
-            textAnchor="end" dominantBaseline="central" fontSize={Math.min(11, cellSize * 0.38)} fill="#0A416E" fontWeight={500}>
-            {kraj.short}
-          </text>
-        ))}
-
-        {/* Column labels (rotated) */}
-        {heatmapKraje.map((kraj, j) => (
-          <text key={`col-${j}`} x={0} y={0} textAnchor="start" fontSize={Math.min(11, cellSize * 0.38)} fill="#0A416E" fontWeight={500}
-            transform={`translate(${offsetX + j * cellSize + cellSize / 2}, ${offsetY - 8}) rotate(-55)`}>
-            {kraj.short}
-          </text>
-        ))}
-
-        {/* Cells */}
-        {matrix.cells.map(({ row, col, val, shared }) => {
-          const isDiag = row === col
-          return (
-            <rect key={`${row}-${col}`}
-              x={offsetX + col * cellSize} y={offsetY + row * cellSize}
-              width={cellSize - 1} height={cellSize - 1}
-              fill={isDiag ? '#355410' : heatColorScale(val)}
-              rx={2} style={{ cursor: isDiag ? 'default' : 'pointer' }}
-              onMouseMove={(e) => {
-                if (isDiag) return
-                setTooltip({
-                  x: e.clientX, y: e.clientY, type: 'heat',
-                  krajA: heatmapKraje[row].short, krajB: heatmapKraje[col].short,
-                  jaccard: val, shared,
-                })
-              }}
-              onMouseLeave={() => setTooltip(null)}
-            />
-          )
-        })}
-
-        {/* Cell values */}
-        {matrix.cells.filter(c => c.row !== c.col).map(({ row, col, val }) => {
-          const needsWhite = val > 0.30
-          return (
-            <text key={`t-${row}-${col}`}
-              x={offsetX + col * cellSize + (cellSize - 1) / 2}
-              y={offsetY + row * cellSize + (cellSize - 1) / 2}
-              textAnchor="middle" dominantBaseline="central"
-              fontSize={cellSize > 36 ? 9 : 7} fill={val === 0 ? '#999' : needsWhite ? '#fff' : '#2a3d1a'}
-              fontWeight={500} style={{ pointerEvents: 'none' }}>
-              {val === 0 ? '' : val.toFixed(2).replace('0.', '.')}
-            </text>
-          )
-        })}
-      </svg>
-
-      {/* Tooltip */}
-      {tooltip && (
-        <div className="map-tooltip" style={{
-          left: Math.min(tooltip.x + 12, width - 300),
-          top: Math.max(tooltip.y - 10, 10),
-        }}>
-          {tooltip.type === 'map' && tooltip.info ? (
-            <>
-              <div className="tooltip-title">{tooltip.name}</div>
-              {tooltip.info.hasNace ? (
-                <>
-                  <div className="tooltip-value">Průměrný Jaccard: <strong>{fmt(tooltip.info.avgJaccard)}</strong></div>
-                  <div className="tooltip-value" style={{ marginTop: 4 }}>
-                    Domén: <strong>{tooltip.info.domenyCount}</strong> &middot;
-                    NACE kódů: <strong>{tooltip.info.codes.size}</strong>
-                  </div>
-                  <div className="tooltip-value" style={{ fontSize: 12, marginTop: 3 }}>
-                    <span style={{ color: '#2DA547', fontWeight: 700 }}>{tooltip.info.unique} unikátních</span>
-                    {tooltip.info.uniqueList.length > 0 && (
-                      <span style={{ color: '#2DA547', fontSize: 10 }}> ({tooltip.info.uniqueList.join(', ')})</span>
-                    )}
-                  </div>
-                  <div className="tooltip-value" style={{ fontSize: 12 }}>
-                    <span style={{ color: '#777', fontWeight: 600 }}>{tooltip.info.shared} sdílených</span>
-                    <span style={{ color: '#999', fontSize: 10 }}> s jinými kraji</span>
-                  </div>
-                  {tooltip.info.bestPair && (
-                    <div style={{ fontSize: 11, color: '#888', marginTop: 3, borderTop: '1px solid #eee', paddingTop: 3 }}>
-                      Nejpodobnější: {tooltip.info.bestPair.name} (J={fmt(tooltip.info.bestPair.jaccard)})
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div className="tooltip-value" style={{ fontSize: 12, color: '#999' }}>
-                  Domény definovány popisně, bez CZ-NACE kódů
-                </div>
-              )}
-            </>
-          ) : tooltip.type === 'heat' ? (
-            <>
-              <div className="tooltip-title">{tooltip.krajA} × {tooltip.krajB}</div>
-              <div className="tooltip-value">Jaccard: <strong>{fmt(tooltip.jaccard)}</strong></div>
-              {tooltip.shared.length > 0 ? (
-                <div style={{ fontSize: 11, color: '#666', marginTop: 3 }}>
-                  Sdílené kódy ({tooltip.shared.length}): {tooltip.shared.join(', ')}
-                </div>
-              ) : (
-                <div style={{ fontSize: 11, color: '#999', marginTop: 3 }}>Žádné společné NACE kódy</div>
-              )}
-            </>
-          ) : null}
-        </div>
-      )}
-
-      {/* Map legend — bottom left */}
-      <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
-        style={{
-          bottom: isMobile ? 'auto' : Math.max(60, height * 0.08),
-          top: isMobile ? height * 0.44 : 'auto',
-          left: 8,
-          maxWidth: isMobile ? '48vw' : 'auto',
-        }}>
-        <div style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }} className="font-medium text-[#0A416E] mb-1 sm:mb-2">Kartogram — průměrná Jaccard podobnost</div>
-        <div className="flex items-end gap-0.5">
-          {MAP_COLORS.map((color, i) => (
-            <div key={i} className="flex flex-col items-center">
-              <div style={{ width: 28, height: 14, background: color, borderRadius: 2 }} />
-              <span className="text-[9px] text-[#555] mt-0.5">
-                {i === 0 && quantiles[0] != null ? `<${fmt(quantiles[0])}` : ''}
-                {i > 0 && i < MAP_COLORS.length - 1 && quantiles[i] != null ? fmt(quantiles[i - 1]) : ''}
-                {i === MAP_COLORS.length - 1 && quantiles.length > 0 ? `>${fmt(quantiles[quantiles.length - 1])}` : ''}
-              </span>
+      {/* Panels below visualizations */}
+      <div className="px-4 py-2 flex flex-col gap-2 flex-shrink-0">
+        {/* Legends */}
+        {isMobile ? (
+          <>
+            <div className="bg-white/90 rounded-lg px-3 py-2 shadow-sm flex flex-wrap gap-4">
+              <div className="flex-1 min-w-[140px]">{mapLegendContent(true)}</div>
+              <div className="flex-1 min-w-[140px]">{heatLegendContent(true)}</div>
             </div>
-          ))}
-        </div>
-        <div className="flex items-center gap-2 mt-2">
-          <div style={{ width: 14, height: 10, background: '#c0c0c0', borderRadius: 2 }} />
-          <span className="text-[10px] text-[#777]">bez CZ-NACE kódů</span>
-        </div>
-        <div className="flex items-center gap-2 mt-1.5">
-          <svg width={20} height={20}>
-            <circle cx={10} cy={10} r={9} fill="white" stroke="#ddd" strokeWidth={0.5} />
-            <path d={d3.arc()({ innerRadius: 6, outerRadius: 9, startAngle: 0, endAngle: Math.PI * 0.8 })}
-              transform="translate(10,10)" fill="#2DA547" opacity={0.8} />
-            <path d={d3.arc()({ innerRadius: 6, outerRadius: 9, startAngle: Math.PI * 0.8, endAngle: Math.PI * 2 })}
-              transform="translate(10,10)" fill="#CDCDD2" opacity={0.6} />
-            <text x={10} y={10} textAnchor="middle" dominantBaseline="central" fontSize={7} fill="#2DA547" fontWeight={700}>4</text>
-          </svg>
-          <span className="text-[10px] text-[#777]">
-            <span style={{ color: '#2DA547', fontWeight: 600 }}>unikátní</span> / celkem NACE
-          </span>
-        </div>
-      </div>
+            <CollapsiblePanel title="Komentář a vysvětlivky">
+              {commentaryContent}
+              <div className="mt-2 pt-2 border-t border-gray-200">
+                {mapLegendContent(false)}
+              </div>
+            </CollapsiblePanel>
+          </>
+        ) : (
+          <>
+            <div className="flex gap-3">
+              <div className="bg-white/90 rounded-lg px-3 py-2 shadow-sm flex-1">
+                {mapLegendContent(false)}
+              </div>
+              <div className="bg-white/90 rounded-lg px-3 py-2 shadow-sm flex-1">
+                {heatLegendContent(false)}
+              </div>
+            </div>
+            <div className="bg-white/90 rounded-lg px-3 py-2 shadow-sm">
+              {commentaryContent}
+            </div>
+          </>
+        )}
 
-      {/* Heatmap legend — bottom right */}
-      <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
-        style={{
-          bottom: isMobile ? 'auto' : Math.max(60, height * 0.08),
-          top: isMobile ? height * 0.44 : 'auto',
-          right: isMobile ? 8 : (width * 0.60 > 700 ? width - (offsetX + gridW + 8) : 8),
-          maxWidth: isMobile ? '48vw' : 'auto',
-        }}>
-        <div style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }} className="font-medium text-[#0A416E] mb-1 sm:mb-2">Heatmapa — párový Jaccard index</div>
-        <svg width={Math.min(156, width * 0.25)} height="28" viewBox="0 0 156 28">
-          {STEPS.map((step, i) => (
-            <g key={i}>
-              <rect x={i * 26} y={0} width={25} height={12} rx={1} fill={step.color} />
-              <text x={i * 26 + 12.5} y={24} textAnchor="middle" fontSize={8} fill="#777">
-                {step.max === Infinity ? '>.42' : `≤${step.max.toFixed(2)}`}
-              </text>
-            </g>
-          ))}
-        </svg>
-        <div className="flex items-center gap-2 mt-2">
-          <div style={{ width: 14, height: 10, background: '#ececec', borderRadius: 2 }} />
-          <span className="text-[10px] text-[#777]">žádný sdílený kód</span>
+        {/* Source */}
+        <div className="text-center text-[#777] py-1 px-2" style={{ fontSize: 'clamp(7px, 1vw, 10px)' }}>
+          {sourceText}
         </div>
-      </div>
-
-      {/* Commentary — hidden on mobile to save space */}
-      {!isMobile && (
-        <div className="absolute z-10 max-w-md bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
-          style={{ bottom: Math.max(60, height * 0.08), left: '50%', transform: 'translateX(-50%)' }}>
-          <p className="text-[#0A416E] leading-relaxed" style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }}>
-            Nejpodobnější dvojice: {matrix.bestPair.names[0]} a {matrix.bestPair.names[1]} (J={fmt(matrix.bestPair.val)}).
-            Průměrná podobnost: {fmt(stats.avg)}. Pozor: podrobnost NACE klasifikace se mezi kraji výrazně liší (viz ℹ️).
-          </p>
-        </div>
-      )}
-
-      {/* Source */}
-      <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 text-center text-[#777] z-10 px-4" style={{ fontSize: 'clamp(7px, 1vw, 10px)' }}>
-        Zdroj: Příloha 2 NRIS3 v08 (MPO, 2026) &middot; Geodata: ArcČR © ČÚZK, ČSÚ, ARCDATA PRAHA 2024, CC-BY 4.0
       </div>
     </div>
   )
