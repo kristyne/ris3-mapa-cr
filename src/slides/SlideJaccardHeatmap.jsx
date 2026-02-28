@@ -79,6 +79,7 @@ export default function SlideJaccardHeatmap() {
   const isDesktop = dimensions.width > 1024
   const isTablet = dimensions.width > 768 && dimensions.width <= 1024
   const isMobile = dimensions.width <= 768
+  const isCompact = isDesktop && dimensions.height < 900
 
   // NACE sets per kraj + unique/shared analysis
   const krajInfo = useMemo(() => {
@@ -188,17 +189,17 @@ export default function SlideJaccardHeatmap() {
 
   const projection = useMemo(() => {
     if (!geoData || dimensions.width === 0) return null
-    const mapWidth = isDesktop ? dimensions.width * 0.68 : dimensions.width * 0.92
-    const mapHeight = isDesktop ? dimensions.height * 0.76 : mapSvgH * 0.80
+    const mapWidth = isDesktop ? dimensions.width * (isCompact ? 0.62 : 0.68) : dimensions.width * 0.92
+    const mapHeight = isDesktop ? dimensions.height * (isCompact ? 0.68 : 0.76) : mapSvgH * 0.80
     const proj = d3.geoMercator().fitSize([mapWidth, mapHeight], geoData)
     const [tx, ty] = proj.translate()
     if (isDesktop) {
-      proj.translate([tx + dimensions.width * 0.01, ty + dimensions.height * 0.04])
+      proj.translate([tx + dimensions.width * 0.01, ty + dimensions.height * (isCompact ? 0.08 : 0.04)])
     } else {
       proj.translate([tx + dimensions.width * 0.04, ty + mapSvgH * 0.08])
     }
     return proj
-  }, [geoData, dimensions, isDesktop, mapSvgH])
+  }, [geoData, dimensions, isDesktop, isCompact, mapSvgH])
 
   const pathGenerator = useMemo(() => {
     if (!projection) return null
@@ -537,12 +538,12 @@ export default function SlideJaccardHeatmap() {
   // ════════════════════════════════════════
   if (isDesktop) {
     // Heatmap positioning — right side
-    const hmLeft = width * 0.62
-    const hmTop = height * 0.36
+    const hmLeft = width * (isCompact ? 0.58 : 0.62)
+    const hmTop = height * (isCompact ? 0.32 : 0.36)
     const labelW = Math.min(85, width * 0.065)
     const topLabelH = Math.min(65, height * 0.08)
-    const availW = width * 0.35 - labelW
-    const availH = height * 0.48 - topLabelH
+    const availW = width * (isCompact ? 0.39 : 0.35) - labelW
+    const availH = height * (isCompact ? 0.52 : 0.48) - topLabelH
     const cellSize = Math.max(12, Math.min(Math.floor(availW / n), Math.floor(availH / n), 28))
     const gridW = cellSize * n
     const gridH = cellSize * n
@@ -677,20 +678,20 @@ export default function SlideJaccardHeatmap() {
         {tooltipEl}
 
         {/* Map legend — bottom left */}
-        <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
-          style={{ bottom: Math.max(60, height * 0.08), left: 8 }}>
-          {mapLegendContent(false)}
+        <div className="absolute z-10 bg-white/90 rounded-lg px-3 py-2 shadow-sm"
+          style={{ bottom: isCompact ? 32 : Math.max(60, height * 0.08), left: 8 }}>
+          {mapLegendContent(isCompact)}
         </div>
 
         {/* Heatmap legend — bottom right */}
-        <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
-          style={{ bottom: Math.max(60, height * 0.08), right: width * 0.60 > 700 ? width - (offsetX + gridW + 8) : 8 }}>
-          {heatLegendContent(false)}
+        <div className="absolute z-10 bg-white/90 rounded-lg px-3 py-2 shadow-sm"
+          style={{ bottom: isCompact ? 32 : Math.max(60, height * 0.08), right: width * 0.60 > 700 ? width - (offsetX + gridW + 8) : 8 }}>
+          {heatLegendContent(isCompact)}
         </div>
 
         {/* Commentary — centered bottom */}
-        <div className="absolute z-10 max-w-md bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
-          style={{ bottom: Math.max(60, height * 0.08), left: '50%', transform: 'translateX(-50%)' }}>
+        <div className="absolute z-10 bg-white/90 rounded-lg px-3 py-2 shadow-sm"
+          style={{ bottom: isCompact ? 32 : Math.max(60, height * 0.08), left: '50%', transform: 'translateX(-50%)', maxWidth: isCompact ? 340 : 448 }}>
           {commentaryContent}
         </div>
 

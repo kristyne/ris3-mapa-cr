@@ -55,6 +55,7 @@ export default function SlideVavEkosystem() {
   const isDesktop = width > 1024
   const isTablet = width > 768 && width <= 1024
   const isMobile = width <= 768
+  const isCompact = isDesktop && height < 900
 
   // Responsive SVG font helper
   const fs = (base) => Math.max(base * 0.6, Math.min(base, Math.min(width, height) / 1080 * base))
@@ -76,11 +77,11 @@ export default function SlideVavEkosystem() {
     : 0
 
   // ── Chart dimensions ──
-  const chartLeft = Math.max(60, Math.min(160, width * 0.12))
-  const chartRight = isDesktop ? width * 0.58 : width * 0.90
+  const chartLeft = Math.max(60, Math.min(isCompact ? 120 : 160, width * 0.12))
+  const chartRight = isDesktop ? width * (isCompact ? 0.54 : 0.58) : width * 0.90
   const chartSvgH = isDesktop ? height : isTablet ? height * 0.55 : height * 0.45
-  const chartTop = chartSvgH * (isDesktop ? 0.22 : 0.24)
-  const chartBottom = chartSvgH * (isDesktop ? 0.82 : 0.88)
+  const chartTop = chartSvgH * (isDesktop ? (isCompact ? 0.18 : 0.22) : 0.24)
+  const chartBottom = chartSvgH * (isDesktop ? (isCompact ? 0.86 : 0.82) : 0.88)
   const chartW = chartRight - chartLeft
   const barCount = sortedKraje.length
   const barGroupH = (chartBottom - chartTop) / barCount
@@ -263,17 +264,21 @@ export default function SlideVavEkosystem() {
         </div>
 
         {/* Right panel */}
-        <div className="absolute z-10" style={{ left: width * 0.60, bottom: height * 0.06, width: width * 0.37 }}>
-          <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm border border-[#E3F2FD]">
-            <div className="text-xs font-bold text-[#0A416E] mb-2">Co se tady děje? — Postup krok za krokem</div>
+        <div className="absolute z-10" style={{
+          left: width * (isCompact ? 0.56 : 0.60),
+          bottom: height * (isCompact ? 0.04 : 0.06),
+          width: width * (isCompact ? 0.42 : 0.37),
+        }}>
+          <div className="bg-white/95 rounded-lg px-3 py-2 shadow-sm border border-[#E3F2FD]">
+            <div className="text-xs font-bold text-[#0A416E] mb-1.5">Co se tady děje? — Postup krok za krokem</div>
             {methodologyContent}
           </div>
 
-          <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm mt-3">
+          <div className="bg-white/95 rounded-lg px-3 py-2 shadow-sm mt-2">
             {legendContent}
           </div>
 
-          <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm mt-3">
+          <div className="bg-white/95 rounded-lg px-3 py-2 shadow-sm mt-2">
             <div className="text-xs font-bold text-[#0A416E] mb-1">Celkem za ČR</div>
             {summaryContent}
           </div>

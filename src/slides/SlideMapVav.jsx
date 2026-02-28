@@ -46,6 +46,7 @@ export default function SlideMapVav() {
   const isDesktop = dimensions.width > 1024
   const isTablet = dimensions.width > 768 && dimensions.width <= 1024
   const isMobile = dimensions.width <= 768
+  const isCompact = isDesktop && dimensions.height < 900
 
   // Color scale: light sky-blue → vivid blue based on VaV intensity
   const colorScale = useMemo(() => {
@@ -73,13 +74,14 @@ export default function SlideMapVav() {
 
   const projection = useMemo(() => {
     if (!krajeGeo || svgWidth === 0) return null
-    const mapHeight = svgHeight * 0.78
+    const mapHeight = svgHeight * (isCompact ? 0.72 : 0.78)
     const mapWidth = svgWidth * 0.90
     const proj = d3.geoMercator().fitSize([mapWidth, mapHeight], krajeGeo)
     const [tx, ty] = proj.translate()
-    proj.translate([tx + (svgWidth - mapWidth) / 2, ty + (svgHeight - mapHeight) * 0.15 + (isDesktop ? 0 : svgHeight * 0.06)])
+    const topOffset = isDesktop ? (isCompact ? svgHeight * 0.08 : 0) : svgHeight * 0.06
+    proj.translate([tx + (svgWidth - mapWidth) / 2, ty + (svgHeight - mapHeight) * 0.15 + topOffset])
     return proj
-  }, [krajeGeo, svgWidth, svgHeight, isDesktop])
+  }, [krajeGeo, svgWidth, svgHeight, isDesktop, isCompact])
 
   const pathGenerator = useMemo(() => {
     if (!projection) return null
@@ -334,14 +336,14 @@ export default function SlideMapVav() {
         {tooltipEl}
 
         {/* Legend — bottom right */}
-        <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
-          style={{ bottom: Math.max(60, dimensions.height * 0.08), right: Math.max(8, dimensions.width * 0.01), maxWidth: 200 }}>
-          {legendContent(false)}
+        <div className="absolute z-10 bg-white/90 rounded-lg px-3 py-2 shadow-sm"
+          style={{ bottom: isCompact ? 36 : Math.max(60, dimensions.height * 0.08), right: Math.max(8, dimensions.width * 0.01), maxWidth: isCompact ? 180 : 200 }}>
+          {legendContent(isCompact)}
         </div>
 
         {/* Commentary — bottom left */}
-        <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
-          style={{ bottom: Math.max(60, dimensions.height * 0.08), left: Math.max(8, dimensions.width * 0.01), maxWidth: Math.min(420, dimensions.width * 0.35) }}>
+        <div className="absolute z-10 bg-white/90 rounded-lg px-3 py-2 shadow-sm"
+          style={{ bottom: isCompact ? 36 : Math.max(60, dimensions.height * 0.08), left: Math.max(8, dimensions.width * 0.01), maxWidth: Math.min(isCompact ? 360 : 420, dimensions.width * 0.32) }}>
           {commentaryText}
         </div>
 

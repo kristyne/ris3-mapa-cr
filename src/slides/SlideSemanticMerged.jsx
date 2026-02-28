@@ -92,6 +92,7 @@ export default function SlideSemanticMerged() {
   const isDesktop = dimensions.width > 1024
   const isTablet = dimensions.width > 768 && dimensions.width <= 1024
   const isMobile = dimensions.width <= 768
+  const isCompact = isDesktop && dimensions.height < 900
 
   // ── MAP: color scale ──
   const mapColorScale = useMemo(() => {
@@ -107,13 +108,13 @@ export default function SlideSemanticMerged() {
   // ── MAP: projection ──
   const projection = useMemo(() => {
     if (!krajeGeo || dimensions.width === 0) return null
-    const mapWidth = isDesktop ? dimensions.width * 0.65 : dimensions.width * 0.92
-    const mapHeight = isDesktop ? dimensions.height * 0.62 : mapSvgH * 0.82
+    const mapWidth = isDesktop ? dimensions.width * (isCompact ? 0.58 : 0.65) : dimensions.width * 0.92
+    const mapHeight = isDesktop ? dimensions.height * (isCompact ? 0.54 : 0.62) : mapSvgH * 0.82
     const proj = d3.geoMercator().fitSize([mapWidth, mapHeight], krajeGeo)
     const [tx, ty] = proj.translate()
-    proj.translate([tx + dimensions.width * 0.04, ty + (isDesktop ? dimensions.height * 0.06 : mapSvgH * 0.06)])
+    proj.translate([tx + dimensions.width * 0.04, ty + (isDesktop ? dimensions.height * (isCompact ? 0.10 : 0.06) : mapSvgH * 0.06)])
     return proj
-  }, [krajeGeo, dimensions, isDesktop, mapSvgH])
+  }, [krajeGeo, dimensions, isDesktop, isCompact, mapSvgH])
 
   const pathGenerator = useMemo(() => {
     if (!projection) return null
@@ -221,9 +222,9 @@ export default function SlideSemanticMerged() {
     let cx, cy, minX, maxX, minY, maxY
 
     if (isDesktop) {
-      cx = width * 0.73; cy = height * 0.68
-      minX = width * 0.48; maxX = width - 40
-      minY = height * 0.42; maxY = height - 50
+      cx = width * 0.73; cy = height * (isCompact ? 0.62 : 0.68)
+      minX = width * (isCompact ? 0.42 : 0.48); maxX = width - 40
+      minY = height * (isCompact ? 0.36 : 0.42); maxY = height - (isCompact ? 40 : 50)
     } else {
       // For tablet/mobile the network is rendered in its own SVG
       cx = netSvgW * 0.50; cy = netSvgH * 0.50
@@ -734,32 +735,34 @@ export default function SlideSemanticMerged() {
         </svg>
 
         {/* Map legend */}
-        <div className="absolute z-10 bg-white/92 rounded-lg px-2 sm:px-3 py-2 sm:py-2.5 shadow-sm"
+        <div className="absolute z-10 bg-white/92 rounded-lg px-2 py-1.5 shadow-sm"
           style={{
             left: width * 0.03,
-            top: height * 0.56,
+            top: height * (isCompact ? 0.52 : 0.56),
             borderLeft: '4px solid #55287D',
           }}>
-          {mapLegendContent(false)}
+          {mapLegendContent(isCompact)}
         </div>
 
         {/* Network legend + Methodology */}
-        <div className="absolute z-10 flex flex-col gap-2"
-          style={{ right: 12, top: height * 0.08, maxWidth: 210 }}>
-          <div className="bg-white/92 rounded-lg px-4 py-3 shadow-sm" style={{ borderLeft: '4px solid #0087CD' }}>
-            {networkLegendContent(false)}
+        <div className="absolute z-10 flex flex-col gap-1.5"
+          style={{ right: 12, top: height * (isCompact ? 0.12 : 0.08), maxWidth: isCompact ? 190 : 210 }}>
+          <div className="bg-white/92 rounded-lg px-3 py-2 shadow-sm" style={{ borderLeft: '4px solid #0087CD' }}>
+            {networkLegendContent(isCompact)}
           </div>
-          <div className="bg-white/95 rounded-lg px-4 py-2.5 shadow-sm border border-[#E3F2FD]">
-            {methodologyContent}
-          </div>
+          {!isCompact && (
+            <div className="bg-white/95 rounded-lg px-3 py-2 shadow-sm border border-[#E3F2FD]">
+              {methodologyContent}
+            </div>
+          )}
         </div>
 
         {/* Infographic panel — bottom left */}
-        <div className="absolute z-10 bg-white/95 rounded-lg px-3 py-2.5 shadow-sm"
+        <div className="absolute z-10 bg-white/95 rounded-lg px-3 py-2 shadow-sm"
           style={{
             left: width * 0.03,
-            bottom: 36,
-            maxWidth: Math.min(200, width * 0.18),
+            bottom: isCompact ? 28 : 36,
+            maxWidth: Math.min(isCompact ? 180 : 200, width * 0.18),
             borderLeft: '4px solid #E6AF14',
           }}>
           {infographicContent}
