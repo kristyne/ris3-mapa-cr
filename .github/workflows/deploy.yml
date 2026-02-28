@@ -35,13 +35,14 @@ jobs:
         run: cp dist/index.html dist/404.html
 
       - name: Encrypt with staticrypt
+        env:
+          SITE_PASSWORD: ${{ secrets.SITE_PASSWORD }}
         run: |
-          npm install -g staticrypt
-          echo "${{ secrets.SITE_PASSWORD }}" | staticrypt dist/index.html -o dist/index.html --short \
+          npx -y staticrypt@3 dist/index.html -p "$SITE_PASSWORD" -o dist/index.html --short \
             --template-title "RIS3 Mapa ČR" \
             --template-instructions "Zadejte heslo pro přístup k aplikaci" \
             --template-button "Otevřít"
-          echo "${{ secrets.SITE_PASSWORD }}" | staticrypt dist/404.html -o dist/404.html --short \
+          npx -y staticrypt@3 dist/404.html -p "$SITE_PASSWORD" -o dist/404.html --short \
             --template-title "RIS3 Mapa ČR" \
             --template-instructions "Zadejte heslo pro přístup k aplikaci" \
             --template-button "Otevřít"
