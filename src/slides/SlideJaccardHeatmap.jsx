@@ -189,12 +189,13 @@ export default function SlideJaccardHeatmap() {
 
   const projection = useMemo(() => {
     if (!geoData || dimensions.width === 0) return null
-    const mapWidth = isDesktop ? dimensions.width * (isCompact ? 0.62 : 0.68) : dimensions.width * 0.92
-    const mapHeight = isDesktop ? dimensions.height * (isCompact ? 0.68 : 0.76) : mapSvgH * 0.80
+    const mapWidth = isDesktop ? dimensions.width * (isCompact ? 0.58 : 0.62) : dimensions.width * 0.92
+    const mapHeight = isDesktop ? dimensions.height * (isCompact ? 0.62 : 0.70) : mapSvgH * 0.80
     const proj = d3.geoMercator().fitSize([mapWidth, mapHeight], geoData)
     const [tx, ty] = proj.translate()
     if (isDesktop) {
-      proj.translate([tx + dimensions.width * 0.01, ty + dimensions.height * (isCompact ? 0.08 : 0.04)])
+      // Push map down enough to clear title (~70-80px)
+      proj.translate([tx + dimensions.width * 0.01, ty + Math.max(70, dimensions.height * 0.09)])
     } else {
       proj.translate([tx + dimensions.width * 0.04, ty + mapSvgH * 0.08])
     }

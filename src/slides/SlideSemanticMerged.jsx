@@ -108,11 +108,12 @@ export default function SlideSemanticMerged() {
   // ── MAP: projection ──
   const projection = useMemo(() => {
     if (!krajeGeo || dimensions.width === 0) return null
-    const mapWidth = isDesktop ? dimensions.width * (isCompact ? 0.58 : 0.65) : dimensions.width * 0.92
-    const mapHeight = isDesktop ? dimensions.height * (isCompact ? 0.54 : 0.62) : mapSvgH * 0.82
+    const mapWidth = isDesktop ? dimensions.width * (isCompact ? 0.52 : 0.58) : dimensions.width * 0.92
+    const mapHeight = isDesktop ? dimensions.height * (isCompact ? 0.48 : 0.55) : mapSvgH * 0.82
     const proj = d3.geoMercator().fitSize([mapWidth, mapHeight], krajeGeo)
     const [tx, ty] = proj.translate()
-    proj.translate([tx + dimensions.width * 0.04, ty + (isDesktop ? dimensions.height * (isCompact ? 0.10 : 0.06) : mapSvgH * 0.06)])
+    // Title on this slide is tall (~90px: title + subtitle + indicators), push map well below
+    proj.translate([tx + dimensions.width * 0.04, ty + (isDesktop ? Math.max(90, dimensions.height * 0.12) : mapSvgH * 0.06)])
     return proj
   }, [krajeGeo, dimensions, isDesktop, isCompact, mapSvgH])
 
@@ -746,7 +747,7 @@ export default function SlideSemanticMerged() {
 
         {/* Network legend + Methodology */}
         <div className="absolute z-10 flex flex-col gap-1.5"
-          style={{ right: 12, top: height * (isCompact ? 0.12 : 0.08), maxWidth: isCompact ? 190 : 210 }}>
+          style={{ right: 12, top: Math.max(90, height * 0.12), maxWidth: isCompact ? 180 : 200 }}>
           <div className="bg-white/92 rounded-lg px-3 py-2 shadow-sm" style={{ borderLeft: '4px solid #0087CD' }}>
             {networkLegendContent(isCompact)}
           </div>

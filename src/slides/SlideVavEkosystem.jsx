@@ -192,42 +192,44 @@ export default function SlideVavEkosystem() {
   )
 
   // ── Right panel content (methodology + legend + summary) ──
+  const methFs = isCompact ? 'text-[10px]' : 'text-[11px]'
+  const methSpacing = isCompact ? 'space-y-0.5' : 'space-y-1.5'
   const methodologyContent = (
-    <div className="text-[11px] text-[#0A416E] leading-relaxed space-y-1.5">
-      <div className="flex gap-2">
+    <div className={`${methFs} text-[#0A416E] leading-snug ${methSpacing}`}>
+      <div className="flex gap-1.5">
         <span className="font-bold text-[#0087CD] shrink-0">1.</span>
-        <span>Vzali jsme <strong>{data.meta.pocet_projektu.toLocaleString('cs-CZ')} výzkumných projektů</strong> z databáze IS VaVaI (název, klíčová slova, oborové zařazení FORD).</span>
+        <span><strong>{data.meta.pocet_projektu.toLocaleString('cs-CZ')} projektů</strong> z IS VaVaI (název, klíčová slova, FORD).</span>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-1.5">
         <span className="font-bold text-[#0087CD] shrink-0">2.</span>
-        <span>Vzali jsme <strong>popisy domén specializace</strong> z krajských karet NRIS3 (co kraj deklaruje jako své priority).</span>
+        <span><strong>Popisy domén</strong> z krajských karet NRIS3.</span>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-1.5">
         <span className="font-bold text-[#0087CD] shrink-0">3.</span>
-        <span><strong>Test A — obor (FORD):</strong> Porovnali jsme oborové zařazení projektu s tematickým zaměřením domén. Sedí obor projektu k doméně?</span>
+        <span><strong>Test A — FORD:</strong> Sedí obor projektu k doméně?</span>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-1.5">
         <span className="font-bold text-[#0087CD] shrink-0">4.</span>
-        <span><strong>Test B — obsah (AI):</strong> Jazykový model přečetl text projektu a text domény a změřil, jak moc si jsou obsahově blízké (cosine similarity &gt; 0,35).</span>
+        <span><strong>Test B — AI:</strong> Cosine similarity textu projektu vs. domény (&gt; 0,35).</span>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-1.5">
         <span className="font-bold text-[#0087CD] shrink-0">5.</span>
-        <span>Každý projekt tak spadne do jedné ze <strong>4 kategorií</strong> — viz legenda níže.</span>
+        <span>Projekt → jedna ze <strong>4 kategorií</strong> níže.</span>
       </div>
     </div>
   )
 
   const legendContent = (
     <>
-      <div className="text-xs font-bold text-[#0A416E] mb-2">4 kategorie shody</div>
+      <div className={`${isCompact ? 'text-[10px]' : 'text-xs'} font-bold text-[#0A416E] mb-1`}>4 kategorie shody</div>
       {SEGMENTS.map(seg => (
-        <div key={seg.key} className="flex items-baseline gap-2 mt-1.5">
-          <div className="shrink-0 relative" style={{ width: 12, height: 12, top: '1px' }}>
-            <div style={{ width: 12, height: 12, background: seg.color, borderRadius: 2, opacity: seg.key === 'mimo_vse' ? 0.5 : 0.85 }} />
+        <div key={seg.key} className={`flex items-baseline gap-1.5 ${isCompact ? 'mt-0.5' : 'mt-1.5'}`}>
+          <div className="shrink-0 relative" style={{ width: isCompact ? 10 : 12, height: isCompact ? 10 : 12, top: '1px' }}>
+            <div style={{ width: isCompact ? 10 : 12, height: isCompact ? 10 : 12, background: seg.color, borderRadius: 2, opacity: seg.key === 'mimo_vse' ? 0.5 : 0.85 }} />
           </div>
           <div>
-            <span className="text-[11px] font-semibold text-[#0A416E]">{seg.label}</span>
-            {!isMobile && <span className="text-[11px] text-[#555] ml-1">— {seg.desc}</span>}
+            <span className={`${isCompact ? 'text-[10px]' : 'text-[11px]'} font-semibold text-[#0A416E]`}>{seg.label}</span>
+            {!isMobile && !isCompact && <span className="text-[11px] text-[#555] ml-1">— {seg.desc}</span>}
           </div>
         </div>
       ))}
@@ -235,11 +237,11 @@ export default function SlideVavEkosystem() {
   )
 
   const summaryContent = (
-    <div className="text-[11px] text-[#0A416E] leading-relaxed">
+    <div className={`${isCompact ? 'text-[10px]' : 'text-[11px]'} text-[#0A416E] leading-snug`}>
       Z {totals.total.toLocaleString('cs-CZ')} projektů:
       <strong className="ml-1" style={{ color: '#0A416E' }}>{pctBothTotal} %</strong> odpovídá oborem i obsahem,
-      <strong className="ml-1" style={{ color: '#0087CD' }}>{pctAligned} %</strong> je obsahově blízkých (sémanticky).
-      {' '}Zbývajících {(100 - parseInt(pctAligned))} % projektů se s doménami kraje tematicky nepřekrývá.
+      <strong className="ml-1" style={{ color: '#0087CD' }}>{pctAligned} %</strong> je obsahově blízkých.
+      {' '}Zbývajících {(100 - parseInt(pctAligned))} % se s doménami nepřekrývá.
     </div>
   )
 
@@ -269,17 +271,17 @@ export default function SlideVavEkosystem() {
           bottom: height * (isCompact ? 0.04 : 0.06),
           width: width * (isCompact ? 0.42 : 0.37),
         }}>
-          <div className="bg-white/95 rounded-lg px-3 py-2 shadow-sm border border-[#E3F2FD]">
-            <div className="text-xs font-bold text-[#0A416E] mb-1.5">Co se tady děje? — Postup krok za krokem</div>
+          <div className={`bg-white/95 rounded-lg ${isCompact ? 'px-2 py-1.5' : 'px-3 py-2'} shadow-sm border border-[#E3F2FD]`}>
+            <div className={`${isCompact ? 'text-[10px]' : 'text-xs'} font-bold text-[#0A416E] mb-1`}>Postup krok za krokem</div>
             {methodologyContent}
           </div>
 
-          <div className="bg-white/95 rounded-lg px-3 py-2 shadow-sm mt-2">
+          <div className={`bg-white/95 rounded-lg ${isCompact ? 'px-2 py-1.5' : 'px-3 py-2'} shadow-sm ${isCompact ? 'mt-1' : 'mt-2'}`}>
             {legendContent}
           </div>
 
-          <div className="bg-white/95 rounded-lg px-3 py-2 shadow-sm mt-2">
-            <div className="text-xs font-bold text-[#0A416E] mb-1">Celkem za ČR</div>
+          <div className={`bg-white/95 rounded-lg ${isCompact ? 'px-2 py-1.5' : 'px-3 py-2'} shadow-sm ${isCompact ? 'mt-1' : 'mt-2'}`}>
+            <div className={`${isCompact ? 'text-[10px]' : 'text-xs'} font-bold text-[#0A416E] mb-0.5`}>Celkem za ČR</div>
             {summaryContent}
           </div>
         </div>
