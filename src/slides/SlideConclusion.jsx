@@ -53,17 +53,17 @@ export default function SlideConclusion() {
   return (
     <div className="w-full h-full bg-gradient-to-br from-[#0A416E] to-[#0b5a9e] relative overflow-hidden">
       <div
-        className="w-full h-full flex flex-col items-center justify-start pt-7 px-10 transition-all duration-700 overflow-y-auto"
+        className="w-full h-full flex flex-col items-center justify-start pt-5 sm:pt-7 px-4 sm:px-8 lg:px-10 transition-all duration-700 overflow-y-auto"
         style={{ opacity: visible ? 1 : 0 }}
       >
         <div className="max-w-3xl w-full">
-          <h2 className="text-white font-bold text-3xl mb-3 text-center">
+          <h2 className="text-white font-bold text-2xl sm:text-3xl mb-3 text-center">
             Od zvědavosti k interaktivní aplikaci v dialogu s AI
           </h2>
           <div className="w-16 h-0.5 bg-[#0087CD] mx-auto mb-4" />
 
           {/* Intro — what this demonstrates */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl px-8 py-4 mb-3">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 sm:px-8 py-3 sm:py-4 mb-3">
             <p className="text-white/90 text-[14px] leading-relaxed">
               Na začátku nebylo zadání ani data, jen analytická zvědavost: jsou si
               krajské specializace nějak podobné? A dá se to vůbec zjistit z toho,
@@ -76,7 +76,7 @@ export default function SlideConclusion() {
           </div>
 
           {/* Key takeaways for analysts */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl px-8 py-4 mb-3">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 sm:px-8 py-3 sm:py-4 mb-3">
             <p className="text-white/60 text-[11px] font-semibold uppercase tracking-wider mb-2.5">
               Co to ukazuje pro analytickou práci
             </p>
@@ -97,8 +97,8 @@ export default function SlideConclusion() {
           </div>
 
           {/* Pipeline visualization */}
-          <div className="bg-white/5 rounded-xl px-8 py-4 mb-3 border-l-4 border-white/10">
-            <div className="flex items-center gap-1 mb-3">
+          <div className="bg-white/5 rounded-xl px-4 sm:px-8 py-3 sm:py-4 mb-3 border-l-4 border-white/10">
+            <div className="flex flex-wrap items-center gap-1 mb-3">
               {pipeline.map((p, i) => (
                 <div key={i} className="flex items-center">
                   <div className="flex items-center gap-1.5 px-3 py-1 rounded-full"
@@ -129,7 +129,7 @@ export default function SlideConclusion() {
           </div>
 
           {/* Disclaimer note */}
-          <div className="bg-[#E6AF14]/10 border border-[#E6AF14]/20 rounded-xl px-8 py-3 mb-4">
+          <div className="bg-[#E6AF14]/10 border border-[#E6AF14]/20 rounded-xl px-4 sm:px-8 py-3 mb-4">
             <p className="text-white/55 text-[12px] leading-relaxed">
               Výsledek je funkční prototyp. Cesta do produkce znamená další kroky:
               validaci, review, testy, bezpečnost. Na rychlé prototypování, exploraci dat
@@ -144,7 +144,7 @@ export default function SlideConclusion() {
         </div>
 
         {/* Bottom citation */}
-        <div className="absolute bottom-4 text-white/30 text-[10px] text-center px-8">
+        <div className="absolute bottom-4 text-white/30 text-center px-4 sm:px-8" style={{ fontSize: 'clamp(9px, 1.2vw, 11px)' }}>
           Data: ČSÚ, IS VaVaI/CEP, MPO — NRIS3 v08, ArcČR © ČÚZK, ČSÚ, ARCDATA PRAHA 2024 (CC-BY 4.0)
         </div>
       </div>

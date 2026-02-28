@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import SlideTitle from './slides/SlideTitle'
 import SlideMapVav from './slides/SlideMapVav'
 import SlideJaccardHeatmap from './slides/SlideJaccardHeatmap'
@@ -41,6 +41,24 @@ export default function App() {
     return () => window.removeEventListener('keydown', handler)
   }, [next, prev, goTo])
 
+  // Touch swipe navigation
+  const touchStartX = useRef(null)
+  useEffect(() => {
+    const onStart = (e) => { touchStartX.current = e.touches[0].clientX }
+    const onEnd = (e) => {
+      if (touchStartX.current == null) return
+      const dx = e.changedTouches[0].clientX - touchStartX.current
+      if (Math.abs(dx) > 50) { dx < 0 ? next() : prev() }
+      touchStartX.current = null
+    }
+    window.addEventListener('touchstart', onStart, { passive: true })
+    window.addEventListener('touchend', onEnd, { passive: true })
+    return () => {
+      window.removeEventListener('touchstart', onStart)
+      window.removeEventListener('touchend', onEnd)
+    }
+  }, [next, prev])
+
   // Autoplay
   useEffect(() => {
     if (isPaused) return
@@ -60,12 +78,12 @@ export default function App() {
       ))}
 
       {/* Bottom navigation bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center gap-3 py-2.5 bg-gradient-to-t from-black/15 to-transparent pointer-events-none">
-        <div className="flex items-center gap-3 pointer-events-auto">
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center gap-2 sm:gap-3 py-1.5 sm:py-2.5 bg-gradient-to-t from-black/15 to-transparent pointer-events-none">
+        <div className="flex items-center gap-2 sm:gap-3 pointer-events-auto">
           {/* Play/Pause */}
           <button
             onClick={() => setIsPaused(p => !p)}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow text-xs"
+            className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow text-xs"
             title={isPaused ? 'Play (P)' : 'Pause (P)'}
           >
             {isPaused ? '▶' : '⏸'}
@@ -76,7 +94,7 @@ export default function App() {
             <button
               key={i}
               onClick={() => goTo(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-all ${
+              className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all ${
                 currentSlide === i
                   ? 'bg-[#0087CD] scale-125'
                   : 'bg-[#CDCDD2] hover:bg-[#9B9BA0]'
@@ -86,18 +104,19 @@ export default function App() {
           ))}
 
           {/* Slide counter + name */}
-          <span className="text-[11px] text-white/70 font-medium ml-1 min-w-[140px] text-center"
+          <span className="text-[10px] sm:text-[11px] text-white/70 font-medium ml-1 min-w-0 sm:min-w-[140px] text-center"
             style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
-            {currentSlide + 1}/{TOTAL_SLIDES} &middot; {SLIDES[currentSlide].name}
+            <span className="hidden sm:inline">{currentSlide + 1}/{TOTAL_SLIDES} &middot; {SLIDES[currentSlide].name}</span>
+            <span className="sm:hidden">{currentSlide + 1}/{TOTAL_SLIDES}</span>
           </span>
         </div>
       </div>
 
-      {/* Arrow buttons */}
+      {/* Arrow buttons — hidden on small screens (use swipe) */}
       {currentSlide > 0 && (
         <button
           onClick={prev}
-          className="fixed left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow z-50 text-[#0A416E] text-lg"
+          className="fixed left-2 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 hidden sm:flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow z-50 text-[#0A416E] text-lg"
         >
           ‹
         </button>
@@ -105,7 +124,7 @@ export default function App() {
       {currentSlide < TOTAL_SLIDES - 1 && (
         <button
           onClick={next}
-          className="fixed right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow z-50 text-[#0A416E] text-lg"
+          className="fixed right-2 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 hidden sm:flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow z-50 text-[#0A416E] text-lg"
         >
           ›
         </button>

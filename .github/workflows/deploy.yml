@@ -38,11 +38,11 @@ jobs:
         env:
           SITE_PASSWORD: ${{ secrets.SITE_PASSWORD }}
         run: |
-          npx -y staticrypt@3 dist/index.html -p "$SITE_PASSWORD" -o dist/index.html --short \
+          npx -y staticrypt@3 dist/index.html -p "$SITE_PASSWORD" -d dist --short \
             --template-title "RIS3 Mapa ČR" \
             --template-instructions "Zadejte heslo pro přístup k aplikaci" \
             --template-button "Otevřít"
-          npx -y staticrypt@3 dist/404.html -p "$SITE_PASSWORD" -o dist/404.html --short \
+          npx -y staticrypt@3 dist/404.html -p "$SITE_PASSWORD" -d dist --short \
             --template-title "RIS3 Mapa ČR" \
             --template-instructions "Zadejte heslo pro přístup k aplikaci" \
             --template-button "Otevřít"

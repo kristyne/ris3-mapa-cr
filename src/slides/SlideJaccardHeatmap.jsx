@@ -177,15 +177,16 @@ export default function SlideJaccardHeatmap() {
     }
   }, [])
 
-  // Map projection — upper-left, dominant
+  // Map projection — upper-left (desktop), upper portion (mobile)
   const projection = useMemo(() => {
     if (!geoData || dimensions.width === 0) return null
     const { width, height } = dimensions
-    const mapWidth = width * 0.68
-    const mapHeight = height * 0.76
+    const mobile = width < 768
+    const mapWidth = mobile ? width * 0.92 : width * 0.68
+    const mapHeight = mobile ? height * 0.42 : height * 0.76
     const proj = d3.geoMercator().fitSize([mapWidth, mapHeight], geoData)
     const [tx, ty] = proj.translate()
-    proj.translate([tx + width * 0.01, ty + height * 0.04])
+    proj.translate([tx + width * (mobile ? 0.04 : 0.01), ty + height * (mobile ? 0.06 : 0.04)])
     return proj
   }, [geoData, dimensions])
 
@@ -197,17 +198,18 @@ export default function SlideJaccardHeatmap() {
   const centroids = useMemo(() => {
     if (!geoData || !pathGenerator) return {}
     const result = {}
+    const scale = Math.min(dimensions.width, dimensions.height) / 1000
     for (const feature of geoData.features) {
       const nuts = feature.properties.nutslau
       const [cx, cy] = pathGenerator.centroid(feature)
       if (nuts === 'CZ020') {
-        result[nuts] = [cx + 25, cy + 30]
+        result[nuts] = [cx + 25 * scale, cy + 30 * scale]
       } else {
         result[nuts] = [cx, cy]
       }
     }
     return result
-  }, [geoData, pathGenerator])
+  }, [geoData, pathGenerator, dimensions])
 
   const stats = useMemo(() => {
     const entries = Object.values(krajInfo).filter(d => d.avgJaccard != null)
@@ -225,18 +227,22 @@ export default function SlideJaccardHeatmap() {
   }
 
   const { width, height } = dimensions
+  const isMobile = width < 768
   const fmt = (n) => n.toLocaleString('cs-CZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
   const quantiles = mapColorScale.quantiles ? mapColorScale.quantiles() : []
   const n = matrix.n
 
-  // Heatmap layout — right side, compact
-  const hmLeft = width * 0.62
-  const hmTop = height * 0.36
-  const labelW = Math.min(85, width * 0.065)
+  // Responsive SVG font helper
+  const fs = (base) => Math.max(base * 0.6, Math.min(base, Math.min(width, height) / 1080 * base))
+
+  // Heatmap layout — right side (desktop) or below map (mobile)
+  const hmLeft = isMobile ? width * 0.05 : width * 0.62
+  const hmTop = isMobile ? height * 0.52 : height * 0.36
+  const labelW = Math.min(85, width * (isMobile ? 0.15 : 0.065))
   const topLabelH = Math.min(65, height * 0.08)
-  const availW = width * 0.35 - labelW
-  const availH = height * 0.48 - topLabelH
-  const cellSize = Math.min(Math.floor(availW / n), Math.floor(availH / n), 28)
+  const availW = (isMobile ? width * 0.88 : width * 0.35) - labelW
+  const availH = (isMobile ? height * 0.38 : height * 0.48) - topLabelH
+  const cellSize = Math.max(12, Math.min(Math.floor(availW / n), Math.floor(availH / n), 28))
   const gridW = cellSize * n
   const gridH = cellSize * n
   const offsetX = hmLeft + labelW + (availW - gridW) / 2
@@ -247,11 +253,11 @@ export default function SlideJaccardHeatmap() {
       <InfoPanel text={INFO_TEXT} />
 
       {/* Title */}
-      <div className="absolute top-5 left-8 z-10" style={{ maxWidth: width * 0.55 }}>
-        <h2 className="text-2xl font-bold text-[#0A416E]">
+      <div className="absolute top-3 sm:top-5 left-4 sm:left-8 z-10" style={{ maxWidth: isMobile ? '90vw' : width * 0.55 }}>
+        <h2 className="font-bold text-[#0A416E]" style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.5rem)' }}>
           Podobnost domén specializace — Jaccard index CZ-NACE kódů
         </h2>
-        <p className="text-sm text-[#777] mt-1">
+        <p className="text-[#777] mt-1" style={{ fontSize: 'clamp(0.6rem, 1.2vw, 0.875rem)' }}>
           Kartogram = průměrná podobnost vůči ostatním &middot; Heatmapa = párové srovnání {heatmapKraje.length} krajů s NACE kódy
         </p>
       </div>
@@ -289,7 +295,7 @@ export default function SlideJaccardHeatmap() {
             return (
               <text key={`label-${nuts}`} x={cx} y={cy}
                 textAnchor="middle" dominantBaseline="central"
-                fontSize={9} fill="#999" fontStyle="italic"
+                fontSize={fs(9)} fill="#999" fontStyle="italic"
                 style={{ pointerEvents: 'none' }}>
                 bez NACE
               </text>
@@ -299,7 +305,7 @@ export default function SlideJaccardHeatmap() {
           const total = info.codes.size
           const uniq = info.unique
           // Show green ring proportional to unique ratio
-          const ringR = 18
+          const ringR = Math.max(12, Math.min(18, Math.min(dimensions.width, dimensions.height) * 0.018))
           const uniqueRatio = total > 0 ? uniq / total : 0
 
           return (
@@ -337,13 +343,13 @@ export default function SlideJaccardHeatmap() {
               )}
               {/* Number: unique / total */}
               <text x={cx} y={cy - 3} textAnchor="middle" dominantBaseline="central"
-                fontSize={13} fontWeight={700}>
+                fontSize={fs(13)} fontWeight={700}>
                 <tspan fill="#2DA547">{uniq}</tspan>
-                <tspan fill="#AAAAAA" fontSize={10}> / {total}</tspan>
+                <tspan fill="#AAAAAA" fontSize={fs(10)}> / {total}</tspan>
               </text>
               {/* Small label */}
               <text x={cx} y={cy + 10} textAnchor="middle"
-                fontSize={7} fill="#777">
+                fontSize={fs(7)} fill="#777">
                 unik. NACE
               </text>
             </g>
@@ -407,7 +413,10 @@ export default function SlideJaccardHeatmap() {
 
       {/* Tooltip */}
       {tooltip && (
-        <div className="map-tooltip" style={{ left: tooltip.x + 12, top: tooltip.y - 10 }}>
+        <div className="map-tooltip" style={{
+          left: Math.min(tooltip.x + 12, width - 300),
+          top: Math.max(tooltip.y - 10, 10),
+        }}>
           {tooltip.type === 'map' && tooltip.info ? (
             <>
               <div className="tooltip-title">{tooltip.name}</div>
@@ -457,8 +466,14 @@ export default function SlideJaccardHeatmap() {
       )}
 
       {/* Map legend — bottom left */}
-      <div className="absolute bottom-20 left-8 z-10 bg-white/90 rounded-lg px-4 py-3 shadow-sm">
-        <div className="text-xs font-medium text-[#0A416E] mb-2">Kartogram — průměrná Jaccard podobnost</div>
+      <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
+        style={{
+          bottom: isMobile ? 'auto' : Math.max(60, height * 0.08),
+          top: isMobile ? height * 0.44 : 'auto',
+          left: 8,
+          maxWidth: isMobile ? '48vw' : 'auto',
+        }}>
+        <div style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }} className="font-medium text-[#0A416E] mb-1 sm:mb-2">Kartogram — průměrná Jaccard podobnost</div>
         <div className="flex items-end gap-0.5">
           {MAP_COLORS.map((color, i) => (
             <div key={i} className="flex flex-col items-center">
@@ -491,9 +506,15 @@ export default function SlideJaccardHeatmap() {
       </div>
 
       {/* Heatmap legend — bottom right */}
-      <div className="absolute bottom-20 z-10 bg-white/90 rounded-lg px-4 py-3 shadow-sm" style={{ right: width * 0.60 > 700 ? width - (offsetX + gridW + 8) : 8 }}>
-        <div className="text-xs font-medium text-[#0A416E] mb-2">Heatmapa — párový Jaccard index</div>
-        <svg width="156" height="28">
+      <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
+        style={{
+          bottom: isMobile ? 'auto' : Math.max(60, height * 0.08),
+          top: isMobile ? height * 0.44 : 'auto',
+          right: isMobile ? 8 : (width * 0.60 > 700 ? width - (offsetX + gridW + 8) : 8),
+          maxWidth: isMobile ? '48vw' : 'auto',
+        }}>
+        <div style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }} className="font-medium text-[#0A416E] mb-1 sm:mb-2">Heatmapa — párový Jaccard index</div>
+        <svg width={Math.min(156, width * 0.25)} height="28" viewBox="0 0 156 28">
           {STEPS.map((step, i) => (
             <g key={i}>
               <rect x={i * 26} y={0} width={25} height={12} rx={1} fill={step.color} />
@@ -509,16 +530,19 @@ export default function SlideJaccardHeatmap() {
         </div>
       </div>
 
-      {/* Commentary */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10 max-w-md bg-white/90 rounded-lg px-4 py-3 shadow-sm">
-        <p className="text-xs text-[#0A416E] leading-relaxed">
-          Nejpodobnější dvojice: {matrix.bestPair.names[0]} a {matrix.bestPair.names[1]} (J={fmt(matrix.bestPair.val)}).
-          Průměrná podobnost: {fmt(stats.avg)}. Pozor: podrobnost NACE klasifikace se mezi kraji výrazně liší (viz ℹ️).
-        </p>
-      </div>
+      {/* Commentary — hidden on mobile to save space */}
+      {!isMobile && (
+        <div className="absolute z-10 max-w-md bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
+          style={{ bottom: Math.max(60, height * 0.08), left: '50%', transform: 'translateX(-50%)' }}>
+          <p className="text-[#0A416E] leading-relaxed" style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }}>
+            Nejpodobnější dvojice: {matrix.bestPair.names[0]} a {matrix.bestPair.names[1]} (J={fmt(matrix.bestPair.val)}).
+            Průměrná podobnost: {fmt(stats.avg)}. Pozor: podrobnost NACE klasifikace se mezi kraji výrazně liší (viz ℹ️).
+          </p>
+        </div>
+      )}
 
       {/* Source */}
-      <div className="absolute bottom-4 left-0 right-0 text-center text-[10px] text-[#777] z-10">
+      <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 text-center text-[#777] z-10 px-4" style={{ fontSize: 'clamp(7px, 1vw, 10px)' }}>
         Zdroj: Příloha 2 NRIS3 v08 (MPO, 2026) &middot; Geodata: ArcČR © ČÚZK, ČSÚ, ARCDATA PRAHA 2024, CC-BY 4.0
       </div>
     </div>

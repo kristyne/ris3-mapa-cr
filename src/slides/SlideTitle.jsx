@@ -38,7 +38,7 @@ export default function SlideTitle() {
   }, [krajeGeo, dimensions])
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#0A416E] to-[#0b5a9e] px-8 relative overflow-hidden">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#0A416E] to-[#0b5a9e] px-4 sm:px-8 relative overflow-hidden">
       {/* Stylized map background */}
       {pathData && (
         <svg
@@ -81,7 +81,7 @@ export default function SlideTitle() {
       </div>
 
       {/* Footer citation */}
-      <div className="absolute bottom-6 text-white/30 text-xs text-center px-8 z-10">
+      <div className="absolute bottom-6 text-white/30 text-center px-4 sm:px-8 z-10" style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }}>
         Data: ČSÚ, IS VaVaI/CEP, MPO — NRIS3 v08, ArcČR © ČÚZK, ČSÚ, ARCDATA PRAHA 2024 (CC-BY 4.0)
       </div>
     </div>

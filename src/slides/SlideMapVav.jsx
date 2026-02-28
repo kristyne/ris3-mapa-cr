@@ -51,14 +51,15 @@ export default function SlideMapVav() {
       .interpolator(t => d3.interpolateRgb('#E1F5FE', '#0288D1')(Math.pow(t, 0.55)))
   }, [sektorData])
 
-  // Pie radius scale — proportional to total expenditure
+  // Pie radius scale — proportional to total expenditure and viewport
   const radiusScale = useMemo(() => {
     if (!sektorData) return () => 10
     const values = Object.values(sektorData.kraje).map(d => d.celkem_mil_kc_2024)
     const max = Math.max(...values)
-    // Scale from 12px to 38px based on viewport
-    const maxR = Math.min(dimensions.width, dimensions.height) > 900 ? 38 : 28
-    return d3.scaleSqrt().domain([0, max]).range([8, maxR])
+    const vMin = Math.min(dimensions.width, dimensions.height)
+    const maxR = Math.max(16, Math.min(38, vMin * 0.04))
+    const minR = Math.max(5, maxR * 0.21)
+    return d3.scaleSqrt().domain([0, max]).range([minR, maxR])
   }, [sektorData, dimensions])
 
   const projection = useMemo(() => {
@@ -81,18 +82,18 @@ export default function SlideMapVav() {
   const centroids = useMemo(() => {
     if (!krajeGeo || !pathGenerator) return {}
     const result = {}
+    const scale = Math.min(dimensions.width, dimensions.height) / 1000
     for (const feature of krajeGeo.features) {
       const nuts = feature.properties.nutslau
       const [cx, cy] = pathGenerator.centroid(feature)
       if (nuts === 'CZ020') {
-        // Shift Středočeský kraj centroid down-right to avoid overlap with Praha
-        result[nuts] = [cx + 30, cy + 35]
+        result[nuts] = [cx + 30 * scale, cy + 35 * scale]
       } else {
         result[nuts] = [cx, cy]
       }
     }
     return result
-  }, [krajeGeo, pathGenerator])
+  }, [krajeGeo, pathGenerator, dimensions])
 
   // Pie arc generator
   const pieGen = useMemo(() => d3.pie().sort(null).value(d => d.value), [])
@@ -110,6 +111,9 @@ export default function SlideMapVav() {
     }
   }, [sektorData])
 
+  // Responsive SVG font helper
+  const fs = (base) => Math.max(base * 0.6, Math.min(base, Math.min(dimensions.width, dimensions.height) / 1080 * base))
+
   if (!krajeGeo || !pathGenerator || !sektorData || !stats) {
     return (
       <div className="w-full h-full flex items-center justify-center bg-[#f8f9fa]">
@@ -125,11 +129,11 @@ export default function SlideMapVav() {
     <div className="w-full h-full bg-[#f8f9fa] relative overflow-hidden">
       <InfoPanel text={INFO_TEXT} />
       {/* Title */}
-      <div className="absolute top-5 left-6 z-10">
-        <h2 className="text-2xl font-bold text-[#0A416E]">
+      <div className="absolute top-3 sm:top-5 left-4 sm:left-6 z-10 max-w-[90vw]">
+        <h2 className="font-bold text-[#0A416E]" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)' }}>
           Výdaje na výzkum a vývoj podle krajů a sektorů
         </h2>
-        <p className="text-sm text-[#777] mt-1">
+        <p className="text-[#777] mt-1" style={{ fontSize: 'clamp(0.65rem, 1.3vw, 0.875rem)' }}>
           Barva = VaV intenzita (% HDP) &middot; Koláč = sektorové členění &middot; Velikost = celkové výdaje &middot; 2024
         </p>
       </div>
@@ -212,9 +216,9 @@ export default function SlideMapVav() {
               ))}
               {/* Label: total in mld */}
               <text
-                y={r + 12}
+                y={r + Math.max(8, fs(12))}
                 textAnchor="middle"
-                fontSize={9}
+                fontSize={fs(9)}
                 fontWeight={600}
                 fill="#0A416E"
               >
@@ -228,7 +232,10 @@ export default function SlideMapVav() {
 
       {/* Tooltip */}
       {tooltip && tooltip.info && (
-        <div className="map-tooltip" style={{ left: tooltip.x + 12, top: tooltip.y - 10 }}>
+        <div className="map-tooltip" style={{
+          left: Math.min(tooltip.x + 12, dimensions.width - 300),
+          top: Math.max(tooltip.y - 10, 10),
+        }}>
           <div className="tooltip-title">{tooltip.name}</div>
           <div className="tooltip-value">
             VaV intenzita: <strong>{fmt(tooltip.info.intenzita_hdp_2024, 2)} % HDP</strong>
@@ -254,9 +261,15 @@ export default function SlideMapVav() {
       )}
 
       {/* Legend */}
-      <div className="absolute bottom-20 right-8 z-10 bg-white/90 rounded-lg px-4 py-3 shadow-sm">
-        <div className="text-xs font-medium text-[#0A416E] mb-2">VaV intenzita (% HDP)</div>
-        <svg width="140" height="28">
+      <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
+        style={{
+          bottom: dimensions.width < 640 ? 'auto' : Math.max(60, dimensions.height * 0.08),
+          top: dimensions.width < 640 ? dimensions.height * 0.55 : 'auto',
+          right: dimensions.width < 640 ? 8 : Math.max(8, dimensions.width * 0.01),
+          maxWidth: dimensions.width < 640 ? '45vw' : 'auto',
+        }}>
+        <div style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }} className="font-medium text-[#0A416E] mb-1 sm:mb-2">VaV intenzita (% HDP)</div>
+        <svg width={Math.min(140, dimensions.width * 0.18)} height="28" viewBox="0 0 140 28">
           <defs>
             <linearGradient id="legend-grad-vav2">
               <stop offset="0%" stopColor="#E1F5FE" />
@@ -279,22 +292,27 @@ export default function SlideMapVav() {
           })}
         </svg>
 
-        <div className="text-xs font-medium text-[#0A416E] mt-3 mb-1">Sektory VaV</div>
+        <div style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }} className="font-medium text-[#0A416E] mt-2 sm:mt-3 mb-1">Sektory VaV</div>
         {Object.entries(SECTOR_COLORS).map(([key, color]) => (
-          <div key={key} className="flex items-center gap-2 mt-0.5">
-            <div style={{ width: 12, height: 10, background: color, borderRadius: 2 }} />
-            <span className="text-[10px] text-[#777]">{SECTOR_LABELS[key]}</span>
+          <div key={key} className="flex items-center gap-1.5 sm:gap-2 mt-0.5">
+            <div style={{ width: 10, height: 8, background: color, borderRadius: 2 }} />
+            <span style={{ fontSize: 'clamp(8px, 1.1vw, 10px)' }} className="text-[#777]">{SECTOR_LABELS[key]}</span>
           </div>
         ))}
-        <div className="text-[10px] text-[#777] mt-2 leading-snug">
+        <div className="text-[#777] mt-1.5 sm:mt-2 leading-snug" style={{ fontSize: 'clamp(8px, 1.1vw, 10px)' }}>
           Velikost koláče ∝ celkové výdaje<br />
           Čísla = celkem v mld. Kč
         </div>
       </div>
 
       {/* Commentary */}
-      <div className="absolute bottom-20 left-8 z-10 max-w-lg bg-white/90 rounded-lg px-4 py-3 shadow-sm">
-        <p className="text-sm text-[#0A416E] leading-relaxed">
+      <div className="absolute z-10 bg-white/90 rounded-lg px-3 sm:px-4 py-2 sm:py-3 shadow-sm"
+        style={{
+          bottom: dimensions.width < 640 ? 8 : Math.max(60, dimensions.height * 0.08),
+          left: dimensions.width < 640 ? 8 : Math.max(8, dimensions.width * 0.01),
+          maxWidth: dimensions.width < 640 ? 'calc(100vw - 16px)' : Math.min(500, dimensions.width * 0.38),
+        }}>
+        <p className="text-[#0A416E] leading-relaxed" style={{ fontSize: 'clamp(0.65rem, 1.3vw, 0.875rem)' }}>
           Celkové výdaje na VaV v ČR dosáhly {fmt(stats.totalMld, 1)} mld. Kč ({fmt(stats.avg, 2)} % HDP).
           Rozptyl mezi kraji: od {fmt(stats.min, 2)} % po {fmt(stats.max, 2)} %.
           Koláče ukazují, jak se výdaje dělí mezi podnikatelský, vládní a vysokoškolský sektor.
@@ -302,7 +320,7 @@ export default function SlideMapVav() {
       </div>
 
       {/* Source */}
-      <div className="absolute bottom-4 left-0 right-0 text-center text-[10px] text-[#777] z-10">
+      <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 text-center text-[#777] z-10 px-4" style={{ fontSize: 'clamp(8px, 1vw, 10px)' }}>
         Zdroj: ČSÚ — Statistická ročenka krajů 2025 (tab. 19.104) &middot; Geodata: ArcČR © ČÚZK, ČSÚ, ARCDATA PRAHA 2024, CC-BY 4.0
       </div>
     </div>

@@ -51,12 +51,16 @@ export default function SlideVavEkosystem() {
   }
 
   const { width, height } = dimensions
+  const isMobile = width < 768
 
-  // Chart layout — left 60% for bars, right 40% for explanations
-  const chartLeft = 160
-  const chartRight = width * 0.58
-  const chartTop = height * 0.22
-  const chartBottom = height * 0.82
+  // Responsive SVG font helper
+  const fs = (base) => Math.max(base * 0.6, Math.min(base, Math.min(width, height) / 1080 * base))
+
+  // Chart layout — left portion for bars, right for explanations
+  const chartLeft = Math.max(60, Math.min(160, width * 0.12))
+  const chartRight = isMobile ? width * 0.92 : width * 0.58
+  const chartTop = height * (isMobile ? 0.18 : 0.22)
+  const chartBottom = height * (isMobile ? 0.55 : 0.82)
   const chartW = chartRight - chartLeft
   const barCount = sortedKraje.length
   const barGroupH = (chartBottom - chartTop) / barCount
@@ -89,17 +93,21 @@ export default function SlideVavEkosystem() {
       <InfoPanel text={INFO_TEXT} />
 
       {/* Title */}
-      <div className="absolute top-4 left-6 z-10" style={{ maxWidth: width * 0.55 }}>
-        <h2 className="text-2xl font-bold text-[#0A416E]">
+      <div className="absolute top-3 sm:top-4 left-4 sm:left-6 z-10" style={{ maxWidth: isMobile ? '90vw' : width * 0.55 }}>
+        <h2 className="font-bold text-[#0A416E]" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)' }}>
           Jak se výzkumné projekty shodují s doménami specializace?
         </h2>
-        <p className="text-sm text-[#777] mt-1">
+        <p className="text-[#777] mt-1" style={{ fontSize: 'clamp(0.6rem, 1.3vw, 0.875rem)' }}>
           {data.meta.pocet_projektu.toLocaleString('cs-CZ')} projektů CEP (2021–2025) porovnáno s popisy domén z krajských karet (Příloha 2 NRIS3)
         </p>
       </div>
 
-      {/* Right panel: Step-by-step methodology — positioned in bottom-right */}
-      <div className="absolute z-10" style={{ left: width * 0.60, bottom: height * 0.06, width: width * 0.37 }}>
+      {/* Right panel: Step-by-step methodology */}
+      <div className="absolute z-10" style={isMobile ? {
+        left: 8, right: 8, top: height * 0.58, width: 'auto',
+      } : {
+        left: width * 0.60, bottom: height * 0.06, width: width * 0.37,
+      }}>
         <div className="bg-white/95 rounded-lg px-4 py-3 shadow-sm border border-[#E3F2FD]">
           <div className="text-xs font-bold text-[#0A416E] mb-2">Co se tady děje? — Postup krok za krokem</div>
 
@@ -166,12 +174,12 @@ export default function SlideVavEkosystem() {
             />
             <text
               x={chartLeft + xScale(tick)} y={chartBottom + 18}
-              textAnchor="middle" fontSize={11} fill="#777">
+              textAnchor="middle" fontSize={fs(11)} fill="#777">
               {tick.toLocaleString('cs-CZ')}
             </text>
           </g>
         ))}
-        <text x={chartLeft + chartW / 2} y={chartBottom + 34} textAnchor="middle" fontSize={12} fill="#0A416E" fontWeight={500}>
+        <text x={chartLeft + chartW / 2} y={chartBottom + 34} textAnchor="middle" fontSize={fs(12)} fill="#0A416E" fontWeight={500}>
           Počet výzkumných projektů
         </text>
 
@@ -186,9 +194,9 @@ export default function SlideVavEkosystem() {
             <g key={krajName}>
               {/* Label */}
               <text
-                x={chartLeft - 8} y={y + barH / 2}
+                x={chartLeft - 6} y={y + barH / 2}
                 textAnchor="end" dominantBaseline="central"
-                fontSize={12} fill="#0A416E" fontWeight={500}>
+                fontSize={fs(12)} fill="#0A416E" fontWeight={500}>
                 {SHORT[krajName] || krajName}
               </text>
 
@@ -212,8 +220,8 @@ export default function SlideVavEkosystem() {
               {/* Count + percentage label */}
               <text
                 x={chartLeft + xScale(total) + 6} y={y + barH / 2}
-                dominantBaseline="central" fontSize={11} fill="#555">
-                {total.toLocaleString('cs-CZ')} ({pctBoth} % obsah. blízkých)
+                dominantBaseline="central" fontSize={fs(11)} fill="#555">
+                {total.toLocaleString('cs-CZ')}{!isMobile && ` (${pctBoth} % obsah. blízkých)`}
               </text>
             </g>
           )
@@ -253,7 +261,7 @@ export default function SlideVavEkosystem() {
       )}
 
       {/* Source */}
-      <div className="absolute bottom-4 left-0 right-0 text-center text-[10px] text-[#777] z-10 px-8">
+      <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 text-center text-[#777] z-10 px-4" style={{ fontSize: 'clamp(7px, 1vw, 10px)' }}>
         Zdroj: IS VaVaI / Starfos (2021–2025) &middot; Krajské karty, Příloha 2 NRIS3 v08 (MPO, 2026)
         &middot; Model: {data.meta.model} &middot; Sémantický práh: cosine sim &gt; {data.meta.threshold_semantic}
       </div>

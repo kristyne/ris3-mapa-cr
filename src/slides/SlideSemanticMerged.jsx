@@ -95,15 +95,15 @@ export default function SlideSemanticMerged() {
     return d3.scaleQuantile().domain(values).range(MAP_CHOROPLETH)
   }, [semData])
 
-  // ── MAP: projection — upper left, ~65% width, ~60% height ──
+  // ── MAP: projection — upper left (desktop), upper portion (mobile) ──
   const projection = useMemo(() => {
     if (!krajeGeo || dimensions.width === 0) return null
-    const mapWidth = dimensions.width * 0.65
-    const mapHeight = dimensions.height * 0.62
+    const mobile = dimensions.width < 768
+    const mapWidth = mobile ? dimensions.width * 0.92 : dimensions.width * 0.65
+    const mapHeight = mobile ? dimensions.height * 0.38 : dimensions.height * 0.62
     const proj = d3.geoMercator().fitSize([mapWidth, mapHeight], krajeGeo)
     const [tx, ty] = proj.translate()
-    // Position in upper-left area
-    proj.translate([tx + dimensions.width * 0.04, ty + dimensions.height * 0.06])
+    proj.translate([tx + dimensions.width * 0.04, ty + dimensions.height * (mobile ? 0.05 : 0.06)])
     return proj
   }, [krajeGeo, dimensions])
 
@@ -115,17 +115,18 @@ export default function SlideSemanticMerged() {
   const centroids = useMemo(() => {
     if (!krajeGeo || !pathGenerator) return {}
     const result = {}
+    const scale = Math.min(dimensions.width, dimensions.height) / 1000
     for (const feature of krajeGeo.features) {
       const name = feature.properties.nazev
       const [cx, cy] = pathGenerator.centroid(feature)
       if (name === 'Středočeský kraj') {
-        result[name] = [cx + 20, cy + 25]
+        result[name] = [cx + 20 * scale, cy + 25 * scale]
       } else {
         result[name] = [cx, cy]
       }
     }
     return result
-  }, [krajeGeo, pathGenerator])
+  }, [krajeGeo, pathGenerator, dimensions])
 
   // ── ALL PAIRS with zone classification ──
   const allPairsData = useMemo(() => {
@@ -207,14 +208,14 @@ export default function SlideSemanticMerged() {
     if (!graphData || dimensions.width === 0) return
 
     const { width, height } = dimensions
-    // Center of the network area: right 73%, bottom 68%
-    const cx = width * 0.73
-    const cy = height * 0.68
-    // Boundaries for nodes: right half, bottom half
-    const minX = width * 0.48
-    const maxX = width - 40
-    const minY = height * 0.42
-    const maxY = height - 50
+    const mobile = width < 768
+    // On mobile: network fills lower portion; on desktop: lower-right quadrant
+    const cx = mobile ? width * 0.50 : width * 0.73
+    const cy = mobile ? height * 0.72 : height * 0.68
+    const minX = mobile ? 30 : width * 0.48
+    const maxX = width - (mobile ? 30 : 40)
+    const minY = mobile ? height * 0.50 : height * 0.42
+    const maxY = height - (mobile ? 40 : 50)
 
     const nodesCopy = graphData.nodes.map(n => ({ ...n }))
     const linksCopy = graphData.links.map(l => ({
@@ -225,13 +226,14 @@ export default function SlideSemanticMerged() {
 
     if (simRef.current) simRef.current.stop()
 
+    const vScale = Math.min(width, height) / 1080
     const sim = d3.forceSimulation(nodesCopy)
       .force('link', d3.forceLink(linksCopy).id(d => d.id)
-        .distance(d => (1 - d.similarity) * 340 + 50)
+        .distance(d => (1 - d.similarity) * 340 * vScale + 50 * vScale)
         .strength(d => d.similarity * 0.8))
-      .force('charge', d3.forceManyBody().strength(-350))
+      .force('charge', d3.forceManyBody().strength(-350 * vScale))
       .force('center', d3.forceCenter(cx, cy).strength(0.05))
-      .force('collision', d3.forceCollide().radius(38))
+      .force('collision', d3.forceCollide().radius(Math.max(20, 38 * vScale)))
       .force('x', d3.forceX(cx).strength(0.02))
       .force('y', d3.forceY(cy).strength(0.02))
       .on('tick', () => {
@@ -313,8 +315,11 @@ export default function SlideSemanticMerged() {
   }
 
   const { width, height } = dimensions
+  const isMobile = width < 768
   const fmt = (n, d = 2) => n.toLocaleString('cs-CZ', { minimumFractionDigits: d, maximumFractionDigits: d })
   const mapQuantiles = mapColorScale.quantiles ? mapColorScale.quantiles() : []
+  // Responsive SVG font helper
+  const fs = (base) => Math.max(base * 0.6, Math.min(base, Math.min(width, height) / 1080 * base))
 
   // ── NETWORK: scales ──
   const simValues = links.map(l => l.similarity)
@@ -325,9 +330,10 @@ export default function SlideSemanticMerged() {
     .domain([minSim, (minSim + maxSim) / 2, maxSim])
     .range(['#B3D9F2', '#0087CD', '#0A416E'])
 
+  const vScale = Math.min(width, height) / 1080
   const nodeRadius = d3.scaleLinear()
     .domain([d3.min(nodes, d => d.domainCount), d3.max(nodes, d => d.domainCount)])
-    .range([16, 28])
+    .range([Math.max(10, 16 * vScale), Math.max(16, 28 * vScale)])
 
   const textLenValues = nodes.map(d => d.avgTextLen)
   const ringScale = d3.scaleLinear()
@@ -335,7 +341,7 @@ export default function SlideSemanticMerged() {
     .range([1.5, 4.5])
 
   // ── SCATTER: mini scatter inside infographic ──
-  const miniW = 170, miniH = 100
+  const miniW = Math.max(100, Math.min(170, width * 0.14)), miniH = Math.max(60, Math.min(100, height * 0.1))
   const miniXScale = d3.scaleLinear().domain([0, 0.55]).range([0, miniW])
   const miniYScale = d3.scaleLinear().domain([0.25, 0.75]).range([miniH, 0])
   const zoneColor = { green: '#A0BE32', blue: '#0087CD', grey: '#999' }
@@ -345,21 +351,21 @@ export default function SlideSemanticMerged() {
       <InfoPanel text={INFO_TEXT} />
 
       {/* ── Title ── */}
-      <div className="absolute top-4 left-6 z-10" style={{ maxWidth: width * 0.55 }}>
-        <h2 className="text-2xl font-bold text-[#0A416E]">
+      <div className="absolute top-3 sm:top-4 left-4 sm:left-6 z-10" style={{ maxWidth: isMobile ? '90vw' : width * 0.55 }}>
+        <h2 className="font-bold text-[#0A416E]" style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.5rem)' }}>
           Jak blízké si jsou krajské specializace?
         </h2>
-        <p className="text-[13px] text-[#0A416E] mt-1 font-medium">
+        <p className="text-[#0A416E] mt-1 font-medium" style={{ fontSize: 'clamp(0.6rem, 1.3vw, 0.8125rem)' }}>
           Sémantická podobnost domén specializace z krajských karet
         </p>
-        <div className="flex items-center gap-4 mt-1.5">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-1.5">
           <div className="flex items-center gap-1.5">
-            <div style={{ width: 11, height: 11, borderRadius: '50%', background: '#55287D' }} />
-            <span className="text-[12px] text-[#444]">Mapa: prům. podobnost textů domén</span>
+            <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#55287D' }} />
+            <span className="text-[#444]" style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }}>Mapa: prům. podobnost textů domén</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div style={{ width: 11, height: 11, borderRadius: '50%', background: '#0087CD' }} />
-            <span className="text-[12px] text-[#444]">Síť: párové textové vazby nad prahem {EDGE_THRESHOLD}</span>
+            <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#0087CD' }} />
+            <span className="text-[#444]" style={{ fontSize: 'clamp(9px, 1.2vw, 12px)' }}>Síť: párové textové vazby nad prahem {EDGE_THRESHOLD}</span>
           </div>
         </div>
       </div>
@@ -417,19 +423,19 @@ export default function SlideSemanticMerged() {
             <g key={`ml-${name}`} style={{ pointerEvents: 'none' }}>
               <text x={cx} y={cy - 10}
                 textAnchor="middle" dominantBaseline="central"
-                fontSize={9} fontWeight={600} fill={labelFill}>
+                fontSize={fs(9)} fontWeight={600} fill={labelFill}>
                 {SHORT_NAMES[name] || name}
               </text>
               {avgSim != null && (
                 <text x={cx} y={cy + 2}
                   textAnchor="middle" dominantBaseline="central"
-                  fontSize={10} fontWeight={700} fill={labelFill}>
+                  fontSize={fs(10)} fontWeight={700} fill={labelFill}>
                   {avgSim.toLocaleString('cs-CZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </text>
               )}
               <text x={cx} y={cy + 14}
                 textAnchor="middle" dominantBaseline="central"
-                fontSize={8} fill={labelFill}>
+                fontSize={fs(8)} fill={labelFill}>
                 {domCount} dom.
               </text>
             </g>
@@ -499,13 +505,13 @@ export default function SlideSemanticMerged() {
               />
               <text x={node.x} y={node.y - 1}
                 textAnchor="middle" dominantBaseline="central"
-                fontSize={11} fontWeight={700} fill="white"
+                fontSize={fs(11)} fontWeight={700} fill="white"
                 style={{ pointerEvents: 'none', textShadow: '0 1px 2px rgba(0,0,0,0.4)' }}>
                 {node.acronym}
               </text>
-              <text x={node.x} y={node.y + 10}
+              <text x={node.x} y={node.y + Math.max(7, fs(10))}
                 textAnchor="middle" dominantBaseline="central"
-                fontSize={7} fill="rgba(255,255,255,0.8)"
+                fontSize={fs(7)} fill="rgba(255,255,255,0.8)"
                 style={{ pointerEvents: 'none' }}>
                 {node.domainCount} dom.
               </text>
@@ -517,14 +523,19 @@ export default function SlideSemanticMerged() {
       </svg>
 
       {/* ── Map legend — inside map area, amber border ── */}
-      <div className="absolute z-10 bg-white/92 rounded-lg px-3 py-2.5 shadow-sm"
-        style={{ left: width * 0.03, top: height * 0.56, borderLeft: '4px solid #55287D' }}>
-        <div className="text-[13px] font-bold text-[#0A416E] mb-1.5">Kartogram</div>
+      <div className="absolute z-10 bg-white/92 rounded-lg px-2 sm:px-3 py-2 sm:py-2.5 shadow-sm"
+        style={{
+          left: isMobile ? 8 : width * 0.03,
+          top: isMobile ? height * 0.36 : height * 0.56,
+          borderLeft: '4px solid #55287D',
+          maxWidth: isMobile ? '50vw' : 'auto',
+        }}>
+        <div style={{ fontSize: 'clamp(10px, 1.3vw, 13px)' }} className="font-bold text-[#0A416E] mb-1 sm:mb-1.5">Kartogram</div>
         <div className="flex items-end gap-0.5">
           {MAP_CHOROPLETH.map((color, i) => (
             <div key={i} className="flex flex-col items-center">
-              <div style={{ width: 32, height: 16, background: color, borderRadius: 2 }} />
-              <span className="text-[10px] text-[#444] mt-0.5">
+              <div style={{ width: Math.max(16, Math.min(32, width * 0.025)), height: Math.max(10, Math.min(16, height * 0.016)), background: color, borderRadius: 2 }} />
+              <span style={{ fontSize: 'clamp(7px, 1vw, 10px)' }} className="text-[#444] mt-0.5">
                 {i === 0 && mapQuantiles[0] != null ? `<${fmt(mapQuantiles[0])}` : ''}
                 {i > 0 && i < MAP_CHOROPLETH.length - 1 && mapQuantiles[i - 1] != null ? fmt(mapQuantiles[i - 1]) : ''}
                 {i === MAP_CHOROPLETH.length - 1 && mapQuantiles.length > 0 ? `>${fmt(mapQuantiles[mapQuantiles.length - 1])}` : ''}
@@ -532,14 +543,20 @@ export default function SlideSemanticMerged() {
             </div>
           ))}
         </div>
-        <div className="text-[11px] text-[#444] leading-snug mt-1.5">
-          Průměrná sémantická podobnost textů domén specializace kraje vůči ostatním
-        </div>
+        {!isMobile && (
+          <div className="text-[11px] text-[#444] leading-snug mt-1.5">
+            Průměrná sémantická podobnost textů domén specializace kraje vůči ostatním
+          </div>
+        )}
       </div>
 
-      {/* ── Network legend + Methodology — stacked, right side, above network ── */}
+      {/* ── Network legend + Methodology — stacked, right side (desktop), hidden on very small ── */}
       <div className="absolute z-10 flex flex-col gap-2"
-        style={{ right: 16, top: height * 0.08, maxWidth: 240 }}>
+        style={{
+          right: isMobile ? 8 : 16,
+          top: isMobile ? height * 0.36 : height * 0.08,
+          maxWidth: isMobile ? Math.min(200, width * 0.48) : 240,
+        }}>
 
         {/* Network legend */}
         <div className="bg-white/92 rounded-lg px-4 py-3 shadow-sm"
@@ -603,9 +620,15 @@ export default function SlideSemanticMerged() {
         </div>
       </div>
 
-      {/* ── Infographic panel — bottom left, prominent colors ── */}
+      {/* ── Infographic panel — bottom left (desktop), hidden on very small mobile ── */}
+      {!isMobile && (
       <div className="absolute z-10 bg-white/95 rounded-lg px-3 py-2.5 shadow-sm"
-        style={{ left: width * 0.03, bottom: 36, maxWidth: 230, borderLeft: '4px solid #E6AF14' }}>
+        style={{
+          left: width * 0.03,
+          bottom: 36,
+          maxWidth: Math.min(230, width * 0.2),
+          borderLeft: '4px solid #E6AF14',
+        }}>
         <div className="text-[13px] font-bold text-[#0A416E] mb-0.5">Formální vs. obsahová podobnost</div>
         <div className="text-[10px] text-[#777] mb-2">Pouze {zoneCounts.total} párů krajů s CZ-NACE kódy</div>
 
@@ -665,6 +688,7 @@ export default function SlideSemanticMerged() {
           </g>
         </svg>
       </div>
+      )}
 
       {/* ── Tooltip ── */}
       {tooltip && (
@@ -706,7 +730,7 @@ export default function SlideSemanticMerged() {
       )}
 
       {/* ── Source ── */}
-      <div className="absolute bottom-3 left-0 right-0 text-center text-[10px] text-[#777] z-10">
+      <div className="absolute bottom-2 sm:bottom-3 left-0 right-0 text-center text-[#777] z-10 px-4" style={{ fontSize: 'clamp(7px, 1vw, 10px)' }}>
         Zdroj: Krajské karty, Příloha 2 NRIS3 v08 (MPO, 2026) &middot; Embeddings: paraphrase-multilingual-MiniLM-L12-v2
       </div>
     </div>
