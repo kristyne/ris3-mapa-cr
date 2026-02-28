@@ -25,9 +25,9 @@ export default function SlideMapVav() {
 
   useEffect(() => {
     Promise.all([
-      fetch('/data/kraje.geojson').then(r => r.json()),
-      fetch('/data/okresy.geojson').then(r => r.json()),
-      fetch('/data/vav_sektory_2024.json').then(r => r.json()),
+      fetch(`${import.meta.env.BASE_URL}data/kraje.geojson`).then(r => r.json()),
+      fetch(`${import.meta.env.BASE_URL}data/okresy.geojson`).then(r => r.json()),
+      fetch(`${import.meta.env.BASE_URL}data/vav_sektory_2024.json`).then(r => r.json()),
     ]).then(([kraje, okresy, sektory]) => {
       setKrajeGeo(kraje)
       setOkresyGeo(okresy)

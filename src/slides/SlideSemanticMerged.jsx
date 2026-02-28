@@ -69,10 +69,10 @@ export default function SlideSemanticMerged() {
   // Load all data
   useEffect(() => {
     Promise.all([
-      fetch('/data/kraje.geojson').then(r => r.json()),
-      fetch('/data/okresy.geojson').then(r => r.json()),
-      fetch('/data/semanticka_podobnost.json').then(r => r.json()),
-      fetch('/data/domeny_kraje.json').then(r => r.json()),
+      fetch(`${import.meta.env.BASE_URL}data/kraje.geojson`).then(r => r.json()),
+      fetch(`${import.meta.env.BASE_URL}data/okresy.geojson`).then(r => r.json()),
+      fetch(`${import.meta.env.BASE_URL}data/semanticka_podobnost.json`).then(r => r.json()),
+      fetch(`${import.meta.env.BASE_URL}data/domeny_kraje.json`).then(r => r.json()),
     ]).then(([kraje, okresy, sem, domeny]) => {
       setKrajeGeo(kraje)
       setOkresyGeo(okresy)

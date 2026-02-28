@@ -12,7 +12,7 @@ export default function SlideTitle() {
   }, [])
 
   useEffect(() => {
-    fetch('/data/kraje.geojson').then(r => r.json()).then(setKrajeGeo)
+    fetch(`${import.meta.env.BASE_URL}data/kraje.geojson`).then(r => r.json()).then(setKrajeGeo)
   }, [])
 
   useEffect(() => {

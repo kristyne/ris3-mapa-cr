@@ -40,7 +40,7 @@ export default function SlideSemanticNetwork() {
   const svgRef = useRef(null)
 
   useEffect(() => {
-    fetch('/data/semanticka_podobnost.json').then(r => r.json()).then(setSemData)
+    fetch(`${import.meta.env.BASE_URL}data/semanticka_podobnost.json`).then(r => r.json()).then(setSemData)
   }, [])
 
   useEffect(() => {

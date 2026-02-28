@@ -60,8 +60,8 @@ export default function SlideJaccardHeatmap() {
 
   useEffect(() => {
     Promise.all([
-      fetch('/data/kraje.geojson').then(r => r.json()),
-      fetch('/data/domeny_kraje.json').then(r => r.json()),
+      fetch(`${import.meta.env.BASE_URL}data/kraje.geojson`).then(r => r.json()),
+      fetch(`${import.meta.env.BASE_URL}data/domeny_kraje.json`).then(r => r.json()),
     ]).then(([geo, dom]) => {
       setGeoData(geo)
       setDomenyData(dom)

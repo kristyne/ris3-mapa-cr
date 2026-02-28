@@ -31,9 +31,17 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      - name: Copy index.html to 404.html for SPA routing
+        run: cp dist/index.html dist/404.html
+
       - name: Encrypt with staticrypt
         run: |
-          npx staticrypt dist/index.html "${{ secrets.SITE_PASSWORD }}" -o dist/index.html --short \
+          npm install -g staticrypt
+          echo "${{ secrets.SITE_PASSWORD }}" | staticrypt dist/index.html -o dist/index.html --short \
+            --template-title "RIS3 Mapa ČR" \
+            --template-instructions "Zadejte heslo pro přístup k aplikaci" \
+            --template-button "Otevřít"
+          echo "${{ secrets.SITE_PASSWORD }}" | staticrypt dist/404.html -o dist/404.html --short \
             --template-title "RIS3 Mapa ČR" \
             --template-instructions "Zadejte heslo pro přístup k aplikaci" \
             --template-button "Otevřít"

@@ -25,7 +25,7 @@ export default function SlideVavEkosystem() {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
-    fetch('/data/vav_semantic_match.json').then(r => r.json()).then(setData)
+    fetch(`${import.meta.env.BASE_URL}data/vav_semantic_match.json`).then(r => r.json()).then(setData)
   }, [])
 
   useEffect(() => {
