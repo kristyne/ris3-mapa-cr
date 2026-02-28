@@ -1,34 +1,115 @@
-import { Routes, Route } from 'react-router-dom'
-import { DataProvider } from './lib/DataContext'
-import ScrollytellingPage from './components/scrollytelling/ScrollytellingPage'
-import DashboardPage from './components/dashboard/DashboardPage'
-import Header from './components/shared/Header'
+import { useState, useEffect, useCallback } from 'react'
+import SlideTitle from './slides/SlideTitle'
+import SlideMapVav from './slides/SlideMapVav'
+import SlideJaccardHeatmap from './slides/SlideJaccardHeatmap'
+import SlideSemanticMerged from './slides/SlideSemanticMerged'
+import SlideVavEkosystem from './slides/SlideVavEkosystem'
+import SlideConclusion from './slides/SlideConclusion'
+
+const SLIDES = [
+  { component: SlideTitle, name: 'Úvod' },
+  { component: SlideMapVav, name: 'VaV výdaje' },
+  { component: SlideJaccardHeatmap, name: 'Jaccard NACE' },
+  { component: SlideSemanticMerged, name: 'Sémantická blízkost' },
+  { component: SlideVavEkosystem, name: 'VaV vs. domény' },
+  { component: SlideConclusion, name: 'Shrnutí' },
+]
+
+const TOTAL_SLIDES = SLIDES.length
 
 export default function App() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isPaused, setIsPaused] = useState(true)
+
+  const goTo = useCallback((idx) => {
+    setCurrentSlide(Math.max(0, Math.min(TOTAL_SLIDES - 1, idx)))
+  }, [])
+
+  const next = useCallback(() => goTo(currentSlide + 1), [currentSlide, goTo])
+  const prev = useCallback(() => goTo(currentSlide - 1), [currentSlide, goTo])
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next() }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); prev() }
+      if (e.key === 'Home') { e.preventDefault(); goTo(0) }
+      if (e.key === 'End') { e.preventDefault(); goTo(TOTAL_SLIDES - 1) }
+      if (e.key === 'p') setIsPaused(p => !p)
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [next, prev, goTo])
+
+  // Autoplay
+  useEffect(() => {
+    if (isPaused) return
+    const timer = setInterval(() => {
+      setCurrentSlide(s => (s + 1) % TOTAL_SLIDES)
+    }, 9000)
+    return () => clearInterval(timer)
+  }, [isPaused])
+
   return (
-    <DataProvider>
-      <div className="min-h-screen flex flex-col bg-white">
-        <Header />
-        <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<ScrollytellingPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/dashboard/:krajId" element={<DashboardPage />} />
-          </Routes>
-        </main>
-        <footer className="border-t border-ris3-gray-100 py-8 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-xs text-ris3-gray-300 leading-relaxed">
-              Data: ČSÚ (VaV statistiky 2005–2024, regionální účty, KROK) · IS VaVaI/CEP
-              (projekty a subjekty VaV 2021–2025) · NRIS3 Příloha 2 v08 (domény specializace, MPO 2026).
-            </p>
-            <p className="text-xs text-ris3-gray-300 mt-2">
-              Vizualizace má informativní charakter.
-              Skóre a podíly jsou relativní ukazatele, nikoli absolutní hodnocení kvality regionů.
-            </p>
-          </div>
-        </footer>
+    <div className="relative w-full h-full">
+      {/* Slides */}
+      {SLIDES.map(({ component: Comp }, i) => (
+        <div key={i} className={`slide ${currentSlide === i ? 'active' : ''}`}>
+          <Comp />
+        </div>
+      ))}
+
+      {/* Bottom navigation bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-center gap-3 py-2.5 bg-gradient-to-t from-black/15 to-transparent pointer-events-none">
+        <div className="flex items-center gap-3 pointer-events-auto">
+          {/* Play/Pause */}
+          <button
+            onClick={() => setIsPaused(p => !p)}
+            className="w-7 h-7 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow text-xs"
+            title={isPaused ? 'Play (P)' : 'Pause (P)'}
+          >
+            {isPaused ? '▶' : '⏸'}
+          </button>
+
+          {/* Dots with current indicator */}
+          {SLIDES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={`w-2.5 h-2.5 rounded-full transition-all ${
+                currentSlide === i
+                  ? 'bg-[#0087CD] scale-125'
+                  : 'bg-[#CDCDD2] hover:bg-[#9B9BA0]'
+              }`}
+              title={`${i + 1}/${TOTAL_SLIDES} ${SLIDES[i].name}`}
+            />
+          ))}
+
+          {/* Slide counter + name */}
+          <span className="text-[11px] text-white/70 font-medium ml-1 min-w-[140px] text-center"
+            style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
+            {currentSlide + 1}/{TOTAL_SLIDES} &middot; {SLIDES[currentSlide].name}
+          </span>
+        </div>
       </div>
-    </DataProvider>
+
+      {/* Arrow buttons */}
+      {currentSlide > 0 && (
+        <button
+          onClick={prev}
+          className="fixed left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow z-50 text-[#0A416E] text-lg"
+        >
+          ‹
+        </button>
+      )}
+      {currentSlide < TOTAL_SLIDES - 1 && (
+        <button
+          onClick={next}
+          className="fixed right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow z-50 text-[#0A416E] text-lg"
+        >
+          ›
+        </button>
+      )}
+    </div>
   )
 }

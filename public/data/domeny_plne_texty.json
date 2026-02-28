@@ -1,0 +1,891 @@
+{
+  "Jihočeský kraj": {
+    "0": {
+      "nazev": "Strojírenství a mechatronika",
+      "popis": "Výroba strojů a zařízení Výroba kovových konstrukcí a kovodělných výrobků",
+      "nace": [
+        "28",
+        "25",
+        "29",
+        "26",
+        "27",
+        "72",
+        "24",
+        "32",
+        "33",
+        "62",
+        "18",
+        "43",
+        "81",
+        "13"
+      ],
+      "text_pro_embedding": "Strojírenství a mechatronika: Výroba strojů a zařízení Výroba kovových konstrukcí a kovodělných výrobků"
+    },
+    "1": {
+      "nazev": "Elektronika, elektrotechnika a IT",
+      "popis": "Výroba elektrických zařízení Výroba počítačů, elektronických a optických přístrojů a zařízení Činnosti v oblasti informačních technologií",
+      "nace": [
+        "27",
+        "26",
+        "62",
+        "72",
+        "29",
+        "28",
+        "86",
+        "88",
+        "80",
+        "95",
+        "18",
+        "70"
+      ],
+      "text_pro_embedding": "Elektronika, elektrotechnika a IT: Výroba elektrických zařízení Výroba počítačů, elektronických a optických přístrojů a zařízení Činnosti v oblasti informačních technologií"
+    },
+    "2": {
+      "nazev": "Zelené technologie, biotechnologie, bioekonomika, udržitelné zemědělství a potravinové zdroje",
+      "popis": "Zdravotní péče Výroba pryžových a plastových výrobků Rostlinná a živočišná výroba, myslivost a související činnosti Výroba potravinářských výrobků Architektonické a inženýrské činnosti; technické zkoušky a analýzy Výroba základních farmaceutických výrobků a farmaceutických přípravků Výroba chemických látek a chemických přípravků Výzkum a vývoj Udržitelná produkce potravin",
+      "nace": [
+        "86",
+        "22",
+        "01",
+        "10",
+        "71",
+        "21",
+        "72",
+        "20",
+        "11",
+        "03",
+        "74",
+        "26",
+        "45",
+        "38",
+        "39",
+        "24",
+        "17"
+      ],
+      "text_pro_embedding": "Zelené technologie, biotechnologie, bioekonomika, udržitelné zemědělství a potravinové zdroje: Zdravotní péče Výroba pryžových a plastových výrobků Rostlinná a živočišná výroba, myslivost a související činnosti Výroba potravinářských výrobků Architektonické a inženýrské činnosti; technické zkoušky a analýzy Výroba základních farmaceutických výrobků a farmaceutických přípravků Výroba chemických látek a chemických přípravků Výzkum a vývoj Udržitelná produkce potravin"
+    },
+    "3": {
+      "nazev": "Udržitelná doprava",
+      "popis": "Výroba motorových vozidel (kromě motocyklů), přívěsů a návěsů Výroba ostatních dopravních prostředků a zařízení Architektonické a inženýrské činnosti; technické zkoušky a analýzy",
+      "nace": [
+        "29",
+        "30",
+        "71",
+        "72",
+        "28",
+        "25",
+        "27",
+        "26",
+        "13",
+        "23",
+        "45",
+        "22",
+        "49",
+        "20"
+      ],
+      "text_pro_embedding": "Udržitelná doprava: Výroba motorových vozidel (kromě motocyklů), přívěsů a návěsů Výroba ostatních dopravních prostředků a zařízení Architektonické a inženýrské činnosti; technické zkoušky a analýzy"
+    },
+    "4": {
+      "nazev": "Udržitelná energetika",
+      "popis": "Výroba a rozvod elektřiny, plynu, tepla a klimatizovaného vzduchu",
+      "nace": [
+        "35",
+        "28",
+        "29",
+        "22",
+        "68",
+        "49",
+        "10",
+        "27",
+        "32",
+        "26",
+        "69",
+        "30",
+        "72"
+      ],
+      "text_pro_embedding": "Udržitelná energetika: Výroba a rozvod elektřiny, plynu, tepla a klimatizovaného vzduchu"
+    }
+  },
+  "Jihomoravský kraj": {
+    "0": {
+      "nazev": "Software a služby v IT",
+      "popis": "",
+      "nace": [
+        "62",
+        "63",
+        "58"
+      ],
+      "text_pro_embedding": "Software a služby v IT"
+    },
+    "1": {
+      "nazev": "Elektronická zařízení pro měření a snímání",
+      "popis": "",
+      "nace": [
+        "26"
+      ],
+      "text_pro_embedding": "Elektronická zařízení pro měření a snímání"
+    },
+    "2": {
+      "nazev": "Pokročilé stroje a strojírenská zařízení",
+      "popis": "",
+      "nace": [
+        "28",
+        "33"
+      ],
+      "text_pro_embedding": "Pokročilé stroje a strojírenská zařízení"
+    },
+    "3": {
+      "nazev": "Energetické strojírenství a elektrické komponenty",
+      "popis": "",
+      "nace": [
+        "27"
+      ],
+      "text_pro_embedding": "Energetické strojírenství a elektrické komponenty"
+    },
+    "4": {
+      "nazev": "Zdravotnické a farmaceutické výrobky, diagnostika",
+      "popis": "",
+      "nace": [
+        "21"
+      ],
+      "text_pro_embedding": "Zdravotnické a farmaceutické výrobky, diagnostika"
+    },
+    "5": {
+      "nazev": "Aerospace",
+      "popis": "",
+      "nace": [
+        "30"
+      ],
+      "text_pro_embedding": "Aerospace"
+    }
+  },
+  "Karlovarský kraj": {
+    "0": {
+      "nazev": "Strojírenství, elektrotechnika a mechatronika",
+      "popis": "vývoj a výroba dílů a strojů na rozhraní oborů strojírenství a elektrotechniky (zejm. vývoj průmyslových pecí, centrálních mazacích systémů, strojů pro zpracování plastů, dopravníkových systémů, trakčních, pomocných a integrovaných měničů pro trolejbusy a elektrobusy, malých vodních elektráren, malých čističek odpadních vod vývoj nových strojírenských konstrukcí a elektrozařízení",
+      "nace": [
+        "25",
+        "27",
+        "28"
+      ],
+      "text_pro_embedding": "Strojírenství, elektrotechnika a mechatronika: vývoj a výroba dílů a strojů na rozhraní oborů strojírenství a elektrotechniky (zejm. vývoj průmyslových pecí, centrálních mazacích systémů, strojů pro zpracování plastů, dopravníkových systémů, trakčních, pomocných a integrovaných měničů pro trolejbusy a elektrobusy, malých vodních elektráren, malých čističek odpadních vod vývoj nových strojírenských konstrukcí a elektrozařízení"
+    },
+    "1": {
+      "nazev": "Automobilový průmysl a autonomní doprava",
+      "popis": "testování autonomních vozidel na testovacím polygonu vývoj a výroba komponentů pro automobilový průmysl (např. zamykacích systémů, trakčních, pomocných a integrovaných měničů pro trolejbusy a elektrobusy, kovových vláken a kabelových konfekcí, pryžových směsí aj.)",
+      "nace": [
+        "13",
+        "22",
+        "23",
+        "24",
+        "25",
+        "27",
+        "28",
+        "29"
+      ],
+      "text_pro_embedding": "Automobilový průmysl a autonomní doprava: testování autonomních vozidel na testovacím polygonu vývoj a výroba komponentů pro automobilový průmysl (např. zamykacích systémů, trakčních, pomocných a integrovaných měničů pro trolejbusy a elektrobusy, kovových vláken a kabelových konfekcí, pryžových směsí aj.)"
+    },
+    "2": {
+      "nazev": "Tradiční průmyslová odvětví – keramika, porcelán a sklo",
+      "popis": "těžba a zpracování kaolinu design a vývoj kuchyňského a hotelového porcelánu a jeho dekorace, křišťálových nápojových a jiných kolekcí a produktů z plochého a průmyslového skla",
+      "nace": [
+        "23"
+      ],
+      "text_pro_embedding": "Tradiční průmyslová odvětví – keramika, porcelán a sklo: těžba a zpracování kaolinu design a vývoj kuchyňského a hotelového porcelánu a jeho dekorace, křišťálových nápojových a jiných kolekcí a produktů z plochého a průmyslového skla"
+    },
+    "3": {
+      "nazev": "Energetická transformace a nové výzvy",
+      "popis": "těžba a úprava hnědého uhlí, nové způsoby výroby energie rozvoj robotizace, digitalizace a výzkumných a vývojových aktivit zaměřených např. na výzkum v oblasti odpadů apod.",
+      "nace": [
+        "05"
+      ],
+      "text_pro_embedding": "Energetická transformace a nové výzvy: těžba a úprava hnědého uhlí, nové způsoby výroby energie rozvoj robotizace, digitalizace a výzkumných a vývojových aktivit zaměřených např. na výzkum v oblasti odpadů apod."
+    },
+    "4": {
+      "nazev": "Lázeňství, balneologie a cestovní ruch",
+      "popis": "sledování vlivů lázeňské léčby na lidský organismus, podrobnější výzkum minerálních pramenů s cílem rozšířit možnosti využívání přírodních léčivých zdrojů inovace v oblasti léčebných procedur",
+      "nace": [
+        "72"
+      ],
+      "text_pro_embedding": "Lázeňství, balneologie a cestovní ruch: sledování vlivů lázeňské léčby na lidský organismus, podrobnější výzkum minerálních pramenů s cílem rozšířit možnosti využívání přírodních léčivých zdrojů inovace v oblasti léčebných procedur"
+    }
+  },
+  "Královéhradecký kraj": {
+    "0": {
+      "nazev": "Výroba dopravních prostředků a jejich komponent",
+      "popis": "Výroba pryžových a plastových výrobků Výroba elektrických motorů, generátorů a transformátorů Výroba motorových vozidel a jejich komponent Výroba letadel a jejich motorů, kosmických lodí a souvisejících zařízení Vývojové služby pro automobilový a letecký průmysl",
+      "nace": [
+        "22",
+        "27",
+        "29",
+        "30",
+        "32",
+        "71"
+      ],
+      "text_pro_embedding": "Výroba dopravních prostředků a jejich komponent: Výroba pryžových a plastových výrobků Výroba elektrických motorů, generátorů a transformátorů Výroba motorových vozidel a jejich komponent Výroba letadel a jejich motorů, kosmických lodí a souvisejících zařízení Vývojové služby pro automobilový a letecký průmysl"
+    },
+    "1": {
+      "nazev": "Strojírenství a investiční celky",
+      "popis": "Vývoj a výroba dílů (např. hydraulika, převodovky) a strojů (zejména textilních, tiskařských, zemědělských, lesnických, kovoobráběcích a strojů pro těžbu, dobývání, stavebnictví a sváření) Engineering, projektování, výroba a dodávky investičních celků (zejména pro stavebnictví, farmaceutický, potravinářský průmysl, chemický a petrochemický průmysl, energetiku) Slévárenství, obrábění slitin a kovodělné výrobky Vývoj nových strojírenských materiálů/konstrukcí Prototypování pomocí pokročilých metod (aditivní výroba)",
+      "nace": [
+        "24",
+        "25",
+        "28"
+      ],
+      "text_pro_embedding": "Strojírenství a investiční celky: Vývoj a výroba dílů (např. hydraulika, převodovky) a strojů (zejména textilních, tiskařských, zemědělských, lesnických, kovoobráběcích a strojů pro těžbu, dobývání, stavebnictví a sváření) Engineering, projektování, výroba a dodávky investičních celků (zejména pro stavebnictví, farmaceutický, potravinářský průmysl, chemický a petrochemický průmysl, energetiku) Slévárenství, obrábění slitin a kovodělné výrobky Vývoj nových strojírenských materiálů/konstrukcí Prototypování pomocí pokročilých metod (aditivní výroba)"
+    },
+    "2": {
+      "nazev": "Nové textilní materiály pro nové multidisciplinární aplikace",
+      "popis": "Výroba textilních vláken a přízí Výroba technických / průmyslových textilií (agrotextilie, textilie pro automotive, bytový textil) Výroba textilních materiálů s důrazem na funkcionalitu Konečná úprava textilií (textilní zušlechťování s důrazem na ekologické postupy) Výroba oděvů",
+      "nace": [
+        "13",
+        "14",
+        "72",
+        "74"
+      ],
+      "text_pro_embedding": "Nové textilní materiály pro nové multidisciplinární aplikace: Výroba textilních vláken a přízí Výroba technických / průmyslových textilií (agrotextilie, textilie pro automotive, bytový textil) Výroba textilních materiálů s důrazem na funkcionalitu Konečná úprava textilií (textilní zušlechťování s důrazem na ekologické postupy) Výroba oděvů"
+    },
+    "3": {
+      "nazev": "Elektronika, optoelektronika, optika, elektrotechnika a IT",
+      "popis": "Výzkum/vývoj a výroba zejména elektrických, elektronických a elektroinstalačních zařízení a součástek (např. elektromotory, rotační stroje, generátory, transformátory, vodiče, ventilátory, tlumivé filtry, napájecí zdroje, kabely, rozvodná a kontrolní zařízení, spínací technika, kondenzátory, mikroelektronika, sensorika) Vývoj a výroba pryžových/plastových výrobků pro elektrotechnický průmysl Průmyslová automatizace, měřící a senzorové systémy Výroba, vývoj a výzkum speciálních optických a optoelektronických součástek, modulů a zařízení (zahrnující zejména vláknové lasery, výzkum a vývoj pasivních prvků pro diagnostiku a terapii optickými vlnovody včetně optických sensorů a komunikace ve viditelné oblasti spektra – náhrada mikrovlnných bezdrátových komunikací optickou komunikací) Vývoj softwarových řešení (např. B2C, controlling, MIS, databázové systémy) Zpracování velkých dat Aplikace znalostních a mobilních technologií Smart sensorika a zpracování dat Mezioborová spolupráce ICT v biomedicíně Digital humanities (digitalizace a analyzování materiálů které souvisí s tradičními humanitními obory – historie, filozofie, lingvistika, literatura, umění, archeologie atd.)",
+      "nace": [
+        "26",
+        "27",
+        "43",
+        "61",
+        "62",
+        "63",
+        "71"
+      ],
+      "text_pro_embedding": "Elektronika, optoelektronika, optika, elektrotechnika a IT: Výzkum/vývoj a výroba zejména elektrických, elektronických a elektroinstalačních zařízení a součástek (např. elektromotory, rotační stroje, generátory, transformátory, vodiče, ventilátory, tlumivé filtry, napájecí zdroje, kabely, rozvodná a kontrolní zařízení, spínací technika, kondenzátory, mikroelektronika, sensorika) Vývoj a výroba pryžových/plastových výrobků pro elektrotechnický průmysl Průmyslová automatizace, měřící a senzorové systémy Výroba, vývoj a výzkum speciálních optických a optoelektronických součástek, modulů a zařízení (zahrnující zejména vláknové lasery, výzkum a vývoj pasivních prvků pro diagnostiku a terapii optickými vlnovody včetně optických sensorů a komunikace ve viditelné oblasti spektra – náhrada mikrovlnných bezdrátových komunikací optickou komunikací) Vývoj softwarových řešení (např. B2C, controlling, MIS, databázové systémy) Zpracování velkých dat Aplikace znalostních a mobilních technologií Smart sensorika a zpracování dat Mezioborová spolupráce ICT v biomedicíně Digital humanities (digitalizace a analyzování materiálů které souvisí s tradičními humanitními obory – historie, filozofie, lingvistika, literatura, umění, archeologie atd.)"
+    },
+    "4": {
+      "nazev": "Léčiva, zdravotnické prostředky, zdravotní péče a ochrana zdraví",
+      "popis": "Výroba zdravotnických nástrojů a prostředků Výroba léčiv a lékových forem Výroba lékařských a diagnostických přístrojů a technologií Lékařská péče (zaměření zejména na výzkum civilizačních chorob, nových operačních postupů, onkologii, onkochirurgii, hematoonkologi, neurovědy, gastroenterologii, neonatologii, oblast personalizované medicíny, problematiku stárnutí populace) Biomedicínský výzkum Vojenský zdravotnický výzkum (ochrana proti účinkům zbraním hromadného ničení se zaměřením na biologické zbraně, jaderné zbraně a následky radiace, molekulární patologie a biologie, odstraňování následků katastrof, organizace vojenského zdravotnictví, technikám vojenské chirurgie, poskytování preventivní zdravotní péče ve specifických podmínkách a poskytování zdravotnické služby v misích AČR)",
+      "nace": [
+        "21",
+        "22",
+        "32",
+        "72",
+        "85",
+        "86"
+      ],
+      "text_pro_embedding": "Léčiva, zdravotnické prostředky, zdravotní péče a ochrana zdraví: Výroba zdravotnických nástrojů a prostředků Výroba léčiv a lékových forem Výroba lékařských a diagnostických přístrojů a technologií Lékařská péče (zaměření zejména na výzkum civilizačních chorob, nových operačních postupů, onkologii, onkochirurgii, hematoonkologi, neurovědy, gastroenterologii, neonatologii, oblast personalizované medicíny, problematiku stárnutí populace) Biomedicínský výzkum Vojenský zdravotnický výzkum (ochrana proti účinkům zbraním hromadného ničení se zaměřením na biologické zbraně, jaderné zbraně a následky radiace, molekulární patologie a biologie, odstraňování následků katastrof, organizace vojenského zdravotnictví, technikám vojenské chirurgie, poskytování preventivní zdravotní péče ve specifických podmínkách a poskytování zdravotnické služby v misích AČR)"
+    },
+    "5": {
+      "nazev": "Pokročilé zemědělství a lesnictví",
+      "popis": "Rostlinná výroba, šlechtění ovocných odrůd, ochrana genofondu rostlin (šlechtění, genofondy, kryobanka, biotechnologie, molekulární genetika, molekulární testování patogenů) Živočišná výroba, reprodukce, ochrana genofondu zvířat Lesní hospodářství a výzkum lesních ekosystémů Potravinářský průmysl – mlékárenský, pekařský, speciální výživa, pivovarnictví Vývoj a výroba zemědělských strojů",
+      "nace": [
+        "01",
+        "02",
+        "10",
+        "28",
+        "72"
+      ],
+      "text_pro_embedding": "Pokročilé zemědělství a lesnictví: Rostlinná výroba, šlechtění ovocných odrůd, ochrana genofondu rostlin (šlechtění, genofondy, kryobanka, biotechnologie, molekulární genetika, molekulární testování patogenů) Živočišná výroba, reprodukce, ochrana genofondu zvířat Lesní hospodářství a výzkum lesních ekosystémů Potravinářský průmysl – mlékárenský, pekařský, speciální výživa, pivovarnictví Vývoj a výroba zemědělských strojů"
+    },
+    "6": {
+      "nazev": "Kulturně kreativní průmysl",
+      "popis": "• Činnost institucí: Činnost paměťových a kulturních institucí (např. muzea, galerie, knihovny, divadla Umělecké vzdělávání, spolky a kroužky Provozovatelé kulturních akcí, festivalů a koncertů • Tradiční činnosti: Výroba oděvů a textilií Umělecká řemesla Výroba her a hraček Výroba nábytku Výroba hudebních nástrojů • Tvůrčí činnosti: Architektura a tvorba veřejného / městského prostoru Tvorba multimediálních obsahů (video spoty, filmy, fotografie) Marketing a propagace Design, včetně průmyslového Tvorba a vývoj software, her a aplikací",
+      "nace": [
+        "14",
+        "31",
+        "32",
+        "58",
+        "59",
+        "60",
+        "62",
+        "71",
+        "73",
+        "74"
+      ],
+      "text_pro_embedding": "Kulturně kreativní průmysl: • Činnost institucí: Činnost paměťových a kulturních institucí (např. muzea, galerie, knihovny, divadla Umělecké vzdělávání, spolky a kroužky Provozovatelé kulturních akcí, festivalů a koncertů • Tradiční činnosti: Výroba oděvů a textilií Umělecká řemesla Výroba her a hraček Výroba nábytku Výroba hudebních nástrojů • Tvůrčí činnosti: Architektura a tvorba veřejného / městského prostoru Tvorba multimediálních obsahů (video spoty, filmy, fotografie) Marketing a propagace Design, včetně průmyslového Tvorba a vývoj software, her a aplikací"
+    }
+  },
+  "Liberecký kraj": {
+    "0": {
+      "nazev": "Pokročilé materiály se zaměřením na nanomateriály, textil, sklo, kovy, plasty, kompozitní materiály a",
+      "popis": "technologie jejich výroby a využití Výzkum, vývoj a aplikace nových materiálů v oblasti technických textilií Výzkum nanovlákenných materiálů, modifikace a rozvoj technologií pro jejich zpracování, technologie výroby nanokompozitů Výzkum a vývoj biopolymerů a kompozitních materiálů, vývoj experimentálních metod výroby plastových a kompozitních materiálů",
+      "nace": [],
+      "text_pro_embedding": "Pokročilé materiály se zaměřením na nanomateriály, textil, sklo, kovy, plasty, kompozitní materiály a: technologie jejich výroby a využití Výzkum, vývoj a aplikace nových materiálů v oblasti technických textilií Výzkum nanovlákenných materiálů, modifikace a rozvoj technologií pro jejich zpracování, technologie výroby nanokompozitů Výzkum a vývoj biopolymerů a kompozitních materiálů, vývoj experimentálních metod výroby plastových a kompozitních materiálů"
+    },
+    "1": {
+      "nazev": "Pokročilé strojírenství",
+      "popis": "Vývoj a výroba dílů a strojů, zejména kovoobráběcích, textilních, sklářských, pro výrobu nanomateriálů, energetiku, technologie budov, zpracování nových materiálů, Implementace prvků Průmyslu 4.0 Vývoj kybernetických a robotických systémů, spolupráce člověk – stroj, vývoj strojírenských materiálů/konstrukcí a prototypování pomocí pokročilých metod (např. 3D tisk, laserové technologie). Vývoj pokročilých výrobních technologií",
+      "nace": [
+        "28",
+        "29",
+        "30",
+        "24",
+        "25",
+        "13",
+        "14",
+        "23",
+        "27",
+        "26",
+        "71",
+        "72",
+        "74"
+      ],
+      "text_pro_embedding": "Pokročilé strojírenství: Vývoj a výroba dílů a strojů, zejména kovoobráběcích, textilních, sklářských, pro výrobu nanomateriálů, energetiku, technologie budov, zpracování nových materiálů, Implementace prvků Průmyslu 4.0 Vývoj kybernetických a robotických systémů, spolupráce člověk – stroj, vývoj strojírenských materiálů/konstrukcí a prototypování pomocí pokročilých metod (např. 3D tisk, laserové technologie). Vývoj pokročilých výrobních technologií"
+    },
+    "2": {
+      "nazev": "Elektronika, elektrotechnika, ICT a optika",
+      "popis": "Vývoj technologií umělé inteligence, robotických systémů, strojového učení a zpracování signálů a dat Výzkum a vývoj superpřesné optiky, speciální elektronové mikroskopie, zobrazovací techniky a digitální projekce Vývoj inteligentních ICT řešení pro hospodaření s přírodními zdroji a udržitelná sídla Vývoj v oblasti nových technologií (internet věcí, průmyslový internet, kyber-fyzikální systémy) na různých úrovních zpracování dat (Průmysl 4.0, IOT, technologie Smart City)",
+      "nace": [
+        "23",
+        "25",
+        "26",
+        "27",
+        "71",
+        "72",
+        "74"
+      ],
+      "text_pro_embedding": "Elektronika, elektrotechnika, ICT a optika: Vývoj technologií umělé inteligence, robotických systémů, strojového učení a zpracování signálů a dat Výzkum a vývoj superpřesné optiky, speciální elektronové mikroskopie, zobrazovací techniky a digitální projekce Vývoj inteligentních ICT řešení pro hospodaření s přírodními zdroji a udržitelná sídla Vývoj v oblasti nových technologií (internet věcí, průmyslový internet, kyber-fyzikální systémy) na různých úrovních zpracování dat (Průmysl 4.0, IOT, technologie Smart City)"
+    },
+    "3": {
+      "nazev": "Pokročilé dopravní zařízení, dopravní prostředky a jejich komponenty",
+      "popis": "Ekologické aspekty pohonných jednotek, vývoj elektrifikace vozidel, vývoj vodíkových technologií Vývoj moderních konstrukcí a technologií v letecké technice Vývoj technologie ITS (Inteligent Transport systém) Výzkum a vývoj materiálů a technologií pro udržitelnou dopravu a mobilitu",
+      "nace": [
+        "29",
+        "30",
+        "71",
+        "72",
+        "74"
+      ],
+      "text_pro_embedding": "Pokročilé dopravní zařízení, dopravní prostředky a jejich komponenty: Ekologické aspekty pohonných jednotek, vývoj elektrifikace vozidel, vývoj vodíkových technologií Vývoj moderních konstrukcí a technologií v letecké technice Vývoj technologie ITS (Inteligent Transport systém) Výzkum a vývoj materiálů a technologií pro udržitelnou dopravu a mobilitu"
+    },
+    "4": {
+      "nazev": "Udržitelné nakládání s energií, vodou a ostatními přírodními zdroji",
+      "popis": "Výzkum a vývoj pokročilých sanačních, separačních a membránových technologií, vývoj nástrojů pro predikci vývoje kontaminace vod a technologie jejich čištění Ukládání a transformace energie s neutrálními dopady na změnu klimatu, efektivní využití vodních a dalších přírodních zdrojů včetně vývoje metod udržování vody v krajině, využití regionálně dostupných obnovitelných zdrojů energie Efektivní nakládání s odpady, bioodpady, jejich další zpracování a využitelnost Vývoj technologických aplikací do průmyslových odvětví, potravinářství, pivovarnictví a chemické inženýrství",
+      "nace": [
+        "10",
+        "25",
+        "27",
+        "28",
+        "37",
+        "38",
+        "39",
+        "71",
+        "72",
+        "74"
+      ],
+      "text_pro_embedding": "Udržitelné nakládání s energií, vodou a ostatními přírodními zdroji: Výzkum a vývoj pokročilých sanačních, separačních a membránových technologií, vývoj nástrojů pro predikci vývoje kontaminace vod a technologie jejich čištění Ukládání a transformace energie s neutrálními dopady na změnu klimatu, efektivní využití vodních a dalších přírodních zdrojů včetně vývoje metod udržování vody v krajině, využití regionálně dostupných obnovitelných zdrojů energie Efektivní nakládání s odpady, bioodpady, jejich další zpracování a využitelnost Vývoj technologických aplikací do průmyslových odvětví, potravinářství, pivovarnictví a chemické inženýrství"
+    }
+  },
+  "Moravskoslezský kraj": {
+    "0": {
+      "nazev": "Automobilový průmysl a mobilita budoucnosti",
+      "popis": "V MSK je mnoho institucí, které vyvíjí a vyrábí komponenty pro automobily a jiné druhy dopravních prostředků. Firmy v této oblasti čelí unikátní souhře globálních trendů, které silně promění budoucí podobu přepravy osob i zboží. Za hlavní lze považovat posun od spalování fosilních paliv k novým typům alternativních paliv a pohonů. Dále nastupující systémy částečně (časem plně) autonomního řízení či rostoucí poptávka po nových formách mikromobility, sdílení aut a omezení jejich užívání v centrech měst. S tím souvisí také potřeba sběru a využití prostorových a jiných dat veškerých objektů na dopravní infrastruktuře.",
+      "nace": [
+        "29"
+      ],
+      "text_pro_embedding": "Automobilový průmysl a mobilita budoucnosti: V MSK je mnoho institucí, které vyvíjí a vyrábí komponenty pro automobily a jiné druhy dopravních prostředků. Firmy v této oblasti čelí unikátní souhře globálních trendů, které silně promění budoucí podobu přepravy osob i zboží. Za hlavní lze považovat posun od spalování fosilních paliv k novým typům alternativních paliv a pohonů. Dále nastupující systémy částečně (časem plně) autonomního řízení či rostoucí poptávka po nových formách mikromobility, sdílení aut a omezení jejich užívání v centrech měst. S tím souvisí také potřeba sběru a využití prostorových a jiných dat veškerých objektů na dopravní infrastruktuře."
+    },
+    "1": {
+      "nazev": "Výroba a zpracování kovů",
+      "popis": "Výroba a vývoj kovových materiálů, zejména oceli, je tradiční specializací MSK. Hutnictví, slévárenství a navazující těžké strojírenství daly z velké části tvář místní ekonomice. Z pohledu inovací a nových podnikatelských příležitostí je pro místní ekosystém důležité, že globální poptávka po kovech (nejen oceli) poroste s tím, jak poroste globální více poroste poptávka po know-how, které je spojeno s tím, jak kovy vyrábět a zpracovávat novými způsoby, které jsou jak ekonomicky efektivní, tak environmentálně šetrné a udržitelné. Tato specializace je úzce spojená s globálním tématem přechodu od lineární k cirkulární ekonomice. Právě ocel představuje základní materiál, bez kterého se moderní civilizace neobejde a současně skýtá příležitosti pro rozvoj oběhové ekonomiky. Výzvou je dekarbonizace výrobního procesu.",
+      "nace": [
+        "28"
+      ],
+      "text_pro_embedding": "Výroba a zpracování kovů: Výroba a vývoj kovových materiálů, zejména oceli, je tradiční specializací MSK. Hutnictví, slévárenství a navazující těžké strojírenství daly z velké části tvář místní ekonomice. Z pohledu inovací a nových podnikatelských příležitostí je pro místní ekosystém důležité, že globální poptávka po kovech (nejen oceli) poroste s tím, jak poroste globální více poroste poptávka po know-how, které je spojeno s tím, jak kovy vyrábět a zpracovávat novými způsoby, které jsou jak ekonomicky efektivní, tak environmentálně šetrné a udržitelné. Tato specializace je úzce spojená s globálním tématem přechodu od lineární k cirkulární ekonomice. Právě ocel představuje základní materiál, bez kterého se moderní civilizace neobejde a současně skýtá příležitosti pro rozvoj oběhové ekonomiky. Výzvou je dekarbonizace výrobního procesu."
+    },
+    "2": {
+      "nazev": "Průmyslová automatizace a robotika",
+      "popis": "Budoucnost výroby bude ve znamení dalšího snižování lidské práce a využití nových technologií, čímž dále poroste produktivita průmyslové výroby. Napříč všemi průmyslovými obory se budou prosazovat nové způsoby průmyslové automatizace a stále pokročilejší roboty. Jednotlivá výrobní zařízení i celé linky budou stále více propojené digitálními technologiemi. Bude se stále silněji prosazovat strojové učení a s tím autonomní rozhodování na základě dat z pokročilé senzoriky. Vzhledem k silné pozici a know-how z předchozí domény (č. 2) je strategickou příležitostí pro MSK získání náskoku v průmyslové automatizaci a robotice zejména v materiálově a energeticky náročných výrobách kovů a nových materiálů na bázi kovů s vazbou na budoucí posun od linearity k cirkularitě těchto hodnotových řetězců. Důležitý je však široký rozvoj automatizace a robotizace ve všech oblastech a odvětvích.",
+      "nace": [
+        "28"
+      ],
+      "text_pro_embedding": "Průmyslová automatizace a robotika: Budoucnost výroby bude ve znamení dalšího snižování lidské práce a využití nových technologií, čímž dále poroste produktivita průmyslové výroby. Napříč všemi průmyslovými obory se budou prosazovat nové způsoby průmyslové automatizace a stále pokročilejší roboty. Jednotlivá výrobní zařízení i celé linky budou stále více propojené digitálními technologiemi. Bude se stále silněji prosazovat strojové učení a s tím autonomní rozhodování na základě dat z pokročilé senzoriky. Vzhledem k silné pozici a know-how z předchozí domény (č. 2) je strategickou příležitostí pro MSK získání náskoku v průmyslové automatizaci a robotice zejména v materiálově a energeticky náročných výrobách kovů a nových materiálů na bázi kovů s vazbou na budoucí posun od linearity k cirkularitě těchto hodnotových řetězců. Důležitý je však široký rozvoj automatizace a robotizace ve všech oblastech a odvětvích."
+    },
+    "3": {
+      "nazev": "Zdravotnické prostředky a digitální technologie pro zdravotnictví",
+      "popis": "Tato doména specializace je oproti předchozím výrazně menší z hlediska velikosti a počtu společností v regionu. Zahrnuje však inspirativní inovační počiny, které dokládají inovační potenciál regionu. Jednou z hlavních společenských výzev rozvinutých ekonomik je zajištění dostupnosti a ekonomické udržitelnosti zdravotní péče. S tím, jak stárne populace ve vyspělých zemích a prodlužuje se délka života, rostou také náklady na zdravotní péči a vše, co s ní souvisí. V reakci na to se postupně prosazuje trend prodlužování délky života ve zdraví. S tím roste význam zdravého životního stylu, prevence a včasné diagnostiky tak, aby případná léčba začala dříve, než se nemoc plně projeví. Základem této komplexní proměny přístupu ke zdraví jsou zdravotnické prostředky a využití digitálních technologií ve vztahu ke sledování a péči o zdraví lidí. Důležitým prvkem pro rozvoj této domény je projekt LERCO.",
+      "nace": [
+        "86"
+      ],
+      "text_pro_embedding": "Zdravotnické prostředky a digitální technologie pro zdravotnictví: Tato doména specializace je oproti předchozím výrazně menší z hlediska velikosti a počtu společností v regionu. Zahrnuje však inspirativní inovační počiny, které dokládají inovační potenciál regionu. Jednou z hlavních společenských výzev rozvinutých ekonomik je zajištění dostupnosti a ekonomické udržitelnosti zdravotní péče. S tím, jak stárne populace ve vyspělých zemích a prodlužuje se délka života, rostou také náklady na zdravotní péči a vše, co s ní souvisí. V reakci na to se postupně prosazuje trend prodlužování délky života ve zdraví. S tím roste význam zdravého životního stylu, prevence a včasné diagnostiky tak, aby případná léčba začala dříve, než se nemoc plně projeví. Základem této komplexní proměny přístupu ke zdraví jsou zdravotnické prostředky a využití digitálních technologií ve vztahu ke sledování a péči o zdraví lidí. Důležitým prvkem pro rozvoj této domény je projekt LERCO."
+    },
+    "4": {
+      "nazev": "Informační technologie",
+      "popis": "Digitalizace představuje globální megatrend, který má disruptivní účinky na řadu hospodářských činností i celých oborů (viz např. způsob reprodukce hudby či nové způsoby prodeje a doručování prodaného zboží). Ostravsko je třetí nejvýznamnější region koncentrací IT specialistů v ČR. V posledních 20 letech zde vyrostla řada úspěšných firem, které plně využily nových podnikatelských příležitostí, které díky postupující digitalizaci vznikají. Trend digitalizace bude zesilovat nejen ve vazbě na růst výpočetního výkonu a s poklesem jeho jednotkové ceny, ale rovněž s vazbou na nově vznikající, zejména legislativní požadavky cílené na efektivní integraci dat v kontextu informačního managementu. Stále silněji se bude prosazovat AI, jakkoliv současný optimismus spojený s těmito technologiemi se mnohdy ukazuje jako přehnaný. Významný přínos pro rozvoj této domény specializace má Evropský digitální inovační hub vytvořený kolem VŠB-TUO. Velké množství firem v regionu se věnuje podnikání v oblasti digitalizace firemních procesů s důrazem na výrobu, čímž v inovačním ekosystému vznikají nové příležitosti synergií s výše uvedenými doménami. V souvislosti s rozvojem AI, vysokovýkonného (a kvantového) superpočítání a s vazbou na VŠB-TUO, zejména pak na IT4I, se objevují nové příležitosti v oblasti učení neuronových sítí. Tyto příležitosti zahrnují vytváření specifických datových sad pro trénování neuronových sítí, což může urychlit a zlevnit řadu aplikací těchto technologií napříč různými obory. Realizace špičkového výzkumu posouvajícího informační technologie a jejich využití univerzitami MSK také dlouhodobě přispívá ke stabilizaci nutné personální základny regionu v dané oblasti.",
+      "nace": [
+        "62",
+        "63"
+      ],
+      "text_pro_embedding": "Informační technologie: Digitalizace představuje globální megatrend, který má disruptivní účinky na řadu hospodářských činností i celých oborů (viz např. způsob reprodukce hudby či nové způsoby prodeje a doručování prodaného zboží). Ostravsko je třetí nejvýznamnější region koncentrací IT specialistů v ČR. V posledních 20 letech zde vyrostla řada úspěšných firem, které plně využily nových podnikatelských příležitostí, které díky postupující digitalizaci vznikají. Trend digitalizace bude zesilovat nejen ve vazbě na růst výpočetního výkonu a s poklesem jeho jednotkové ceny, ale rovněž s vazbou na nově vznikající, zejména legislativní požadavky cílené na efektivní integraci dat v kontextu informačního managementu. Stále silněji se bude prosazovat AI, jakkoliv současný optimismus spojený s těmito technologiemi se mnohdy ukazuje jako přehnaný. Významný přínos pro rozvoj této domény specializace má Evropský digitální inovační hub vytvořený kolem VŠB-TUO. Velké množství firem v regionu se věnuje podnikání v oblasti digitalizace firemních procesů s důrazem na výrobu, čímž v inovačním ekosystému vznikají nové příležitosti synergií s výše uvedenými doménami. V souvislosti s rozvojem AI, vysokovýkonného (a kvantového) superpočítání a s vazbou na VŠB-TUO, zejména pak na IT4I, se objevují nové příležitosti v oblasti učení neuronových sítí. Tyto příležitosti zahrnují vytváření specifických datových sad pro trénování neuronových sítí, což může urychlit a zlevnit řadu aplikací těchto technologií napříč různými obory. Realizace špičkového výzkumu posouvajícího informační technologie a jejich využití univerzitami MSK také dlouhodobě přispívá ke stabilizaci nutné personální základny regionu v dané oblasti."
+    },
+    "5": {
+      "nazev": "Technologie pro výrobu, přenos a uchování energií",
+      "popis": "Technologie pro výrobu, přenos a uchování energií lze vnímat jako kritickou infrastrukturu jak pro pokračující digitalizaci, tak pro budoucí podoby mobility i výroby. Dostatek levné a udržitelné energie, kterou lze efektivně přenášet, uchovat a přeměnit z podoby elektřiny na jiné užitečné formy, je nutným předpokladem udržitelné ekonomiky. Energetika vždy byla integrální součástí ekonomiky MSK, neboť zdejší průmysl vždy byl mimořádně energeticky náročný. Právě proto je zde také značná koncentrace expertů a know-how v tématech, která jsou důležitá pro hledání cest k moderní, nízkouhlíkové a moderní energetice. Významnou součástí ekosystému je nový testbed CEETe a specializované týmy na VŠB-TUO, která je koordinátorem národního kompetenčního centra pro energetiku. V rámci VŠB-TUO také probíhá příprava nových generací specialistů, bez kterých by tranzice k novým podobám energetiky nebyla možná. Významným impulsem pro další rozvoj této domény je projekt REFRESH. Dalším důležitým projektem, který může pomoci rozvoji této domény je připravovaný projekt EDEN.",
+      "nace": [
+        "27",
+        "29"
+      ],
+      "text_pro_embedding": "Technologie pro výrobu, přenos a uchování energií: Technologie pro výrobu, přenos a uchování energií lze vnímat jako kritickou infrastrukturu jak pro pokračující digitalizaci, tak pro budoucí podoby mobility i výroby. Dostatek levné a udržitelné energie, kterou lze efektivně přenášet, uchovat a přeměnit z podoby elektřiny na jiné užitečné formy, je nutným předpokladem udržitelné ekonomiky. Energetika vždy byla integrální součástí ekonomiky MSK, neboť zdejší průmysl vždy byl mimořádně energeticky náročný. Právě proto je zde také značná koncentrace expertů a know-how v tématech, která jsou důležitá pro hledání cest k moderní, nízkouhlíkové a moderní energetice. Významnou součástí ekosystému je nový testbed CEETe a specializované týmy na VŠB-TUO, která je koordinátorem národního kompetenčního centra pro energetiku. V rámci VŠB-TUO také probíhá příprava nových generací specialistů, bez kterých by tranzice k novým podobám energetiky nebyla možná. Významným impulsem pro další rozvoj této domény je projekt REFRESH. Dalším důležitým projektem, který může pomoci rozvoji této domény je připravovaný projekt EDEN."
+    },
+    "6": {
+      "nazev": "Nové materiály",
+      "popis": "Dalším kritickým předpokladem udržitelné ekonomiky jsou vedle dostatku levné energie také nové materiály, jejichž výroba má co možná nejnižší negativní dopad na životní prostředí. Právě to společně s nedostatkem či omezenou dostupností některých vzácných prvků či surovin generuje potřebu přechodu od lineární k cirkulární ekonomice. Tento přechod bude pomalý a mimořádně náročný jak na finanční zdroje, tak koordinaci protichůdných zájmů mocných zájmových skupin. Vzhledem ke kumulaci potřebného know-how a přítomnosti energeticky a materiálově náročného průmyslu v regionu tím vznikají významné nové příležitosti. Využití těchto příležitostí bude kapitálově velmi náročné. Na druhou stranu tím bude omezena konkurence v nově se objevujících oborech, které s popsaným civilizačním přechodem souvisí. Již dnes je v kraji řada společností, které se analýzou vznikajících příležitostí zabývají. Některé z nich se spojily v novém strategickém projektu CirkArena, který mj. vytváří funkční platformu pro spolupráci a experimentální inovace v dílčích tématech cirkulární ekonomiky (např. využití stavebních či hutních odpadů v souladu s principem „waste2material“ či nové generace obalových materiálů) či v projektu REFRESH, který se zabývá vývojem nové generace materiálů pro 21. století prostřednictvím unikátních metod atomárního inženýrství šitých na míru požadavkům průmyslové transformace.",
+      "nace": [
+        "24",
+        "25",
+        "23",
+        "22",
+        "34"
+      ],
+      "text_pro_embedding": "Nové materiály: Dalším kritickým předpokladem udržitelné ekonomiky jsou vedle dostatku levné energie také nové materiály, jejichž výroba má co možná nejnižší negativní dopad na životní prostředí. Právě to společně s nedostatkem či omezenou dostupností některých vzácných prvků či surovin generuje potřebu přechodu od lineární k cirkulární ekonomice. Tento přechod bude pomalý a mimořádně náročný jak na finanční zdroje, tak koordinaci protichůdných zájmů mocných zájmových skupin. Vzhledem ke kumulaci potřebného know-how a přítomnosti energeticky a materiálově náročného průmyslu v regionu tím vznikají významné nové příležitosti. Využití těchto příležitostí bude kapitálově velmi náročné. Na druhou stranu tím bude omezena konkurence v nově se objevujících oborech, které s popsaným civilizačním přechodem souvisí. Již dnes je v kraji řada společností, které se analýzou vznikajících příležitostí zabývají. Některé z nich se spojily v novém strategickém projektu CirkArena, který mj. vytváří funkční platformu pro spolupráci a experimentální inovace v dílčích tématech cirkulární ekonomiky (např. využití stavebních či hutních odpadů v souladu s principem „waste2material“ či nové generace obalových materiálů) či v projektu REFRESH, který se zabývá vývojem nové generace materiálů pro 21. století prostřednictvím unikátních metod atomárního inženýrství šitých na míru požadavkům průmyslové transformace."
+    },
+    "7": {
+      "nazev": "Kulturní a kreativní průmysl",
+      "popis": "Kulturní a kreativní odvětví jsou považovány za jeden motorů socioekonomického růstu vyspělých států a regionů a za zdroj inspirace a nových přístupů, které lze využít napříč různorodými hospodářskými aktivitami v podnikání, vzdělávání, cestovním ruchu, vědě a výzkumu, mezinárodním marketingu a brandingu kraje a v něm lokalizovaných měst. Zesilující konkurence na globálních trzích vede lokální firmy ke stále větší potřebě zaměřit se na preference a motivace zákazníků. Právě inspirace z kulturních a kreativních odvětví může přispět k hledání inovativních řešení a originálního designu produktů i služeb tam, kde se technika a nákladová optimalizace dostaly na hranu svých možností. Úzké sepětí mezi moderními technologiemi, digitalizací a originálním designem používá stále více mladých úspěšných firem. V případě MSK může být příkladem firma Invent Medical se svým důrazem na průmyslový design a estetiku",
+      "nace": [
+        "58",
+        "59",
+        "73",
+        "74",
+        "90"
+      ],
+      "text_pro_embedding": "Kulturní a kreativní průmysl: Kulturní a kreativní odvětví jsou považovány za jeden motorů socioekonomického růstu vyspělých států a regionů a za zdroj inspirace a nových přístupů, které lze využít napříč různorodými hospodářskými aktivitami v podnikání, vzdělávání, cestovním ruchu, vědě a výzkumu, mezinárodním marketingu a brandingu kraje a v něm lokalizovaných měst. Zesilující konkurence na globálních trzích vede lokální firmy ke stále větší potřebě zaměřit se na preference a motivace zákazníků. Právě inspirace z kulturních a kreativních odvětví může přispět k hledání inovativních řešení a originálního designu produktů i služeb tam, kde se technika a nákladová optimalizace dostaly na hranu svých možností. Úzké sepětí mezi moderními technologiemi, digitalizací a originálním designem používá stále více mladých úspěšných firem. V případě MSK může být příkladem firma Invent Medical se svým důrazem na průmyslový design a estetiku"
+    },
+    "8": {
+      "nazev": "Nová řešení pro společenské výzvy neboli resilience lidí v době turbulentních změn",
+      "popis": "Společensko-vědní výzkum a zejména experimentální aplikace nových koncepčních řešení může výrazně stimulovat inovace. Zrychlující se změny v důsledku šíření nových technologií a prohlubování propojenosti světové ekonomiky vytvářejí silný tlak na lidi jako jednotlivce, místní komunity i veřejné instituce. Vznikají rovněž nové požadavky na veřejné politiky, které musejí rychle reagovat na řady rizik. Lidé napříč hospodářsky rozvinutými státy stále silněji pociťují snižující se funkčnost některých veřejných služeb. Paralelně s tím narůstá u některých společenských skupin podpora populistické politiky, která nabízí líbivá hesla, ale nikoliv fungující řešení nových společenských výzev. V kontextu narušené důvěry ve veřejné instituce a snížené životní spokojenosti a duševní pohody jsou některé emoce vyvolávající témata, jako například migrace, využívána pro politickou mobilizaci. To vše probíhá v prostředí digitálních technologií, kde tvorba a sdílení obsahu usnadňuje šíření dezinformací a masové manipulace. V daném společenském klimatu mohou být nové technologie využity také autoritativními režimy pro ovlivňování výsledků voleb ve státech s liberálně demokratickým zřízením. V neposlední řadě je velkou výzvou v oblasti inovací téma akceptace nových technologií, produktů a služeb, neboť často hlavní brzdou jejich rozšíření mezi uživateli je nezájem kombinovaný s neschopností porozumět jejich výhodám. U této specifické domény RIS MSK budou partnery a uživateli hlavně veřejné organizace, samosprávy. Dále také vzdělávací a neziskové organizace od lokální po národní úroveň.",
+      "nace": [],
+      "text_pro_embedding": "Nová řešení pro společenské výzvy neboli resilience lidí v době turbulentních změn: Společensko-vědní výzkum a zejména experimentální aplikace nových koncepčních řešení může výrazně stimulovat inovace. Zrychlující se změny v důsledku šíření nových technologií a prohlubování propojenosti světové ekonomiky vytvářejí silný tlak na lidi jako jednotlivce, místní komunity i veřejné instituce. Vznikají rovněž nové požadavky na veřejné politiky, které musejí rychle reagovat na řady rizik. Lidé napříč hospodářsky rozvinutými státy stále silněji pociťují snižující se funkčnost některých veřejných služeb. Paralelně s tím narůstá u některých společenských skupin podpora populistické politiky, která nabízí líbivá hesla, ale nikoliv fungující řešení nových společenských výzev. V kontextu narušené důvěry ve veřejné instituce a snížené životní spokojenosti a duševní pohody jsou některé emoce vyvolávající témata, jako například migrace, využívána pro politickou mobilizaci. To vše probíhá v prostředí digitálních technologií, kde tvorba a sdílení obsahu usnadňuje šíření dezinformací a masové manipulace. V daném společenském klimatu mohou být nové technologie využity také autoritativními režimy pro ovlivňování výsledků voleb ve státech s liberálně demokratickým zřízením. V neposlední řadě je velkou výzvou v oblasti inovací téma akceptace nových technologií, produktů a služeb, neboť často hlavní brzdou jejich rozšíření mezi uživateli je nezájem kombinovaný s neschopností porozumět jejich výhodám. U této specifické domény RIS MSK budou partnery a uživateli hlavně veřejné organizace, samosprávy. Dále také vzdělávací a neziskové organizace od lokální po národní úroveň."
+    },
+    "9": {
+      "nazev": "Kvantové technologie a počítání",
+      "popis": "Kvantové technologie a počítání představují klíčovou inovaci budoucnosti, která má potenciál přinést revoluční změny v oblasti výpočetního výkonu, bezpečnosti dat a modelování komplexních systémů. Tyto technologie, využívající principy kvantové fyziky, umožňují řešení problémů, které jsou pro klasické počítače prakticky neřešitelné nebo by vyžadovaly extrémně dlouhou dobu výpočtu. MSK se může v této oblasti intenzivně rozvíjet, přičemž se v současné době může již chlubit úspěchy IT4Innovations, kde díky projektu HE LUMI-Q bude instalován první kvantový počítač v České republice. Kromě toho zde byla vytvořena specializovaná laboratoř kvantových výpočtů, která slouží jako klíčový bod pro výzkum a aplikace těchto technologií. Tento rozvoj poskytuje pevný základ pro další inovace a poskytuje nové příležitosti v oblasti průmyslu, vědy a vzdělávání, čímž významně posiluje inovační ekosystém kraje. Kvantové výpočty mohou přinést průlomové aplikace v mnoha oblastech, včetně optimalizace průmyslových procesů, simulace materiálů s novými vlastnostmi, či vývoje pokročilých kryptografických metod. Díky těmto pokrokům se MSK může stát důležitým hráčem na poli kvantových technologií a přispívat k udržitelné a konkurenceschopné ekonomice nejen v regionu, ale i v širším národním a mezinárodním kontextu. Realiza ce krajské RIS3",
+      "nace": [],
+      "text_pro_embedding": "Kvantové technologie a počítání: Kvantové technologie a počítání představují klíčovou inovaci budoucnosti, která má potenciál přinést revoluční změny v oblasti výpočetního výkonu, bezpečnosti dat a modelování komplexních systémů. Tyto technologie, využívající principy kvantové fyziky, umožňují řešení problémů, které jsou pro klasické počítače prakticky neřešitelné nebo by vyžadovaly extrémně dlouhou dobu výpočtu. MSK se může v této oblasti intenzivně rozvíjet, přičemž se v současné době může již chlubit úspěchy IT4Innovations, kde díky projektu HE LUMI-Q bude instalován první kvantový počítač v České republice. Kromě toho zde byla vytvořena specializovaná laboratoř kvantových výpočtů, která slouží jako klíčový bod pro výzkum a aplikace těchto technologií. Tento rozvoj poskytuje pevný základ pro další inovace a poskytuje nové příležitosti v oblasti průmyslu, vědy a vzdělávání, čímž významně posiluje inovační ekosystém kraje. Kvantové výpočty mohou přinést průlomové aplikace v mnoha oblastech, včetně optimalizace průmyslových procesů, simulace materiálů s novými vlastnostmi, či vývoje pokročilých kryptografických metod. Díky těmto pokrokům se MSK může stát důležitým hráčem na poli kvantových technologií a přispívat k udržitelné a konkurenceschopné ekonomice nejen v regionu, ale i v širším národním a mezinárodním kontextu. Realiza ce krajské RIS3"
+    }
+  },
+  "Olomoucký kraj": {
+    "0": {
+      "nazev": "Biomedicína, Life Science a Well-being",
+      "popis": "propojením lékařství, přírodních věd a rostoucí potřeby životní",
+      "nace": [],
+      "text_pro_embedding": "Biomedicína, Life Science a Well-being: propojením lékařství, přírodních věd a rostoucí potřeby životní"
+    },
+    "1": {
+      "nazev": "Zemědělství pro 21. století",
+      "popis": "rozvoj technologií je nezadržitelný a prosakuje do všech oblastí. Zemědělství",
+      "nace": [],
+      "text_pro_embedding": "Zemědělství pro 21. století: rozvoj technologií je nezadržitelný a prosakuje do všech oblastí. Zemědělství"
+    },
+    "2": {
+      "nazev": "Optika a jemná mechanika, optoelektronika",
+      "popis": "tradiční doména specializace Olomouckého kraje se",
+      "nace": [],
+      "text_pro_embedding": "Optika a jemná mechanika, optoelektronika: tradiční doména specializace Olomouckého kraje se"
+    },
+    "3": {
+      "nazev": "Čerpací a vodohospodářská technika",
+      "popis": "technologie pro vodohospodářská díla, vodní a odpadové",
+      "nace": [],
+      "text_pro_embedding": "Čerpací a vodohospodářská technika: technologie pro vodohospodářská díla, vodní a odpadové"
+    },
+    "4": {
+      "nazev": "Pokročilé materiály a technologie",
+      "popis": "nezadržitelný vědecký pokrok ovlivňuje rozvoj modifikací materiálů",
+      "nace": [],
+      "text_pro_embedding": "Pokročilé materiály a technologie: nezadržitelný vědecký pokrok ovlivňuje rozvoj modifikací materiálů"
+    },
+    "5": {
+      "nazev": "Kulturní a kreativní průmysly",
+      "popis": "zahrnují v Olomouckém kraji odvětví, v nichž se vzájemně propojuje",
+      "nace": [],
+      "text_pro_embedding": "Kulturní a kreativní průmysly: zahrnují v Olomouckém kraji odvětví, v nichž se vzájemně propojuje"
+    }
+  },
+  "Pardubický kraj": {
+    "0": {
+      "nazev": "Inteligentní chemie pro průmyslové a bio-medicinální aplikace",
+      "popis": "V Pardubickém kraji se nachází silná bio-chemická průmyslová základna v oblasti medicínských aplikací, a to jak v oblasti syntetické chemie, tak v technologiích přípravy bioaktivních materiálů. Dále pak Univerzita Pardubice tradičně zahrnuje unikátní katedry a ústavy na zvlákňování biologicky aktivních polysacharidů a jejich spojování s biologicky aktivními látkami, bio-analytické laboratoře s excelentním světovým ohlasem, možnosti testování v biochemických laboratořích apod. Univerzita Pardubice spolupracuje na mezinárodní úrovni na řadě projektů v oblasti bio-analytiky, medical devices (lab-on chips) a (nano) materiálů pro medicínu Nanobiomedicínské technologie vyžadují rovněž konstrukci nových technologických aparátů, například aparátů pro zvlákňování a přípravu tkanin z mikro a nanovláken, aparátů pro přípravu krytů ran, scaffoldů, diagnostiku, zpracování dat apod. Aktivní průmyslová a VaV základna regionu v oblasti textilu, textilních strojů, speciálních výrobních zařízení, elektrotechniky a ICT vytváří dobré podmínky pro rozvoj těchto aplikací a do budoucna je i příležitostí pro rozvoj nových inovačních firem v technologických doménách vzniklých na bázi related variety. Na vzdělávání a veřejný VaV je na FChT UPa navázán celý ekosystém firem v oblastech zpracování celulózy, nátěrových hmot nebo polygrafie",
+      "nace": [
+        "19",
+        "20",
+        "21"
+      ],
+      "text_pro_embedding": "Inteligentní chemie pro průmyslové a bio-medicinální aplikace: V Pardubickém kraji se nachází silná bio-chemická průmyslová základna v oblasti medicínských aplikací, a to jak v oblasti syntetické chemie, tak v technologiích přípravy bioaktivních materiálů. Dále pak Univerzita Pardubice tradičně zahrnuje unikátní katedry a ústavy na zvlákňování biologicky aktivních polysacharidů a jejich spojování s biologicky aktivními látkami, bio-analytické laboratoře s excelentním světovým ohlasem, možnosti testování v biochemických laboratořích apod. Univerzita Pardubice spolupracuje na mezinárodní úrovni na řadě projektů v oblasti bio-analytiky, medical devices (lab-on chips) a (nano) materiálů pro medicínu Nanobiomedicínské technologie vyžadují rovněž konstrukci nových technologických aparátů, například aparátů pro zvlákňování a přípravu tkanin z mikro a nanovláken, aparátů pro přípravu krytů ran, scaffoldů, diagnostiku, zpracování dat apod. Aktivní průmyslová a VaV základna regionu v oblasti textilu, textilních strojů, speciálních výrobních zařízení, elektrotechniky a ICT vytváří dobré podmínky pro rozvoj těchto aplikací a do budoucna je i příležitostí pro rozvoj nových inovačních firem v technologických doménách vzniklých na bázi related variety. Na vzdělávání a veřejný VaV je na FChT UPa navázán celý ekosystém firem v oblastech zpracování celulózy, nátěrových hmot nebo polygrafie"
+    },
+    "1": {
+      "nazev": "Pokročilé aplikace elektrotechniky a informatiky",
+      "popis": "Tato doména zahrnuje oblast výroby, výzkumu i vývoje elektrotechnických a elektronických zařízení a systémů, jejich dílů i součástek pro tato zařízení, jakož i rozvoj zabezpečovacích, automatizačních, informačních a komunikačních systémů i zařízení pro měření, regulaci a rozvod energie a systémů a zařízení pro alternativní výrobu, regulaci a konzervaci elektrické energie zejména pro alternativní zdroje energie. Patří sem i výzkum, vývoj a výroba lokačních a detekčních systémů, radarových a radiokomunikačních systémů a technologií a jejich využití v dopravě, automatizaci řízení výrob, při kontrole kvality výrob, monitoringu, zabezpečení a řízení provozu na všech typech dopravních infrastruktur.",
+      "nace": [
+        "26",
+        "27",
+        "62"
+      ],
+      "text_pro_embedding": "Pokročilé aplikace elektrotechniky a informatiky: Tato doména zahrnuje oblast výroby, výzkumu i vývoje elektrotechnických a elektronických zařízení a systémů, jejich dílů i součástek pro tato zařízení, jakož i rozvoj zabezpečovacích, automatizačních, informačních a komunikačních systémů i zařízení pro měření, regulaci a rozvod energie a systémů a zařízení pro alternativní výrobu, regulaci a konzervaci elektrické energie zejména pro alternativní zdroje energie. Patří sem i výzkum, vývoj a výroba lokačních a detekčních systémů, radarových a radiokomunikačních systémů a technologií a jejich využití v dopravě, automatizaci řízení výrob, při kontrole kvality výrob, monitoringu, zabezpečení a řízení provozu na všech typech dopravních infrastruktur."
+    },
+    "2": {
+      "nazev": "Udržitelná doprava, výroba dopravních prostředků a jejich komponentů, dopravní infrastruktura",
+      "popis": "Tato doména zahrnuje oblast udržitelné dopravy, výrobu, výzkum, vývoj a inovaci dopravních prostředků (zejména silničních a kolejových) a jejich komponentů a oblast dopravní infrastruktury. Výzkumná kapacita ve veřejném sektoru je v této oblasti soustředěna především na Dopravní fakultě Jana Pernera Univerzity Pardubice, mezi jejíž klíčová pracoviště patří zejména Výukové a výzkumné centrum v dopravě (VaV spjatý s dopravou - dopravními prostředky, dopravními stavbami - z pohledu konstrukce, hydrauliky, diagnostiky a bezpečnosti, elektrotechniky, energetiky, zkoumáním a testování materiálů, testování statických a dynamických vlastností reálných konstrukcí nebo jejich částí) a Centrum kompetence drážních vozidel (aplikovaný výzkum a vývoj konstrukcí drážních vozidel, aplikace nově vyvinutých materiálů z pohledu deformačních a kontaktních odolností, včetně dopravního strojírenství). Významnou oblastí spolupráce je i udržitelná doprava, dopravní inženýrství, plánování a organizace dopravy, technologie dopravy, bezpečnost dopravy, dopravní management a logistika, informatika v dopravě (tvorba jízdních řádů, modelování dopravy) a telematika.",
+      "nace": [
+        "28",
+        "29",
+        "30",
+        "22"
+      ],
+      "text_pro_embedding": "Udržitelná doprava, výroba dopravních prostředků a jejich komponentů, dopravní infrastruktura: Tato doména zahrnuje oblast udržitelné dopravy, výrobu, výzkum, vývoj a inovaci dopravních prostředků (zejména silničních a kolejových) a jejich komponentů a oblast dopravní infrastruktury. Výzkumná kapacita ve veřejném sektoru je v této oblasti soustředěna především na Dopravní fakultě Jana Pernera Univerzity Pardubice, mezi jejíž klíčová pracoviště patří zejména Výukové a výzkumné centrum v dopravě (VaV spjatý s dopravou - dopravními prostředky, dopravními stavbami - z pohledu konstrukce, hydrauliky, diagnostiky a bezpečnosti, elektrotechniky, energetiky, zkoumáním a testování materiálů, testování statických a dynamických vlastností reálných konstrukcí nebo jejich částí) a Centrum kompetence drážních vozidel (aplikovaný výzkum a vývoj konstrukcí drážních vozidel, aplikace nově vyvinutých materiálů z pohledu deformačních a kontaktních odolností, včetně dopravního strojírenství). Významnou oblastí spolupráce je i udržitelná doprava, dopravní inženýrství, plánování a organizace dopravy, technologie dopravy, bezpečnost dopravy, dopravní management a logistika, informatika v dopravě (tvorba jízdních řádů, modelování dopravy) a telematika."
+    },
+    "3": {
+      "nazev": "Pokročilé materiály na bázi textilních struktur",
+      "popis": "Tato doména zahrnuje oblast výroby výzkumu a vývoje pokročilých a funkčních materiálů na bázi textilních struktur pro nové aplikace podporující společenské výzvy a využití čisté produkce a obnovitelných zdrojů surovin.",
+      "nace": [
+        "13",
+        "14",
+        "15"
+      ],
+      "text_pro_embedding": "Pokročilé materiály na bázi textilních struktur: Tato doména zahrnuje oblast výroby výzkumu a vývoje pokročilých a funkčních materiálů na bázi textilních struktur pro nové aplikace podporující společenské výzvy a využití čisté produkce a obnovitelných zdrojů surovin."
+    },
+    "4": {
+      "nazev": "Strojírenství a moderní výrobní technologie",
+      "popis": "Tato doména zahrnuje zejména oblast výroby, výzkumu i vývoje výrobních zařízení a jednoúčelových strojů, robotiky a oblast přesného a speciálního strojírenství.",
+      "nace": [
+        "25",
+        "28"
+      ],
+      "text_pro_embedding": "Strojírenství a moderní výrobní technologie: Tato doména zahrnuje zejména oblast výroby, výzkumu i vývoje výrobních zařízení a jednoúčelových strojů, robotiky a oblast přesného a speciálního strojírenství."
+    }
+  },
+  "Plzeňský kraj": {
+    "0": {
+      "nazev": "Nové materiály a technologie",
+      "popis": "materiály s pokročilými vlastnostmi materiály a technologie pro aditivní výrobu speciální oceli výzkum a vývoj metod, zkoušek pro normotvornou činnost a nestandardní ověřování a měření vlastností materiálů a technologií moderní technologie výroby a zpracování materiálů",
+      "nace": [
+        "26",
+        "27",
+        "28"
+      ],
+      "text_pro_embedding": "Nové materiály a technologie: materiály s pokročilými vlastnostmi materiály a technologie pro aditivní výrobu speciální oceli výzkum a vývoj metod, zkoušek pro normotvornou činnost a nestandardní ověřování a měření vlastností materiálů a technologií moderní technologie výroby a zpracování materiálů"
+    },
+    "1": {
+      "nazev": "Inteligentní výrobní systémy",
+      "popis": "senzory a senzorické systémy pokročilá diagnostika a prediktivní údržba inteligentní řízení výrobních procesů robotika, kolaborativní systémy vestavěná inteligence, predikce s využitím datových analytik virtuální a rozšířená realita big data, datová analytika a strojové učení modely, řízení, trendy modulární IVS a integrace komponent IVS kybernetická a energetická bezpečnost IVS adaptabilní řešení (customizace) služeb i výrobků ekologicky přívětivé a energeticky úsporné výrobní procesy",
+      "nace": [
+        "26",
+        "27",
+        "28",
+        "61",
+        "62"
+      ],
+      "text_pro_embedding": "Inteligentní výrobní systémy: senzory a senzorické systémy pokročilá diagnostika a prediktivní údržba inteligentní řízení výrobních procesů robotika, kolaborativní systémy vestavěná inteligence, predikce s využitím datových analytik virtuální a rozšířená realita big data, datová analytika a strojové učení modely, řízení, trendy modulární IVS a integrace komponent IVS kybernetická a energetická bezpečnost IVS adaptabilní řešení (customizace) služeb i výrobků ekologicky přívětivé a energeticky úsporné výrobní procesy"
+    },
+    "2": {
+      "nazev": "Chytrá mobilita",
+      "popis": "nové koncepty dopravních prostředků, pohonů a systémů infrastruktura pro elektromobilitu autonomní mobilita monitoring, řízení, modelování a plánování dopravy",
+      "nace": [
+        "26",
+        "27",
+        "29"
+      ],
+      "text_pro_embedding": "Chytrá mobilita: nové koncepty dopravních prostředků, pohonů a systémů infrastruktura pro elektromobilitu autonomní mobilita monitoring, řízení, modelování a plánování dopravy"
+    },
+    "3": {
+      "nazev": "Biomedicína a technika ve zdravotnictví",
+      "popis": "onkologie infekční nemoci a antibiotická resistence multidisciplinární medicína reprodukční medicína preventivní medicína náhrada orgánů lékařská diagnostika asistivní technologie nové formy veřejných sociálních a zdravotnických služeb materiály ve zdravotnictví využívání počítačových simulací a počítačového modelování v medicíně pokročilé zdravotnické technologie",
+      "nace": [
+        "32",
+        "61",
+        "62",
+        "86"
+      ],
+      "text_pro_embedding": "Biomedicína a technika ve zdravotnictví: onkologie infekční nemoci a antibiotická resistence multidisciplinární medicína reprodukční medicína preventivní medicína náhrada orgánů lékařská diagnostika asistivní technologie nové formy veřejných sociálních a zdravotnických služeb materiály ve zdravotnictví využívání počítačových simulací a počítačového modelování v medicíně pokročilé zdravotnické technologie"
+    },
+    "4": {
+      "nazev": "Moderní energetika",
+      "popis": "bezpečná, spolehlivá a flexibilní energetika energetické sítě dekarbonizace energetiky jaderná energetika obnovitelné zdroje energie teplárenství a kogenerace akumulace energie úspory energie a zvýšení energetické účinnosti digitalizace energetiky regionální a komunitní energetika",
+      "nace": [
+        "26",
+        "27",
+        "28"
+      ],
+      "text_pro_embedding": "Moderní energetika: bezpečná, spolehlivá a flexibilní energetika energetické sítě dekarbonizace energetiky jaderná energetika obnovitelné zdroje energie teplárenství a kogenerace akumulace energie úspory energie a zvýšení energetické účinnosti digitalizace energetiky regionální a komunitní energetika"
+    }
+  },
+  "Hl. m. Praha": {
+    "0": {
+      "nazev": "Vybrané obory Life Sciences (vědy o živé přírodě)",
+      "popis": "průmyslové a environmentální biotechnologie biomedicínské technologie diagnostika chorob a virologie biologicky aktivní materiály, biopolymery, biokompatibilní materiály farmaceutický průmysl chemické procesy a látky využívané v medicíně",
+      "nace": [],
+      "text_pro_embedding": "Vybrané obory Life Sciences (vědy o živé přírodě): průmyslové a environmentální biotechnologie biomedicínské technologie diagnostika chorob a virologie biologicky aktivní materiály, biopolymery, biokompatibilní materiály farmaceutický průmysl chemické procesy a látky využívané v medicíně"
+    },
+    "1": {
+      "nazev": "Vybraná kreativní odvětví",
+      "popis": "digitální média mobilní aplikace a SW internetové služby vizualizace a design",
+      "nace": [],
+      "text_pro_embedding": "Vybraná kreativní odvětví: digitální média mobilní aplikace a SW internetové služby vizualizace a design"
+    },
+    "2": {
+      "nazev": "Nově vznikající technologie",
+      "popis": "letecké a kosmické technologie robotika energetika a nízkouhlíkové technologie průmyslové a zdravotnické využití moderních laserů",
+      "nace": [],
+      "text_pro_embedding": "Nově vznikající technologie: letecké a kosmické technologie robotika energetika a nízkouhlíkové technologie průmyslové a zdravotnické využití moderních laserů"
+    },
+    "3": {
+      "nazev": "Služby pro podniky založené na znalostech (tzv. KIBS)",
+      "popis": "informační služby (marketingové analýzy, přehled regulativ, vyhledávání technologických trendů a oborů; specializované IT služby (data mining, vizualizace, služby využívající družicové systémy, specializované podnikové poradenství (podpora strategického řízení, hledání a testování příležitostí, hodnocení nápadů, trendwatching atd; technologické služby vysoce odborné vzdělávání, profesní trénink, mentoring, coaching pro implementace, headhunting výzkumné poradenství a služby",
+      "nace": [],
+      "text_pro_embedding": "Služby pro podniky založené na znalostech (tzv. KIBS): informační služby (marketingové analýzy, přehled regulativ, vyhledávání technologických trendů a oborů; specializované IT služby (data mining, vizualizace, služby využívající družicové systémy, specializované podnikové poradenství (podpora strategického řízení, hledání a testování příležitostí, hodnocení nápadů, trendwatching atd; technologické služby vysoce odborné vzdělávání, profesní trénink, mentoring, coaching pro implementace, headhunting výzkumné poradenství a služby"
+    }
+  },
+  "Středočeský kraj": {
+    "0": {
+      "nazev": "Tematicky vyspělá a udržitelná mobilita",
+      "popis": "Motorová vozidla a motory (29.1) Moduly a díly pro motorová vozidla (29.2 a 29.3)",
+      "nace": [
+        "29",
+        "30"
+      ],
+      "text_pro_embedding": "Tematicky vyspělá a udržitelná mobilita: Motorová vozidla a motory (29.1) Moduly a díly pro motorová vozidla (29.2 a 29.3)"
+    },
+    "1": {
+      "nazev": "Elektrotechnika a elektronika",
+      "popis": "Baterie, kabely, vodiče (27.2, 27.3) Elektrické motory, generátory (27.1)",
+      "nace": [
+        "26",
+        "27"
+      ],
+      "text_pro_embedding": "Elektrotechnika a elektronika: Baterie, kabely, vodiče (27.2, 27.3) Elektrické motory, generátory (27.1)"
+    },
+    "2": {
+      "nazev": "Biotechnologie a zdravotnické technologie",
+      "popis": "Farmaceutické výrobky (21.1, 21.2) Medicínské přístroje (32.5)",
+      "nace": [
+        "21",
+        "32"
+      ],
+      "text_pro_embedding": "Biotechnologie a zdravotnické technologie: Farmaceutické výrobky (21.1, 21.2) Medicínské přístroje (32.5)"
+    },
+    "3": {
+      "nazev": "Efektivní průmyslová chemie",
+      "popis": "Chemické látky v primárních formách (20.1)",
+      "nace": [
+        "20"
+      ],
+      "text_pro_embedding": "Efektivní průmyslová chemie: Chemické látky v primárních formách (20.1)"
+    },
+    "4": {
+      "nazev": "Pokročilé materiály, stroje a technologie",
+      "popis": "Stavební a těžební stroje (28.92) Chladící/klimatizační zařízení (28.25)",
+      "nace": [
+        "28",
+        "25"
+      ],
+      "text_pro_embedding": "Pokročilé materiály, stroje a technologie: Stavební a těžební stroje (28.92) Chladící/klimatizační zařízení (28.25)"
+    },
+    "5": {
+      "nazev": "Udržitelná výroba potravin",
+      "popis": "Masný průmysl (10.1) Pečivo, mlýnské výrobky (10.6, 10.7) Průmyslová krmiva (10.9)",
+      "nace": [
+        "10",
+        "11"
+      ],
+      "text_pro_embedding": "Udržitelná výroba potravin: Masný průmysl (10.1) Pečivo, mlýnské výrobky (10.6, 10.7) Průmyslová krmiva (10.9)"
+    }
+  },
+  "Ústecký kraj": {
+    "0": {
+      "nazev": "Chemie",
+      "popis": "zaměření na tzv. “zelenou chemii”",
+      "nace": [],
+      "text_pro_embedding": "Chemie: zaměření na tzv. “zelenou chemii”",
+      "tier": "hlavní"
+    },
+    "1": {
+      "nazev": "Energetika",
+      "popis": "nová energetika, skladování a optimalizace, obnova krajiny",
+      "nace": [],
+      "text_pro_embedding": "Energetika: nová energetika, skladování a optimalizace, obnova krajiny",
+      "tier": "hlavní"
+    },
+    "2": {
+      "nazev": "Strojírenství",
+      "popis": "automotive sektor",
+      "nace": [],
+      "text_pro_embedding": "Strojírenství: automotive sektor",
+      "tier": "hlavní"
+    },
+    "3": {
+      "nazev": "Nanotechnologie",
+      "popis": "ve vazbě na přírodovědné obory na UJEP",
+      "nace": [],
+      "text_pro_embedding": "Nanotechnologie: ve vazbě na přírodovědné obory na UJEP",
+      "tier": "KETs"
+    },
+    "4": {
+      "nazev": "Digitalizace",
+      "popis": "zejména aplikovaná digitalizace v oblastech jako jsou Průmysl 4.0, mobilita, zdravotnictví,",
+      "nace": [],
+      "text_pro_embedding": "Digitalizace: zejména aplikovaná digitalizace v oblastech jako jsou Průmysl 4.0, mobilita, zdravotnictví,",
+      "tier": "KETs"
+    },
+    "5": {
+      "nazev": "Kreativní průmysly",
+      "popis": "zejména ve vztahu k Fakultě umění a designu UJEP",
+      "nace": [],
+      "text_pro_embedding": "Kreativní průmysly: zejména ve vztahu k Fakultě umění a designu UJEP",
+      "tier": "KETs"
+    },
+    "6": {
+      "nazev": "Cleantech",
+      "popis": "",
+      "nace": [],
+      "text_pro_embedding": "Cleantech",
+      "tier": "subdomény"
+    },
+    "7": {
+      "nazev": "Vodíková ekonomika",
+      "popis": "",
+      "nace": [],
+      "text_pro_embedding": "Vodíková ekonomika",
+      "tier": "subdomény"
+    },
+    "8": {
+      "nazev": "Geotermální energie",
+      "popis": "",
+      "nace": [],
+      "text_pro_embedding": "Geotermální energie",
+      "tier": "subdomény"
+    },
+    "9": {
+      "nazev": "Agrosektor a biotechnologie zejména ve vztahu k obnově krajiny",
+      "popis": "",
+      "nace": [],
+      "text_pro_embedding": "Agrosektor a biotechnologie zejména ve vztahu k obnově krajiny",
+      "tier": "subdomény"
+    },
+    "10": {
+      "nazev": "Průmysl 4.0, zejména aditivní technologie a materiály, průmyslová automatizace a využití umělé",
+      "popis": "",
+      "nace": [],
+      "text_pro_embedding": "Průmysl 4.0, zejména aditivní technologie a materiály, průmyslová automatizace a využití umělé",
+      "tier": "subdomény"
+    },
+    "11": {
+      "nazev": "Digitalizace služeb (e - commerce)",
+      "popis": "",
+      "nace": [],
+      "text_pro_embedding": "Digitalizace služeb (e - commerce)",
+      "tier": "subdomény"
+    },
+    "12": {
+      "nazev": "Digitalizace veřejných služeb (e - Health, eVzdělávání, Smart city)",
+      "popis": "",
+      "nace": [],
+      "text_pro_embedding": "Digitalizace veřejných služeb (e - Health, eVzdělávání, Smart city)",
+      "tier": "subdomény"
+    },
+    "13": {
+      "nazev": "Netechnické inovace podporující transformaci",
+      "popis": "",
+      "nace": [],
+      "text_pro_embedding": "Netechnické inovace podporující transformaci",
+      "tier": "subdomény"
+    }
+  },
+  "Vysočina": {
+    "0": {
+      "nazev": "Strojírenství a kovozpracující průmysl",
+      "popis": "jedná se o nosné odvětví regionu s velkým množstvím firem a širokým portfoliem výrobků hlavní obory této specializace tvoří výroba strojů a zařízení a výroba kovových konstrukcí a kovodělných výrobků, kromě strojů a zařízení",
+      "nace": [
+        "28",
+        "25"
+      ],
+      "text_pro_embedding": "Strojírenství a kovozpracující průmysl: jedná se o nosné odvětví regionu s velkým množstvím firem a širokým portfoliem výrobků hlavní obory této specializace tvoří výroba strojů a zařízení a výroba kovových konstrukcí a kovodělných výrobků, kromě strojů a zařízení"
+    },
+    "1": {
+      "nazev": "Automobilový průmysl",
+      "popis": "zahrnuje druhé nosné odvětví regionu, jehož dynamický rozvoj souvisí se zahraničními investicemi a byl zaznamenán především v posledních 20 letech výroba motorových vozidel (kromě motocyklů), přívěsů a návěsů a výroba ostatních dopravních prostředků a zařízení",
+      "nace": [
+        "29",
+        "30"
+      ],
+      "text_pro_embedding": "Automobilový průmysl: zahrnuje druhé nosné odvětví regionu, jehož dynamický rozvoj souvisí se zahraničními investicemi a byl zaznamenán především v posledních 20 letech výroba motorových vozidel (kromě motocyklů), přívěsů a návěsů a výroba ostatních dopravních prostředků a zařízení"
+    },
+    "2": {
+      "nazev": "Energetická odvětví",
+      "popis": "jedná se o výrobky a služby směřující do činností souvisejících s výrobou a využíváním elektrické energie, nejčastěji z oborů strojírenství a kovozpracování či elektrotechnických a IT oborů (NACE 26, 27, 62 a 63)",
+      "nace": [
+        "24",
+        "25",
+        "28"
+      ],
+      "text_pro_embedding": "Energetická odvětví: jedná se o výrobky a služby směřující do činností souvisejících s výrobou a využíváním elektrické energie, nejčastěji z oborů strojírenství a kovozpracování či elektrotechnických a IT oborů (NACE 26, 27, 62 a 63)"
+    },
+    "3": {
+      "nazev": "ICT, elektrotechnický průmysl a průmyslová automatizace",
+      "popis": "vývoj a výroba rozvaděčů, systémových řešení a služeb pro datová centra, komponentů pro vláknovou optiku, zařízení pro bezdrátovou komunikaci a dalších software, oblast průmyslové automatizace (NACE 26, 27, 62 a 63)",
+      "nace": [],
+      "text_pro_embedding": "ICT, elektrotechnický průmysl a průmyslová automatizace: vývoj a výroba rozvaděčů, systémových řešení a služeb pro datová centra, komponentů pro vláknovou optiku, zařízení pro bezdrátovou komunikaci a dalších software, oblast průmyslové automatizace (NACE 26, 27, 62 a 63)"
+    }
+  },
+  "Zlínský kraj": {
+    "0": {
+      "nazev": "Produktový design a marketing",
+      "popis": "Služby produktového designu Audiovize (animace, foto a video produkce) Brand, marketingová komunikace a grafický design Služby interiérového designu a architektonických studií",
+      "nace": [],
+      "text_pro_embedding": "Produktový design a marketing: Služby produktového designu Audiovize (animace, foto a video produkce) Brand, marketingová komunikace a grafický design Služby interiérového designu a architektonických studií",
+      "tier": "horizontální"
+    },
+    "1": {
+      "nazev": "Materiálový výzkum pro cirkulární ekonomiku",
+      "popis": "Procesní inženýrství a nástroje pro zpracování funkčních materiálů (makromolekulárních sloučenin včetně polymerů), jejich vlastností, struktury a reologie materiálů Technologie pro ochranu životního prostředí, efektivní využívání odpadů a udržitelný rozvoj prostřednictvím energetiky z obnovitelných zdrojů (baterie, e-mobilita apod.)",
+      "nace": [],
+      "text_pro_embedding": "Materiálový výzkum pro cirkulární ekonomiku: Procesní inženýrství a nástroje pro zpracování funkčních materiálů (makromolekulárních sloučenin včetně polymerů), jejich vlastností, struktury a reologie materiálů Technologie pro ochranu životního prostředí, efektivní využívání odpadů a udržitelný rozvoj prostřednictvím energetiky z obnovitelných zdrojů (baterie, e-mobilita apod.)",
+      "tier": "horizontální"
+    },
+    "2": {
+      "nazev": "Průmyslová automatizace a digitalizace",
+      "popis": "Průmyslové inženýrství / procesní inovace pro zvýšení efektivity a snížení plýtvání v průmyslových provozech, plánování a simulace procesů Inženýrské služby pro zavádění automatizace a robotizace (automatizované linky se začleněním robotických zařízení) s kompetencí PLC programování Služby digitalizace prostřednictvím deeptech aplikací (strojové učení, deep learning, computer vision, rozpoznání obrazu, zvuku a vibrací, virtuální a rozšířená realita a využívání big data)",
+      "nace": [],
+      "text_pro_embedding": "Průmyslová automatizace a digitalizace: Průmyslové inženýrství / procesní inovace pro zvýšení efektivity a snížení plýtvání v průmyslových provozech, plánování a simulace procesů Inženýrské služby pro zavádění automatizace a robotizace (automatizované linky se začleněním robotických zařízení) s kompetencí PLC programování Služby digitalizace prostřednictvím deeptech aplikací (strojové učení, deep learning, computer vision, rozpoznání obrazu, zvuku a vibrací, virtuální a rozšířená realita a využívání big data)",
+      "tier": "horizontální"
+    },
+    "3": {
+      "nazev": "Kreativní produkty navržené pro společnost",
+      "popis": "modulární stavby s vysokým potenciálem využití pro společnost komplexní designová řešení ve veřejném prostoru a veřejné infrastruktuře produkty pro moderní domácnost s funkčním designem (stínící technika, nábytek, interiérové / kuchyňské doplňky, chytré řízení domácnosti apod.) módní průmysl s důrazem na obuv animované filmy, počítačové hry a jiné produkty animace / audiovize 4 https://s3platform.jrc.ec.europa.eu/regions/CZ072/tags/CZ072",
+      "nace": [],
+      "text_pro_embedding": "Kreativní produkty navržené pro společnost: modulární stavby s vysokým potenciálem využití pro společnost komplexní designová řešení ve veřejném prostoru a veřejné infrastruktuře produkty pro moderní domácnost s funkčním designem (stínící technika, nábytek, interiérové / kuchyňské doplňky, chytré řízení domácnosti apod.) módní průmysl s důrazem na obuv animované filmy, počítačové hry a jiné produkty animace / audiovize 4 https://s3platform.jrc.ec.europa.eu/regions/CZ072/tags/CZ072",
+      "tier": "Odvětví finální produktů s vysokou přidanou hodnot"
+    },
+    "4": {
+      "nazev": "Letecký, kosmický a obranný průmysl",
+      "popis": "lehké a ultralehké letouny a jejich komponenty a servis radiokomunikační systémy vesmírné technologie a technologie pozorování Země zbraně a pyrotechnické aplikace unikátní produkty pro obranný průmysl a krizové situace komponent",
+      "nace": [],
+      "text_pro_embedding": "Letecký, kosmický a obranný průmysl: lehké a ultralehké letouny a jejich komponenty a servis radiokomunikační systémy vesmírné technologie a technologie pozorování Země zbraně a pyrotechnické aplikace unikátní produkty pro obranný průmysl a krizové situace komponent",
+      "tier": "Odvětví finální produktů s vysokou přidanou hodnot"
+    },
+    "5": {
+      "nazev": "Průmyslové stroje a přesné strojírenství",
+      "popis": "obráběcí centra pro Industry 4.0 testovací stroje a zařízení komplexní stroje pro specifická odvětví přesné technologicky náročné strojírenství průmyslová kooperace využívající robotická a vysoce automatizovaná zařízení",
+      "nace": [],
+      "text_pro_embedding": "Průmyslové stroje a přesné strojírenství: obráběcí centra pro Industry 4.0 testovací stroje a zařízení komplexní stroje pro specifická odvětví přesné technologicky náročné strojírenství průmyslová kooperace využívající robotická a vysoce automatizovaná zařízení",
+      "tier": "Odvětví na pomezí finálních produktů a dodavatelů "
+    },
+    "6": {
+      "nazev": "Inteligentní IT systémy a kyberbezpečnost",
+      "popis": "podnikové informační systémy jako např. ERP, SCM, MES, CRM, BI, plánování a simulace procesů, docházkové, rezervační, finanční a marketingové informační systémy chytré řídící a monitorovací systémy se zaměřením na efektivní řízení a hospodaření s veřejnou infrastrukturou (městská mobilita, odpadové hospodářství, e-governance apod.) kyberbezpečnost / nástroje založené na umělé inteligenci programování SW aplikací Tato odvětvová doména je zároveň podpůrnou doménou pro všechny ostatní definované odvětvové domény specializace Zlínského kraje.",
+      "nace": [],
+      "text_pro_embedding": "Inteligentní IT systémy a kyberbezpečnost: podnikové informační systémy jako např. ERP, SCM, MES, CRM, BI, plánování a simulace procesů, docházkové, rezervační, finanční a marketingové informační systémy chytré řídící a monitorovací systémy se zaměřením na efektivní řízení a hospodaření s veřejnou infrastrukturou (městská mobilita, odpadové hospodářství, e-governance apod.) kyberbezpečnost / nástroje založené na umělé inteligenci programování SW aplikací Tato odvětvová doména je zároveň podpůrnou doménou pro všechny ostatní definované odvětvové domény specializace Zlínského kraje.",
+      "tier": "Odvětví na pomezí finálních produktů a dodavatelů "
+    },
+    "7": {
+      "nazev": "Pokročilé polymery a kompozity",
+      "popis": "vysoce odolné kompozity a nanokompozity funkční aplikace polymerů nátěrové hmoty a jiné chemické přípravky pro speciální využití high-tech pláště pro mobilitu z odolných směsí komplexní plastické komponenty",
+      "nace": [],
+      "text_pro_embedding": "Pokročilé polymery a kompozity: vysoce odolné kompozity a nanokompozity funkční aplikace polymerů nátěrové hmoty a jiné chemické přípravky pro speciální využití high-tech pláště pro mobilitu z odolných směsí komplexní plastické komponenty",
+      "tier": "Odvětví dodavatelů pokročilých materiálů a technol"
+    },
+    "8": {
+      "nazev": "Polovodiče / Mikroelektronika",
+      "popis": "senzory / optické a měřící zařízení polovodiče a jejich aplikace včetně desek plošných spojů / integrovaných obvodů / mikroprocesorů elektronické a elektromechanické systémy zařízení včetně kabelových systémů a zařízení pro e-mobilitu a udržitelnou energetiku",
+      "nace": [],
+      "text_pro_embedding": "Polovodiče / Mikroelektronika: senzory / optické a měřící zařízení polovodiče a jejich aplikace včetně desek plošných spojů / integrovaných obvodů / mikroprocesorů elektronické a elektromechanické systémy zařízení včetně kabelových systémů a zařízení pro e-mobilitu a udržitelnou energetiku",
+      "tier": "Odvětví dodavatelů pokročilých materiálů a technol"
+    }
+  }
+}

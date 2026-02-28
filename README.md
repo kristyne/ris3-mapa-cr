@@ -1,16 +1,39 @@
-# React + Vite
+# RIS3 Mapa ČR
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Upozornění:** Tato aplikace je **demonstrativní prototyp** vytvořený pro seminář
+> *AI pro datové analytiky* (CzechInvest, březen 2026). Jejím účelem je ukázat
+> možnosti i limity a problémy práce s AI asistenty kódu při analytické práci
+> s veřejnými daty. Nejedná se o produkční nástroj. Data nebyla nezávisle validována,
+> kód neprošel formálním review ani testováním.
 
-Currently, two official plugins are available:
+Interaktivní vizualizace krajských domén specializace z Národní RIS3 strategie.
+Porovnává kraje podle sémantické podobnosti textů domén, formální shody CZ-NACE kódů
+a napojení na výzkumné projekty z databáze CEP.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Spuštění lokálně
 
-## React Compiler
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Build
 
-## Expanding the ESLint configuration
+```bash
+npm run build
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Datový pipeline
+
+Zdrojová data jsou veřejně dostupná. Reprodukce pipeline:
+
+1. `parse_pdf_v2.py` — parsování PDF krajských karet (Příloha 2 NRIS3 v08)
+2. `gen_embeddings.py` — generování vektorových reprezentací textů domén
+3. `compute_vav_semantic.py` — přiřazení VaV projektů k doménám (FORD + sémantika)
+
+## Zdroje dat
+
+- Krajské karty RIS3 strategií (MPO, NRIS3 v08)
+- IS VaVaI / CEP (databáze výzkumných projektů)
+- ČSÚ (statistiky)
+- ArcČR © ČÚZK, ČSÚ, ARCDATA PRAHA 2024 (CC-BY 4.0)

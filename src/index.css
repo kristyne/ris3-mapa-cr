@@ -1,104 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-@theme {
-  --color-ris3-blue: #1a2e44;
-  --color-ris3-blue-light: #2c4a6e;
-  --color-ris3-blue-50: #f0f4f8;
-  --color-ris3-accent: #d64045;
-  --color-ris3-green: #2a9d8f;
-  --color-ris3-orange: #e9c46a;
-  --color-ris3-gray-50: #f7f8f9;
-  --color-ris3-gray-100: #eceef0;
-  --color-ris3-gray-200: #dde0e4;
-  --color-ris3-gray-300: #c5c9cf;
-  --color-ris3-gray-500: #6b7280;
-  --color-ris3-gray-700: #3b4252;
-  --color-ris3-gray-900: #1e2028;
-  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+:root {
+  --tc-dark-blue: #0A416E;
+  --tc-light-blue: #0087CD;
+  --tc-purple: #55287D;
+  --tc-gold: #E6AF14;
+  --tc-green: #A0BE32;
+  --tc-red: #C3003C;
+  --tc-orange: #CD5F1E;
+  --tc-gray-dark: #9B9BA0;
+  --tc-gray-light: #CDCDD2;
 }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--tc-dark-blue);
+  background: #f8f9fa;
   margin: 0;
-  font-family: var(--font-sans);
-  color: var(--color-ris3-gray-900);
-  background-color: #fff;
-  line-height: 1.65;
-  font-size: 15px;
-  letter-spacing: -0.01em;
 }
 
-h1, h2, h3, h4 {
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+/* Slide transitions */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 700ms ease-in-out;
+  pointer-events: none;
 }
 
-/* Scrollytelling sticky viz layout */
-.scrolly-container {
-  position: relative;
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.scrolly-viz-sticky {
-  position: sticky;
-  top: 56px; /* header height */
-  height: calc(100vh - 56px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Map tooltip */
+.map-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--tc-light-blue);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+  max-width: 280px;
 }
 
-.scrolly-step {
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 2;
+.map-tooltip .tooltip-title {
+  font-weight: 600;
+  color: var(--tc-dark-blue);
+  margin-bottom: 4px;
 }
 
-/* Panel card style */
-.panel {
-  background: #fff;
-  border: 1px solid var(--color-ris3-gray-200);
-  border-radius: 12px;
-  padding: 1.25rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+.map-tooltip .tooltip-value {
+  color: #333;
 }
 
-/* Smooth transitions for all interactive elements */
-button, a, .panel {
-  transition: all 0.2s ease;
-}
-
-/* Better select styling */
-select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3e%3cpath fill='%236b7280' d='M3 5l3 3 3-3'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 8px center;
-  padding-right: 24px;
-}
-
-/* Pill buttons */
-.pill {
-  font-size: 12px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--color-ris3-gray-200);
-  background: #fff;
-  color: var(--color-ris3-gray-700);
+/* Map path styles */
+.kraj-path {
+  stroke: #fff;
+  stroke-width: 1;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: stroke-width 0.15s, opacity 0.15s;
 }
-.pill:hover {
-  border-color: var(--color-ris3-blue-light);
-}
-.pill.active {
-  background: var(--color-ris3-blue);
-  color: #fff;
-  border-color: var(--color-ris3-blue);
+
+.kraj-path:hover {
+  stroke-width: 2;
+  stroke: var(--tc-dark-blue);
 }

@@ -1,0 +1,153 @@
+{
+  "cesko": {
+    "nazev": "Česko",
+    "nuts": "CZ",
+    "celkem_mil_kc_2024": 146877.2,
+    "intenzita_hdp_2024": 1.823,
+    "podnikatelsky_mil_kc": 95038.6,
+    "vladni_mil_kc": 22448.7,
+    "vysokoskolsky_mil_kc": 28218.2
+  },
+  "kraje": {
+    "CZ010": {
+      "nazev": "Hl. m. Praha",
+      "nuts": "CZ010",
+      "celkem_mil_kc_2024": 60173.0,
+      "intenzita_hdp_2024": 2.766,
+      "podnikatelsky_mil_kc": 32736.2,
+      "vladni_mil_kc": 15026.9,
+      "vysokoskolsky_mil_kc": 11446.3,
+      "zkratka": "PHA"
+    },
+    "CZ020": {
+      "nazev": "Středočeský kraj",
+      "nuts": "CZ020",
+      "celkem_mil_kc_2024": 18444.3,
+      "intenzita_hdp_2024": 1.849,
+      "podnikatelsky_mil_kc": 14419.6,
+      "vladni_mil_kc": 3628.5,
+      "vysokoskolsky_mil_kc": 371.1,
+      "zkratka": "STČ"
+    },
+    "CZ031": {
+      "nazev": "Jihočeský kraj",
+      "nuts": "CZ031",
+      "celkem_mil_kc_2024": 4189.1,
+      "intenzita_hdp_2024": 1.074,
+      "podnikatelsky_mil_kc": 2514.6,
+      "vladni_mil_kc": 826.8,
+      "vysokoskolsky_mil_kc": 821.9,
+      "zkratka": "JHČ"
+    },
+    "CZ032": {
+      "nazev": "Plzeňský kraj",
+      "nuts": "CZ032",
+      "celkem_mil_kc_2024": 5639.7,
+      "intenzita_hdp_2024": 1.447,
+      "podnikatelsky_mil_kc": 4452.9,
+      "vladni_mil_kc": 45.7,
+      "vysokoskolsky_mil_kc": 1092.4,
+      "zkratka": "PLK"
+    },
+    "CZ041": {
+      "nazev": "Karlovarský kraj",
+      "nuts": "CZ041",
+      "celkem_mil_kc_2024": 243.4,
+      "intenzita_hdp_2024": 0.18,
+      "podnikatelsky_mil_kc": 232.6,
+      "vladni_mil_kc": 10.8,
+      "vysokoskolsky_mil_kc": 0.0,
+      "zkratka": "KVK"
+    },
+    "CZ042": {
+      "nazev": "Ústecký kraj",
+      "nuts": "CZ042",
+      "celkem_mil_kc_2024": 1596.0,
+      "intenzita_hdp_2024": 0.384,
+      "podnikatelsky_mil_kc": 1354.0,
+      "vladni_mil_kc": 47.4,
+      "vysokoskolsky_mil_kc": 194.6,
+      "zkratka": "ULK"
+    },
+    "CZ051": {
+      "nazev": "Liberecký kraj",
+      "nuts": "CZ051",
+      "celkem_mil_kc_2024": 3857.3,
+      "intenzita_hdp_2024": 1.524,
+      "podnikatelsky_mil_kc": 3088.2,
+      "vladni_mil_kc": 116.1,
+      "vysokoskolsky_mil_kc": 583.8,
+      "zkratka": "LBK"
+    },
+    "CZ052": {
+      "nazev": "Královéhradecký kraj",
+      "nuts": "CZ052",
+      "celkem_mil_kc_2024": 3314.8,
+      "intenzita_hdp_2024": 0.931,
+      "podnikatelsky_mil_kc": 2339.9,
+      "vladni_mil_kc": 22.3,
+      "vysokoskolsky_mil_kc": 952.2,
+      "zkratka": "HKK"
+    },
+    "CZ053": {
+      "nazev": "Pardubický kraj",
+      "nuts": "CZ053",
+      "celkem_mil_kc_2024": 4144.1,
+      "intenzita_hdp_2024": 1.255,
+      "podnikatelsky_mil_kc": 3530.6,
+      "vladni_mil_kc": 62.1,
+      "vysokoskolsky_mil_kc": 551.5,
+      "zkratka": "PAK"
+    },
+    "CZ063": {
+      "nazev": "Vysočina",
+      "nuts": "CZ063",
+      "celkem_mil_kc_2024": 1697.0,
+      "intenzita_hdp_2024": 0.531,
+      "podnikatelsky_mil_kc": 1672.1,
+      "vladni_mil_kc": 16.5,
+      "vysokoskolsky_mil_kc": 7.2,
+      "zkratka": "VYS"
+    },
+    "CZ064": {
+      "nazev": "Jihomoravský kraj",
+      "nuts": "CZ064",
+      "celkem_mil_kc_2024": 25203.7,
+      "intenzita_hdp_2024": 2.878,
+      "podnikatelsky_mil_kc": 15343.1,
+      "vladni_mil_kc": 2435.0,
+      "vysokoskolsky_mil_kc": 7402.2,
+      "zkratka": "JHM"
+    },
+    "CZ071": {
+      "nazev": "Olomoucký kraj",
+      "nuts": "CZ071",
+      "celkem_mil_kc_2024": 6340.4,
+      "intenzita_hdp_2024": 1.674,
+      "podnikatelsky_mil_kc": 4220.4,
+      "vladni_mil_kc": 82.3,
+      "vysokoskolsky_mil_kc": 2035.9,
+      "zkratka": "OLK"
+    },
+    "CZ072": {
+      "nazev": "Zlínský kraj",
+      "nuts": "CZ072",
+      "celkem_mil_kc_2024": 4724.0,
+      "intenzita_hdp_2024": 1.337,
+      "podnikatelsky_mil_kc": 4189.7,
+      "vladni_mil_kc": 23.4,
+      "vysokoskolsky_mil_kc": 505.7,
+      "zkratka": "ZLK"
+    },
+    "CZ080": {
+      "nazev": "Moravskoslezský kraj",
+      "nuts": "CZ080",
+      "celkem_mil_kc_2024": 7310.3,
+      "intenzita_hdp_2024": 1.062,
+      "podnikatelsky_mil_kc": 4944.7,
+      "vladni_mil_kc": 104.9,
+      "vysokoskolsky_mil_kc": 2253.2,
+      "zkratka": "MSK"
+    }
+  }
+}
