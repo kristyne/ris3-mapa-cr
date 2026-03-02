@@ -742,11 +742,11 @@ export default function SlideSemanticMerged() {
           {renderNetworkContent()}
         </svg>
 
-        {/* Map legend */}
+        {/* Map legend — centered-left, below map, above infographic */}
         <div className="absolute z-10 bg-white/92 rounded-lg px-2 py-1.5 shadow-sm"
           style={{
-            left: width * 0.03,
-            top: height * (isCompact ? 0.68 : 0.56),
+            left: width * 0.14,
+            top: height * (isCompact ? 0.68 : 0.60),
             borderLeft: '4px solid #55287D',
           }}>
           {mapLegendContent(false)}
@@ -754,7 +754,7 @@ export default function SlideSemanticMerged() {
 
         {/* Network legend + Methodology */}
         <div className="absolute z-10 flex flex-col gap-1.5"
-          style={{ right: 12, top: Math.max(80, height * 0.11), maxWidth: isCompact ? 195 : 210 }}>
+          style={{ right: Math.max(24, width * 0.02), top: Math.max(80, height * 0.11), maxWidth: isCompact ? 195 : 210 }}>
           <div className="bg-white/92 rounded-lg px-3 py-2 shadow-sm" style={{ borderLeft: '4px solid #0087CD' }}>
             {networkLegendContent(false)}
           </div>
