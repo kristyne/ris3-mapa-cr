@@ -745,7 +745,7 @@ export default function SlideSemanticMerged() {
         {/* Map legend */}
         <div className="absolute z-10 bg-white/92 rounded-lg px-2 py-1.5 shadow-sm"
           style={{
-            left: width * 0.22,
+            left: width * 0.03 + Math.min(isCompact ? 200 : 220, width * 0.18) + 16,
             top: height * (isCompact ? 0.68 : 0.73),
             borderLeft: '4px solid #55287D',
           }}>
