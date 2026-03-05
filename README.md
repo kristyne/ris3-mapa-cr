@@ -3,12 +3,18 @@
 > **Upozornění:** Tato aplikace je **demonstrativní prototyp** vytvořený pro seminář
 > *AI pro datové analytiky* (CzechInvest, březen 2026). Jejím účelem je ukázat
 > možnosti i limity a problémy práce s AI asistenty kódu při analytické práci
-> s veřejnými daty. Nejedná se o produkční nástroj. Data nebyla nezávisle validována,
+> s veřejnými daty. Nejedná se o produkční nástroj. Data ani analýza nebyla nezávisle validována,
 > kód neprošel formálním review ani testováním.
 
-Interaktivní vizualizace krajských domén specializace z Národní RIS3 strategie.
-Porovnává kraje podle sémantické podobnosti textů domén, formální shody CZ-NACE kódů
+Interaktivní vizualizace krajských domén specializace na základě tzv. karet krajských RIS3
+strategií. Porovnává kraje podle sémantické podobnosti textů domén, formální shody CZ-NACE kódů
 a napojení na výzkumné projekty z databáze CEP.
+
+## Online verze
+
+Aplikace je dostupná online na [kristyne.github.io/ris3-mapa-cr](https://kristyne.github.io/ris3-mapa-cr/)
+jako statická stránka chráněná heslem přes [StatiCrypt](https://github.com/robinmoisson/staticrypt).
+Heslo obdrží účastníci semináře.
 
 ## Spuštění lokálně
 
@@ -23,6 +29,10 @@ npm run dev
 npm run build
 ```
 
+## Technologie
+
+React 19 + Vite + Tailwind CSS + D3.js + Recharts
+
 ## Datový pipeline
 
 Zdrojová data jsou veřejně dostupná. Reprodukce pipeline:
@@ -33,7 +43,7 @@ Zdrojová data jsou veřejně dostupná. Reprodukce pipeline:
 
 ## Zdroje dat
 
-- Krajské karty RIS3 strategií (MPO, NRIS3 v08)
+- Krajské karty RIS3 strategií (MPO, Příloha č.2 NRIS3 v08)
 - IS VaVaI / CEP (databáze výzkumných projektů)
-- ČSÚ (statistiky)
+- ČSÚ (statistiky VaVaI)
 - ArcČR © ČÚZK, ČSÚ, ARCDATA PRAHA 2024 (CC-BY 4.0)
